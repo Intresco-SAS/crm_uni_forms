@@ -88,11 +88,9 @@
                                         'default_email': email_from,
                                         
                                         'default_team_id': team_id,
-                                        'default_doctype': doctype,
                                         
                                         'default_x_sexo': x_sexo,
                                         'default_x_etnia': x_etnia,
-                                        'default_x_edad': x_edad,
                                         'default_x_estrato': x_estrato,
                                         'default_x_vereda': x_vereda,
                                         'default_x_datos1': x_datos1,
