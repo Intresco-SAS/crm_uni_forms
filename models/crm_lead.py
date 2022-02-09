@@ -1097,6 +1097,46 @@ class Lead(models.Model):
 
         ], "1. ¿Aplica medidas para mitigar el contagio del Covid 19?",
     )
+
+    # INNOVACIÓN, ORGANIZACIÓN y OPERACIÓN
+
+    x_innova_org_1 = fields.Selection(
+        [
+            ('si', 'Sí'),
+            ('no', 'No')
+        ], string='¿Su negocio ha desarrollado y puesto a disposición de sus clientes nuevos productos o servicios en los últimos 2 años?')
+
+    x_innova_org_2 = fields.Selection(
+        [
+            ('si', 'Sí'),
+            ('no', 'No')
+        ], string='¿Su negocio ha utilizado nuevas tecnologías o herramientas para mejorar los procesos, productos o servicios ofrecidos en los últimos 2 años?')
+
+    x_innova_org_3 = fields.Selection(
+        [
+            ('si', 'Sí'),
+            ('no', 'No')
+        ], string='¿En su negocio elaboran un plan y metas de trabajo? (puede ser quincenal, mensual, trimestral, semestral o anualmente)')
+
+    x_innova_org_4 = fields.Selection(
+        [
+            ('si', 'Sí'),
+            ('no', 'No'),
+            ('proceso', 'En Proceso')
+        ], string='¿Su negocio tiene un plan estratégico de desarrollo (misión, visión, objetivos) para los próximos dos años?')
+
+    x_innova_org_5 = fields.Selection(
+        [
+            ('si', 'Sí'),
+            ('no', 'No')
+        ], string='¿Cuenta con un inventario donde registre las entradas y salidas de sus productos o insumos?')
+
+    x_innova_org_5 = fields.Selection(
+        [
+            ('si', 'Sí'),
+            ('no', 'No'),
+            ('parcialmente', 'Parcialmente')
+        ], string='¿Cuenta con un espacio adecuado para la producción y almacenamiento del producto, o prestación de sus servicios?')
     
     #se cambia por solicitud MD_26
     """x_proto2_bio = fields.Selection(
