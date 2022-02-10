@@ -147,14 +147,14 @@ class Lead(models.Model):
 
     x_sexo = fields.Selection(
         [
-            ('masculino', 'Masculino'),
+         ('masculino', 'Masculino'),
             ('femenino', 'Femenino'),
         ], "5. Sexo", 
     )
 
     x_edad = fields.Integer(
         string="6. Edad",
-        help="Escriba su edad", 
+        #help="Escriba su edad", 
         size=2
     )
 
@@ -464,7 +464,7 @@ class Lead(models.Model):
     )
 
     
-    #campo actulizado
+    #campo actulizado a x_com_cuenta1
     x_com_cuenta = fields.Selection(
         [
            ('establecimiento', 'Establecimiento'),
