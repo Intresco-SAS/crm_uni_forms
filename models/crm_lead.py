@@ -1084,7 +1084,7 @@ class Lead(models.Model):
         help="Ingrese un número entre 1 y 100",
     )
 
-    #MÓDULO 3-PROTOCOLOS DE BIOSEGURIDAD(seccion 1 bioseguridad)
+    #MÓDULO 3-PROTOCOLOS DE BIOSEGURIDAD(seccion 1 bioseguridad) NO VISIBLE
     x_dcont1 = fields.Boolean(
         string="Continuar con el Formulario",
     )
@@ -1097,46 +1097,6 @@ class Lead(models.Model):
 
         ], "1. ¿Aplica medidas para mitigar el contagio del Covid 19?",
     )
-
-    # INNOVACIÓN, ORGANIZACIÓN y OPERACIÓN
-
-    x_innova_org_1 = fields.Selection(
-        [
-            ('si', 'Sí'),
-            ('no', 'No')
-        ], string='¿Su negocio ha desarrollado y puesto a disposición de sus clientes nuevos productos o servicios en los últimos 2 años?')
-
-    x_innova_org_2 = fields.Selection(
-        [
-            ('si', 'Sí'),
-            ('no', 'No')
-        ], string='¿Su negocio ha utilizado nuevas tecnologías o herramientas para mejorar los procesos, productos o servicios ofrecidos en los últimos 2 años?')
-
-    x_innova_org_3 = fields.Selection(
-        [
-            ('si', 'Sí'),
-            ('no', 'No')
-        ], string='¿En su negocio elaboran un plan y metas de trabajo? (puede ser quincenal, mensual, trimestral, semestral o anualmente)')
-
-    x_innova_org_4 = fields.Selection(
-        [
-            ('si', 'Sí'),
-            ('no', 'No'),
-            ('proceso', 'En Proceso')
-        ], string='¿Su negocio tiene un plan estratégico de desarrollo (misión, visión, objetivos) para los próximos dos años?')
-
-    x_innova_org_5 = fields.Selection(
-        [
-            ('si', 'Sí'),
-            ('no', 'No')
-        ], string='¿Cuenta con un inventario donde registre las entradas y salidas de sus productos o insumos?')
-
-    x_innova_org_5 = fields.Selection(
-        [
-            ('si', 'Sí'),
-            ('no', 'No'),
-            ('parcialmente', 'Parcialmente')
-        ], string='¿Cuenta con un espacio adecuado para la producción y almacenamiento del producto, o prestación de sus servicios?')
     
     #se cambia por solicitud MD_26
     """x_proto2_bio = fields.Selection(
@@ -1303,17 +1263,59 @@ class Lead(models.Model):
 
     x_proto18 = fields.Many2many('model.manipulate.many2many', string="18. ¿Que tipo de beneficios?")
 
+    # INNOVACIÓN, ORGANIZACIÓN y OPERACIÓN
+
+    x_innova_org_1 = fields.Selection(
+        [
+            ('si', 'Sí'),
+            ('no', 'No')
+        ], string='1. ¿Su negocio ha desarrollado y puesto a disposición de sus clientes nuevos productos o servicios en los últimos 2 años?')
+
+    x_innova_org_2 = fields.Selection(
+        [
+            ('si', 'Sí'),
+            ('no', 'No')
+        ], string='2. ¿Su negocio ha utilizado nuevas tecnologías o herramientas para mejorar los procesos, productos o servicios ofrecidos en los últimos 2 años?')
+
+    x_innova_org_3 = fields.Selection(
+        [
+            ('si', 'Sí'),
+            ('no', 'No')
+        ], string='3. ¿En su negocio elaboran un plan y metas de trabajo? (puede ser quincenal, mensual, trimestral, semestral o anualmente)')
+
+    x_innova_org_4 = fields.Selection(
+        [
+            ('si', 'Sí'),
+            ('no', 'No'),
+            ('proceso', 'En Proceso')
+        ], string='4. ¿Su negocio tiene un plan estratégico de desarrollo (misión, visión, objetivos) para los próximos dos años?')
+
+    x_innova_org_5 = fields.Selection(
+        [
+            ('si', 'Sí'),
+            ('no', 'No')
+        ], string='5. ¿Cuenta con un inventario donde registre las entradas y salidas de sus productos o insumos?')
+
+    x_innova_org_6 = fields.Selection(
+        [
+            ('si', 'Sí'),
+            ('no', 'No'),
+            ('parcialmente', 'Parcialmente')
+        ], string='6. ¿Cuenta con un espacio adecuado para la producción y almacenamiento del producto, o prestación de sus servicios?')
+
     #INNOVACION DEL MODELO DE NEGOCIO
     x_dcont2 = fields.Boolean(
         string="¿Desea continuar con el Formulario?",
     )
+
+
     #preguntas nuevas modelo de negocio
 
     x_neg4 = fields.Selection(
         [
             ('si', 'Si'),
             ('no', 'No'),
-        ], "4. ¿Identifica cuáles son sus principales compradores?",
+        ], "7. ¿Identifica cuáles son sus principales compradores?",
     )
     # x_neg5 = fields.Selection(
     #     [
@@ -1325,7 +1327,7 @@ class Lead(models.Model):
     # )
     x_neg5 = fields.Many2many(
         comodel_name="modelo.porque.compran.clientes",
-        string="5. ¿Sabe por qué le compran sus clientes? ¿Promociones, referidos, redes?",
+        string="8. ¿Sabe por qué le compran sus clientes? ¿Promociones, referidos, redes?",
         readonly=False,
         store=True,
     )
@@ -1343,7 +1345,7 @@ class Lead(models.Model):
 
     x_neg6 = fields.Many2many(
         comodel_name="modelo.negocios.model",
-        string="6. ¿Cómo ofrece y  vende sus productos?",
+        string="9. ¿Cómo ofrece y  vende sus productos?",
         readonly=False,
         store=True,
     )
@@ -1352,55 +1354,67 @@ class Lead(models.Model):
         [
             ('si', 'Si'),
             ('no', 'No'),
-        ], "7. ¿Tiene alguna base de clientes con información importante sobre ellos, como dirección, correo, fecha de cumpleaños?",
+        ], "10. ¿Tiene alguna base de clientes con información importante sobre ellos, como dirección, correo, fecha de cumpleaños?",
     )
     x_neg8 = fields.Selection(
         [
             ('si', 'Si'),
             ('no', 'No'),
-        ], "8. ¿Tiene crédito?",
+        ], "11. ¿Tiene un crédito relacionado a su micronegocio?",
     )
+
     x_neg9 = fields.Selection(
         [
             ('si', 'Si'),
             ('no', 'No'),
-        ], "9.  ¿Conoce el costo de su crédito?",
+        ], "¿Conoce el costo de su crédito?",
     )
+
+    x_neg9_current = fields.Selection(
+        [
+            ('bancos', 'Bancos'),
+            ('famila', 'Familiares/amigos/conocidos'),
+            ('gobierno', 'Beneficios o programas del gobierno'),
+            ('cooperativa', 'Cooperativas de ahorro y crédito gota a gota'),
+            ('otro', 'Otro tipo de entidad')
+        ], "12. ¿Con qué tipo de entidad tiene su crédito?"
+    )
+
     x_neg10 = fields.Selection(
         [
             ('si', 'Si'),
             ('no', 'No'),
-        ], "10. ¿Sabe calcular los intereses que le están cobrando?",
+        ], "13. ¿Sabe calcular los intereses que le están cobrando?",
     )
     x_neg11 = fields.Selection(
         [
             ('si', 'Si'),
             ('no', 'No'),
-        ], "11. ¿Conoce el detalle de su crédito? (Tiempos, tasas, cuotas)?",
+        ], "14. ¿Conoce el detalle de su crédito? (Tiempos, tasas, cuotas)?",
     )
     x_neg12 = fields.Selection(
         [
             ('si', 'Si'),
             ('no', 'No'),
-        ], "12. ¿Sus proveedores le dan credito?",
+        ], "¿Sus proveedores le dan credito?",
     )
     x_neg13 = fields.Selection(
         [
             ('si', 'Si'),
             ('no', 'No'),
-        ], "13. ¿Sus proveedores le ofrecen productos en consignación?",
+        ], "¿Sus proveedores le ofrecen productos en consignación?",
     )
     x_neg14 = fields.Selection(
         [
             ('si', 'Si'),
             ('no', 'No'),
-        ], "14. ¿Le paga de contado las compras a sus proveedores?",
+        ], "15. ¿Le paga de contado las compras a sus proveedores?",
     )
     x_neg15 = fields.Selection(
         [
             ('si', 'Si'),
             ('no', 'No'),
-        ], "15. ¿Sabe medir y tiene claro la rentabilidad de cada producto o servicio que ofrece como la utilidad total de su negocio?",
+        ], "¿Sabe medir y tiene claro la rentabilidad de cada producto o servicio que ofrece como la utilidad total de su negocio?",
     )
     x_neg16 = fields.Selection(
         [
@@ -1408,7 +1422,7 @@ class Lead(models.Model):
             ('no', 'No'),
         ], "16. ¿Tiene proyectado cambiar de idea de negocio?",
     )
-    x_neg17 = fields.Char("17. ¿Porque?",
+    x_neg17 = fields.Char("20. ¿Porque?",
     )
 
     x_financiero18 = fields.Selection(
@@ -1416,7 +1430,7 @@ class Lead(models.Model):
             ('si', 'Si'),
             ('no', 'No'),
             #('en_proceso', 'En proceso'),
-        ], "18. ¿Lleva cuentas de las ganancias que obtiene el Micronegocio?",
+        ], "17. ¿Lleva cuentas de las ganancias que obtiene el Micronegocio?",
     )
     x_financiero19 = fields.Selection(
         [
@@ -1428,21 +1442,21 @@ class Lead(models.Model):
             ('mas_100000', 'Mas de $10´000.000'),
             ('no_sabe', 'No sabe'),
             ('no_quiere_decir', 'No quiere decir'),
-        ], "19. ¿Cuánto es su promedio actual de ganancias semanalmente?",
+        ], "18. ¿Cuánto es su promedio actual de ganancias semanalmente?",
     )
     x_financiero20 = fields.Selection(
         [
             ('si', 'Si'),
             ('no', 'No'),
             #('en_proceso', 'En proceso'),
-        ], "20. ¿Lleva cuentas de los gastos que genera el Micronegocio?",
+        ], "19. ¿Lleva cuentas de los gastos que genera el Micronegocio?",
     )
     x_financiero21 = fields.Selection(
         [
             ('si', 'Si'),
             ('no', 'No'),
             #('en_proceso', 'En proceso'),
-        ], "21. ¿Sabe cuanto tiene que vender y a qué precio para cubrir todos sus costos y gastos? (Punto de equilibrio)",
+        ], "20. ¿Sabe cuanto tiene que vender y a qué precio para cubrir todos sus costos y gastos? (Punto de equilibrio)",
     )
     x_financiero22 = fields.Selection(
         [
@@ -1450,50 +1464,50 @@ class Lead(models.Model):
             ('cuenta_personal', 'Cuenta Bancaria del Personal'),
             ('los_dos_tipos_cuenta', 'Tiene las dos cuentas'),
             ('no_tiene', 'No tiene ninguna'),
-        ], "22. ¿Tiene cuenta  bancaria el negocio o cuenta bancaria personal?",
+        ], "21. ¿Tiene cuenta  bancaria el negocio o cuenta bancaria personal?",
     )
     x_financiero23 = fields.Selection(
         [
             ('si', 'Si'),
             ('no', 'No'),
             #('en_proceso', 'En proceso'),
-        ], "23. ¿Tiene actualmente deudas del Micronegocio? (Pagos a un proveedor, banco. etc)",
+        ], "22. ¿¿Actualmente tiene mora en cualquiera de las deudas de su Micronegocio? (Pagos a un proveedor, banco. etc)",
     )
     x_financiero24 = fields.Selection(
         [
             ('si', 'Si'),
             ('no', 'No'),
             #('en_proceso', 'En proceso'),
-        ], "24. ¿Conoce su nivel de endeudamiento?",
+        ], "23. ¿Conoce lo maximo que se puede endeudar para no quedar mal en los pagos de su negocio?",
     )
     x_financiero25 = fields.Selection(
         [
             ('si', 'Si'),
             ('no', 'No'),
             #('en_proceso', 'En proceso'),
-        ], "25. ¿Tiene estados financieros y contables de su negocio?",
+        ], "24. ¿Tiene estados financieros y contables de su negocio?",
     )
     x_financiero26 = fields.Selection(
         [
             ('si', 'Si'),
             ('no', 'No'),
             #('en_proceso', 'En proceso'),
-        ], "26. ¿Esta interesado en adquirir credito?",
+        ], "25. ¿Esta interesado en adquirir credito?",
     )
-    x_financiero27 = fields.Char("27. ¿Para que quiere adquirir un credito?")
+    x_financiero27 = fields.Char("26. ¿Para que quiere adquirir un credito?")
 
     x_financiero28 = fields.Selection(
         [
             ('reg_simple', 'Regimen simple'),
             ('reg_comun', 'Regimen comun'),
-        ], "28. ¿Es regímen simple o regímen común en IVA?",
+        ], "¿Es regímen simple o regímen común en IVA?",
     )
     x_financiero29 = fields.Selection(
         [
             ('si', 'Si'),
             ('no', 'No'),
            # ('en_proceso', 'En proceso'),
-        ], "29. ¿Presenta declaración de renta?",
+        ], "¿Presenta declaración de renta?",
     )
 
     x_mer_com30 = fields.Selection(
@@ -1501,14 +1515,14 @@ class Lead(models.Model):
             ('si', 'Si'),
             ('no', 'No'),
             ('en_proceso', 'En proceso'),
-        ], "30. ¿Su Micronegocio tiene un aviso, eslogan o logo?",
+        ], "33. ¿Su Micronegocio tiene un aviso, eslogan o logo?",
     )
     x_mer_com31 = fields.Selection(
         [
             ('si', 'Si'),
             ('no', 'No'),
            # ('en_proceso', 'En proceso'),
-        ], "31. ¿Sus productos son empacados por usted con algúna marca, tarjeta, logo?",
+        ], "34. ¿Sus productos son empacados por usted con algúna marca, tarjeta, logo?",
     )
     # x_mer_com32 = fields.Selection(
     #     [
