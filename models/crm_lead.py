@@ -1471,7 +1471,7 @@ class Lead(models.Model):
             ('si', 'Si'),
             ('no', 'No'),
             #('en_proceso', 'En proceso'),
-        ], "22. ¿¿Actualmente tiene mora en cualquiera de las deudas de su Micronegocio? (Pagos a un proveedor, banco. etc)",
+        ], "22. ¿Actualmente tiene mora en cualquiera de las deudas de su Micronegocio? (Pagos a un proveedor, banco. etc)",
     )
     x_financiero24 = fields.Selection(
         [
@@ -1494,7 +1494,7 @@ class Lead(models.Model):
             #('en_proceso', 'En proceso'),
         ], "25. ¿Esta interesado en adquirir credito?",
     )
-    x_financiero27 = fields.Char("26. ¿Para que quiere adquirir un credito?")
+    x_financiero27 = fields.Char("26. ¿Para que quiere adquirir un credito para su negocio?")
 
     x_financiero28 = fields.Selection(
         [
@@ -1522,7 +1522,7 @@ class Lead(models.Model):
             ('si', 'Si'),
             ('no', 'No'),
            # ('en_proceso', 'En proceso'),
-        ], "34. ¿Sus productos son empacados por usted con algúna marca, tarjeta, logo?",
+        ], "34. ¿Entrega sus productos o servicios con algúna marca, tarjeta, logo?",
     )
     # x_mer_com32 = fields.Selection(
     #     [
@@ -1537,7 +1537,7 @@ class Lead(models.Model):
 
     x_mer_com32 = fields.Many2many(
         comodel_name="modelo.metodos.venta",
-        string="32. ¿Qué hace usted para lograr vender más? (Utiliza redes las redes sociales, hace algún evento, descuentos, participan en ferias, etc)",
+        string="32. ¿Qué hace usted para conseguir nuevos clientes y/o lograr vender más? (Utiliza redes las redes sociales, hace algún evento, descuentos, participan en ferias, etc)",
         readonly=False,
         store=True,
     )
@@ -1579,7 +1579,7 @@ class Lead(models.Model):
 
     x_mer_com36 = fields.Many2many(
         comodel_name="modelo.conseguir.nuevos.clientes",
-        string="36. ¿Cómo consigue nuevos clientes? (Redes sociales, Muestras, eventos, promociones, publicidad impresa otros cuales?)",
+        string="¿Cómo consigue nuevos clientes? (Redes sociales, Muestras, eventos, promociones, publicidad impresa otros cuales?)",
         readonly=False,
         store=True,
     )
@@ -1590,7 +1590,7 @@ class Lead(models.Model):
             ('si', 'Si'),
             ('no', 'No'),
             #('en_proceso', 'En proceso'),
-        ], "38. ¿Hace promoción en las redes sociales?",
+        ], "¿Hace promoción en las redes sociales?",
     )
     x_mer_com39 = fields.Selection(
         [
@@ -1686,6 +1686,16 @@ class Lead(models.Model):
             ('mas_1_an', 'Mas de 1 año'),
         ], "47. ¿Cuanto tiempo lleva con el Micronegocio?",
     )
+
+    x_forma47_1 = fields.Selection(
+        [
+            ('si', 'Sí'),
+            ('no', 'No'),
+            ('parcial', 'Parcialmente'),
+            ('no_empleados', 'No cuenta con empleados')
+        ], "47.5. En caso de tener empleados, ¿estos cuentan con la remuneración y aportes legales establecidos como salud, pensión y ARL?"
+    )
+
     x_forma48 = fields.Selection(
         [
             ('0', '0'),
