@@ -1095,7 +1095,7 @@ class Lead(models.Model):
             ('no', 'No'),
             ('en_proceso', 'En proceso'),
 
-        ], "1. ¿Aplica medidas para mitigar el contagio del Covid 19?",
+        ], "¿Aplica medidas para mitigar el contagio del Covid 19?",
     )
     
     #se cambia por solicitud MD_26
@@ -1108,7 +1108,7 @@ class Lead(models.Model):
             ('tapabocas', 'Uso de tapabocas'),
             ('desinfeccion', 'Desinfección de superficies e implementos'),
 
-        ], "2. ¿Cuáles aplica?",
+        ], "¿Cuáles aplica?",
     )"""
     
     x_proto2_bio = fields.Many2many(
@@ -1127,14 +1127,14 @@ class Lead(models.Model):
             ('si', 'Si'),
             ('no', 'No'),
 
-        ], "6. ¿Usted conoce los protocolos de bioseguridad para su negocio??",
+        ], "¿Usted conoce los protocolos de bioseguridad para su negocio??",
     )
 
     x_proto2 = fields.Selection(
         [
             ('si', 'Si'),
             ('no', 'No'),
-        ], "7. ¿En su negocio implementa los protocolos de bioseguridad?",
+        ], "¿En su negocio implementa los protocolos de bioseguridad?",
     )
 
     x_proto3 = fields.Selection(
@@ -1142,7 +1142,7 @@ class Lead(models.Model):
             ('si', 'Si'),
             ('no', 'No'),
 
-        ], "8. ¿Dispone de puntos de alcohol con una concentración no inferior al 70% para la higiene de las manos de los clientes y los trabajadores del negocio?",
+        ], "¿Dispone de puntos de alcohol con una concentración no inferior al 70% para la higiene de las manos de los clientes y los trabajadores del negocio?",
     )
 
     x_proto4 = fields.Selection(
@@ -1150,7 +1150,7 @@ class Lead(models.Model):
             ('si', 'Si'),
             ('no', 'No'),
 
-        ], "9. Dispone de la adecuada provision de tapabocas y elementos de protección para quienes laboran en el negocio?",
+        ], "Dispone de la adecuada provision de tapabocas y elementos de protección para quienes laboran en el negocio?",
     )
 
     x_proto5 = fields.Selection(
@@ -1158,7 +1158,7 @@ class Lead(models.Model):
             ('si', 'Si'),
             ('no', 'No'),
 
-        ], "5. ¿Se realiza cambio de tapabocas durante la jornada laboral?",
+        ], "¿Se realiza cambio de tapabocas durante la jornada laboral?",
     )
 
     x_proto6 = fields.Selection(
@@ -1167,7 +1167,7 @@ class Lead(models.Model):
             ('no', 'No'),
             ('no_aplica', 'No Aplica'),
 
-        ], "10. ¿Atiende a un cliente a la vez y mantiene el distanciamiento social?",
+        ], "¿Atiende a un cliente a la vez y mantiene el distanciamiento social?",
     )
 
     x_proto7 = fields.Selection(
@@ -1176,7 +1176,7 @@ class Lead(models.Model):
             ('no', 'No'),
             ('no_aplica', 'No Aplica'),
 
-        ], "11. ¿Atiende de manera prioritaria a la población con riesgo del COVID19, para disminuir el tiempo que permenecen en el lugar?",
+        ], "¿Atiende de manera prioritaria a la población con riesgo del COVID19, para disminuir el tiempo que permenecen en el lugar?",
     )
 
     x_proto8 = fields.Selection(
@@ -1185,7 +1185,7 @@ class Lead(models.Model):
             ('no', 'No'),
             ('no_aplica', 'No Aplica'),
 
-        ], "12. ¿Realiza la protección permanente de los alimentos en exhibición, con el uso de películas plásticas, tapas, vitrinas, etc?",
+        ], "¿Realiza la protección permanente de los alimentos en exhibición, con el uso de películas plásticas, tapas, vitrinas, etc?",
     )
 
     x_proto9 = fields.Selection(
@@ -1193,7 +1193,7 @@ class Lead(models.Model):
             ('si', 'Si'),
             ('no', 'No'),
 
-        ], "13. ¿Dispone de superficies fáciles de limpiar y desinfectar para ubicar los productos?",
+        ], "¿Dispone de superficies fáciles de limpiar y desinfectar para ubicar los productos?",
     )
 
     x_proto10 = fields.Selection(
@@ -1201,7 +1201,7 @@ class Lead(models.Model):
             ('si', 'Si'),
             ('no', 'No'),
 
-        ], "14. ¿Desinfecta los objetos del local cuando son prestados a los clientes o proveedores (esferos, grapadora, etc.), antes y después de su uso?",
+        ], "¿Desinfecta los objetos del local cuando son prestados a los clientes o proveedores (esferos, grapadora, etc.), antes y después de su uso?",
     )
 
     x_proto11 = fields.Selection(
@@ -1209,7 +1209,7 @@ class Lead(models.Model):
             ('si', 'Si'),
             ('no', 'No'),
 
-        ], "15. ¿Coloca avisos o alertas para mantener las medidas de prevención?",
+        ], "¿Coloca avisos o alertas para mantener las medidas de prevención?",
     )
 
     x_proto12 = fields.Selection(
@@ -1218,7 +1218,7 @@ class Lead(models.Model):
             ('no', 'No'),
             ('no_aplica', 'No Aplica'),
 
-        ], "16. ¿Realiza la entrega de productos para llevar o consumir fuera del establecimiento?",
+        ], "¿Realiza la entrega de productos para llevar o consumir fuera del establecimiento?",
     )
 
     x_proto13 = fields.Selection(
@@ -1226,7 +1226,7 @@ class Lead(models.Model):
             ('si', 'Si'),
             ('no', 'No'),
 
-        ], "17. ¿Limpia y desinfecta las herramientas de trabajo una vez finalice la jornada?",
+        ], "¿Limpia y desinfecta las herramientas de trabajo una vez finalice la jornada?",
     )
 
     x_proto14 = fields.Selection(
@@ -1234,7 +1234,7 @@ class Lead(models.Model):
             ('si', 'Si'),
             ('no', 'No'),
 
-        ], "18. ¿Asegura que los colaboradores y los clientes usen tapabocas?",
+        ], "¿Asegura que los colaboradores y los clientes usen tapabocas?",
     )
 
     x_proto15 = fields.Selection(
@@ -1242,7 +1242,7 @@ class Lead(models.Model):
             ('si', 'Si'),
             ('no', 'No'),
 
-        ], "19. Realiza la limpieza del espacio de trabajo al menos dos vez al día?",
+        ], "Realiza la limpieza del espacio de trabajo al menos dos vez al día?",
     )
 
     x_proto16 = fields.Selection(
@@ -1250,7 +1250,7 @@ class Lead(models.Model):
             ('si', 'Si'),
             ('no', 'No'),
 
-        ], "20. ¿Entrega los productos sobre una superficie, sin tener contacto con el cliente?",
+        ], "¿Entrega los productos sobre una superficie, sin tener contacto con el cliente?",
     )
 
     x_proto17 = fields.Selection(
@@ -1258,10 +1258,10 @@ class Lead(models.Model):
             ('si', 'Si'),
             ('no', 'No'),
 
-        ], "17. ¿Ha recibido o recibe algun apoyo o beneficio económico por parte del Gobierno en la emergencia para usted?",
+        ], "¿Ha recibido o recibe algun apoyo o beneficio económico por parte del Gobierno en la emergencia para usted?",
     )
 
-    x_proto18 = fields.Many2many('model.manipulate.many2many', string="18. ¿Que tipo de beneficios?")
+    x_proto18 = fields.Many2many('model.manipulate.many2many', string="¿Que tipo de beneficios?")
 
     # INNOVACIÓN, ORGANIZACIÓN y OPERACIÓN
 
@@ -1558,7 +1558,7 @@ class Lead(models.Model):
 
     x_mer_com34 = fields.Many2many(
         comodel_name="modelo.promocion.productos",
-        string="34. ¿Cómo le cuenta a sus clientes de sus nuevos productos? (Redes sociales, Muestras, eventos, promociones, publicidad impresa otros cuales?)",
+        string="34. ¿Cómo le cuenta a sus clientes de sus nuevos productos? (Redes sociales, Muestras, eventos, promociones, publicidad impresa, otros)",
         readonly=False,
         store=True,
     )
@@ -1579,7 +1579,7 @@ class Lead(models.Model):
 
     x_mer_com36 = fields.Many2many(
         comodel_name="modelo.conseguir.nuevos.clientes",
-        string="¿Cómo consigue nuevos clientes? (Redes sociales, Muestras, eventos, promociones, publicidad impresa otros cuales?)",
+        string="¿Cómo consigue nuevos clientes? (Redes sociales, Muestras, eventos, promociones, publicidad impresa, otros)",
         readonly=False,
         store=True,
     )
@@ -1734,7 +1734,7 @@ class Lead(models.Model):
 
     x_forma51 = fields.Many2many(
         comodel_name="modelo.temas.para.asesorarse",
-        string="51. ¿En que temas está interesado en recibir asesorías o acompañamiento y o formación o capacitación? (Financiera, Comercial, Logística, Administrativa, Gerencia, Recursos Humanos etc)",
+        string="51. ¿En que temas está interesado en recibir asesorías o acompañamiento y o formación o capacitación? (Financiera, Comercial, Logística, Administrativa, Gerencia, Recursos Humanos, etc)",
         readonly=False,
         store=True,
     )
@@ -2670,7 +2670,7 @@ class Lead(models.Model):
         #], "75. ¿Qué redes sociales utiliza para su negocio? ",
     #)
     
-    x_merc73_form = fields.Many2many('model.many2many73', string="73. ¿Qué actividades propias de su negocio realiza a través de internet?")
+    x_merc73_form = fields.Many2many('model.many2many73', string="¿Qué actividades propias de su negocio realiza a través de internet?")
 
     #x_merc76_inf = fields.Selection(
         #string="Sexo",
