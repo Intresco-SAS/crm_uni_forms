@@ -291,8 +291,8 @@
                 attrs="{'required': [('x_dcont8','=',True)], 'invisible': [('x_dcont8','=',False)]}" />
               <field name="x_financiero26"
                 attrs="{'required': [('x_dcont8','=',True)], 'invisible': [('x_dcont8','=',False)]}" />
-              <field name="x_financiero27"
-                attrs="{'required': [('x_dcont8','=',True)], 'invisible': [ '|', ('x_dcont8','=',False), ('x_financiero26', '=', 'si')]}" />
+              <field name="x_financiero27_selection"
+                attrs="{'required': [('x_dcont8','=',True)], 'invisible': [ '|', ('x_dcont8','=',False), ('x_financiero26', '=', 'no')]}" />
             </group>
           </group>
 

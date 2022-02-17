@@ -1599,8 +1599,9 @@ class Lead(models.Model):
             ('bancos', 'Bancos'),
             ('famila', 'Familiares/amigos/conocidos'),
             ('gobierno', 'Beneficios o programas del gobierno'),
-            ('cooperativa', 'Cooperativas de ahorro y crédito gota a gota'),
-            ('otro', 'Otro tipo de entidad')
+            ('cooperativa', 'Cooperativas de ahorro y crédito'),
+            ('gota_gota', 'Gota a gota'),
+            ('otro', 'Otro tipo de entidad'),
         ], "11. ¿Con qué tipo de entidad tiene su crédito?"
     )
 
@@ -1697,8 +1698,8 @@ class Lead(models.Model):
     )
     x_financiero23 = fields.Selection(
         [
-            ('si', 'Si'),
-            ('no', 'No'),
+            ('si', 'Sí, tiene mora'),
+            ('no', 'No, está al día'),
             #('en_proceso', 'En proceso'),
         ], "22. ¿Actualmente tiene mora en cualquiera de las deudas de su Micronegocio? (Pagos a un proveedor, banco. etc)",
     )
@@ -1721,9 +1722,22 @@ class Lead(models.Model):
             ('si', 'Si'),
             ('no', 'No'),
             #('en_proceso', 'En proceso'),
-        ], "25. ¿Esta interesado en adquirir credito para su nogeocio?",
+        ], "25. ¿Está interesado en adquirir credito para su nogeocio?",
     )
     x_financiero27 = fields.Char("26. ¿Para que quiere adquirir un credito para su negocio?")
+    x_financiero27_selection = fields.Selection(
+        [
+            ('urgencias', 'Las urgencias financieras que se tienen en el momento'),
+            ('tasas_bajas', 'Aprovechar las bajas tasas de interés'),
+            ('inversion_temp', 'Generar una inversion temporal para aprovechar los ciclos económicos (ejemplo: inversiones por épocas navideñas)'),
+            ('pagos_proveedores', 'Realizar pagos a proveedores'),
+            ('pagos', 'pagos de otras obligaciones'),
+            ('inversion_infraestructura', 'innversión en infraestructura'),
+            ('imp_estrategias', 'Implementación de estrategias de tecnología de la información (TI)'),
+            ('ad_insumos', 'Adquisición de insumos'),
+            ('pagos_nomina', 'Pagos de nómina'),
+        ], "26. ¿Para que quiere adquirir un credito para su negocio?",
+    )
 
     x_financiero28 = fields.Selection( #NO VISIBLE
         [
@@ -1890,7 +1904,7 @@ class Lead(models.Model):
         [
             ('si', 'Si'),
             ('no', 'No'),
-        ], "44. ¿Esta interesado en recibir orientacion sobre lineas de credito para financiacion?",
+        ], "44. ¿En los últimos 6 meses ha estado interesado en buscar empleo o ya ha aplicado a convocatorias de empleo?",
     )
 
     x_forma51 = fields.Many2many(
@@ -3701,10 +3715,10 @@ class Lead(models.Model):
     def write(self, values):
         if values.get('x_no_personas_viven_propietario'): 
             if not values.get('x_no_personas_viven_propietario').isdigit():
-                raise ValidationError("La pregunta 34 solo acepta números")
+                raise ValidationError("La pregunta 21 solo acepta números")
         if values.get('x_forma52'):
             if not values.get('x_forma52').isdigit():
-                raise ValidationError("La pregunta 52 solo acepta números")
+                raise ValidationError("La pregunta 34 solo acepta números")
         if values.get('x_identification') != 0 or values.get('x_identification') != False:
             if values.get('x_edad') != 0 or values.get('x_edad') != False:
                 return super(Lead, self).write(values)

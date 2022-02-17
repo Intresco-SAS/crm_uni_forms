@@ -7,7 +7,7 @@
             <field name="name">modelo_porque_compran_clientes_view_form</field>
             <field name="model">modelo.porque.compran.clientes</field>
             <field name="arch" type="xml">
-                <form string="Por que Compran Los Clientes" edit="1" create="1" delete="1">
+                <form string="Por que Compran Los Clientes">
                     <header>
                     </header>
                     <sheet>
@@ -32,7 +32,7 @@
             <field name="name">modelo_cuales_aplican_view_form</field>
             <field name="model">modelo.cuales.aplican</field>
             <field name="arch" type="xml">
-                <form string="Cuales aplican" edit="1" create="1" delete="1">
+                <form string="Cuales aplican">
                     <header>
                     </header>
                     <sheet>
@@ -94,7 +94,7 @@
             <field name="name">modelo_negocios_model_view_form</field>
             <field name="model">modelo.negocios.model</field>
             <field name="arch" type="xml">
-                <form string="Modelo de Negocios" edit="1" create="1" delete="1">
+                <form string="Modelo de Negocios">
                     <header>
                     </header>
                     <sheet>
@@ -217,7 +217,7 @@
             <field name="name">modelo_promocion_productos_view_form</field>
             <field name="model">modelo.promocion.productos</field>
             <field name="arch" type="xml">
-                <form string="Modelo Promocion de Productos" edit="1" create="1" delete="1">
+                <form string="Modelo Promocion de Productos">
                     <header>
                     </header>
                     <sheet>
@@ -278,7 +278,7 @@
             <field name="name">modelo_conseguir_nuevos_clientes_view_form</field>
             <field name="model">modelo.conseguir.nuevos.clientes</field>
             <field name="arch" type="xml">
-                <form string="Modelo Como Consigue Nuevos Clientes" edit="1" create="1" delete="1">
+                <form string="Modelo Como Consigue Nuevos Clientes">
                     <header>
                     </header>
                     <sheet>
@@ -339,7 +339,7 @@
             <field name="name">modelo_temas_para_asesorarse_view_form</field>
             <field name="model">modelo.temas.para.asesorarse</field>
             <field name="arch" type="xml">
-                <form string="Modelo Temas para Asesorarse" edit="1" create="1" delete="1">
+                <form string="Modelo Temas para Asesorarse">
                     <header>
                     </header>
                     <sheet>
