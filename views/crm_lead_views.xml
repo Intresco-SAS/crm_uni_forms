@@ -140,7 +140,7 @@
               <field name="x_estrato"
                 attrs="{'required': [('x_datos1','=','si')], 'invisible': ['|',('x_datos1','=','no'),('x_datos1','=',False)]}" />
 
-              <field name="x_pobl_esp"
+              <field name="x_pobl_esp1"
                 attrs="{'required': [('x_datos1','=','si')], 'invisible': ['|',('x_datos1','=','no'),('x_datos1','=',False)]}" />
 
               <field name="x_tipo_vivienda"
@@ -154,7 +154,7 @@
                 attrs="{'required': [('x_datos1','=','si')], 'invisible': ['|',('x_datos1','=','no'),('x_datos1','=',False)]}" />
               <field name="x_nsisben"
                 attrs="{'required': [('x_sisben','=','si')], 'invisible': ['|',('x_sisben','=','no'),('x_sisben','=',False)]}" />
-              <field name="x_afiliado"
+              <field name="x_afiliado1"
                 attrs="{'required': [('x_datos1','=','si')], 'invisible': ['|',('x_datos1','=','no'),('x_datos1','=',False)]}" />
               <field name="x_escolaridad"
                 attrs="{'required': [('x_datos1','=','si')], 'invisible': ['|',('x_datos1','=','no'),('x_datos1','=',False)]}" />
@@ -162,10 +162,12 @@
                 attrs="{'required': [('x_datos1','=','si')], 'invisible': ['|',('x_datos1','=','no'),('x_datos1','=',False)]}" />
               <field name="x_com_cuenta1"
                 attrs="{'required': [('x_datos1','=','si')], 'invisible': ['|',('x_datos1','=','no'),('x_datos1','=',False)]}" />
-              <field name="x_aire_libre"
-                attrs="{'required': [('x_datos1','=','si')], 'invisible': ['|',('x_datos1','=','no'),('x_datos1','=',False)]}" />
-              <field name="x_permisos"
-                attrs="{'required': [('x_datos1','=','si')], 'invisible': ['|',('x_datos1','=','no'),('x_datos1','=',False)]}" />
+              <field name="x_aire_libre" 
+                attrs="{'required': ['|',('x_com_cuenta1','=','aire_libre_movil'),('x_com_cuenta1','=','aire_libre_estacionario')],
+                        'invisible': [('x_com_cuenta1','!=','aire_libre_movil'),('x_com_cuenta1','!=','aire_libre_estacionario')]}" />
+              <field name="x_permisos" 
+                attrs="{'required': ['|',('x_com_cuenta1','=','aire_libre_movil'),('x_com_cuenta1','=','aire_libre_estacionario')],
+                        'invisible': [('x_com_cuenta1','!=','aire_libre_movil'),('x_com_cuenta1','!=','aire_libre_estacionario')]}" />
               <field name="x_tien_dur"
                 attrs="{'required': [('x_datos1','=','si')], 'invisible': ['|',('x_datos1','=','no'),('x_datos1','=',False)]}" />
               <field name="x_herramientas"
@@ -178,10 +180,14 @@
                 attrs="{'required': [('x_datos1','=','si')], 'invisible': ['|',('x_datos1','=','no'),('x_datos1','=',False)]}" />
               <field name="x_forma40"
                 attrs="{'required': [('x_datos1','=','si')], 'invisible': ['|',('x_datos1','=','no'),('x_datos1','=',False)]}" />
-              <field name="x_actividad_economica_agro" attrs="{'invisible': [('x_forma40','!=','agropecuario')]}" />
-              <field name="x_actividad_economica_com" attrs="{'invisible': [('x_forma40','!=','comercio')]}" />
-              <field name="x_actividad_economica_ser" attrs="{'invisible': [('x_forma40','!=','servicios')]}" />
-              <field name="x_actividad_economica_ind" attrs="{'invisible': [('x_forma40','!=','industrial')]}" />
+              <field name="x_actividad_economica_agro" 
+                attrs="{'required': [('x_forma40','=','agropecuario')],'invisible': [('x_forma40','!=','agropecuario')]}" />
+              <field name="x_actividad_economica_com" 
+                attrs="{'required': [('x_forma40','=','comercio')],'invisible': [('x_forma40','!=','comercio')]}" />
+              <field name="x_actividad_economica_ser" 
+                attrs="{'required': [('x_forma40','=','servicios')],'invisible': [('x_forma40','!=','servicios')]}" />
+              <field name="x_actividad_economica_ind" 
+                attrs="{'required': [('x_forma40','=','industrial')],'invisible': [('x_forma40','!=','industrial')]}" />
             </group>
           </group>
 

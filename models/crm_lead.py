@@ -303,6 +303,25 @@ class Lead(models.Model):
         
     )
 
+    x_pobl_esp1 = fields.Selection(
+        [
+            ('menores_desvinculados', 'Menores desvinculados del conflicto armado'),
+            ('comunidades_indigenas', 'Comunidades Indígenas'),
+            ('pob_desmov', 'Población desmovilizada'),
+            ('adult_mayores', 'Adultos mayores en centros de protección'),
+            ('pob_rrom', 'Población Rom'),
+            ('personas_protec_testigos', 'Personas incluidas en el programa de protección a testigos'),
+            ('vic_conflic_armado', 'Víctimas del conflicto armado interno'),
+            ('habitante_calle', 'Población Habitante de la calle'),
+            ('migrante_repartida', 'Población migrante colombiana repatriada'),
+            ('migrante_venezolano', 'Migrantes venezolanos sin capacidad de pago, pobres y vulnerables con PEP'),
+            ('voluntarios_acreditados', 'Los voluntarios acreditados'),
+            ('persona_discapacitada', 'Personas con discapacidad en centros de protección'),
+            ('ninguna', 'Ninguna'),
+        ], "19. ¿Pertenece a alguna población especial?",
+        
+    )
+
     #NUEVA
     x_tipo_vivienda = fields.Selection(
         [
@@ -358,6 +377,15 @@ class Lead(models.Model):
 
         ], "25. ¿Se encuentra afiliado al sistema de salud como independiente o empleado?",
     )
+
+    x_afiliado1 = fields.Selection(
+        [
+            ('si', 'Si'),
+            ('no', 'No'),
+
+        ], "25. ¿Se encuentra afiliado al sistema de salud como independiente o empleado?",
+    )
+    
     x_escolaridad = fields.Selection(
         [
             ('primaria_incompleta', 'Primaria incompleta'),
