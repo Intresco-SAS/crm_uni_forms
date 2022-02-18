@@ -1539,7 +1539,7 @@ class Lead(models.Model):
         [
             ('si', 'Sí'),
             ('no', 'No'),
-            ('proceso', 'En Proceso')
+            ('en_proceso', 'En Proceso')
         ], string='4. ¿Su negocio tiene un plan estratégico de desarrollo (misión, visión, objetivos) para los próximos dos años?')
 
     x_innova_org_5 = fields.Selection(
@@ -1698,9 +1698,8 @@ class Lead(models.Model):
     )
     x_financiero23 = fields.Selection(
         [
-            ('si', 'Sí, tiene mora'),
-            ('no', 'No, está al día'),
-            #('en_proceso', 'En proceso'),
+            ('no', 'Sí, tiene mora'),
+            ('si', 'No, está al día'),
         ], "22. ¿Actualmente tiene mora en cualquiera de las deudas de su Micronegocio? (Pagos a un proveedor, banco. etc)",
     )
     x_financiero24 = fields.Selection(
@@ -1857,7 +1856,7 @@ class Lead(models.Model):
         [
             ('si', 'Sí'),
             ('no', 'No'),
-            ('parcial', 'Parcialmente'),
+            ('parcialmente', 'Parcialmente'),
             ('no_empleados', 'No cuenta con empleados')
         ], "40. En caso de tener empleados, ¿estos cuentan con la remuneración y aportes legales establecidos como salud, pensión y ARL?"
     )
@@ -1896,7 +1895,7 @@ class Lead(models.Model):
             ('si', 'Sí'),
             ('no', 'No'),
             ('parcial', 'Parcialmente'),
-            ('no_sector', 'No hay regulaciones y/o reglamentación para el sector en el que se encuentra')
+            ('no_regulaciones', 'No hay regulaciones y/o reglamentación para el sector en el que se encuentra')
         ], "43. ¿Su micronegocio cumple con las regulaciones/normativas propias del sector en el que se encuentra? (Ejemplo: pago por licencias de funcionamiento, Registro Turismo, Invima, regulaciones sanitarias, etc.)"
     )
 
