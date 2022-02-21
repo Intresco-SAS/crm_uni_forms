@@ -928,7 +928,7 @@ class Lead(models.Model):
 
     x_herramientas = fields.Many2many(
         comodel_name="modelo.herramientas.tecnologicas",
-        string="30. ¿Que herramientas tecnologicas maneja el propietario?",
+        string="32. ¿Que herramientas tecnologicas maneja el propietario?",
         readonly=False,
         store=True,
     )
