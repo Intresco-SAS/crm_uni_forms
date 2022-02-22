@@ -1922,7 +1922,7 @@ class Lead(models.Model):
         [
             ('si', 'Sí'),
             ('no', 'No'),
-            ('parcial', 'Parcialmente'),
+            ('parcialmente', 'Parcialmente'),
             ('no_regulaciones', 'No hay regulaciones y/o reglamentación para el sector en el que se encuentra')
         ], "43. ¿Su micronegocio cumple con las regulaciones/normativas propias del sector en el que se encuentra? (Ejemplo: pago por licencias de funcionamiento, Registro Turismo, Invima, regulaciones sanitarias, etc.)"
     )
