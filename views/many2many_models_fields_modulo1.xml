@@ -7,7 +7,7 @@
             <field name="name">herraminetas_tecnologicas_view_form</field>
             <field name="model">modelo.herramientas.tecnologicas</field>
             <field name="arch" type="xml">
-                <form string="Herramientas Tecnologicas" edit="0" create="0" delete="0">
+                <form string="Herramientas Tecnologicas">
                     <header>
                     </header>
                     <sheet>
