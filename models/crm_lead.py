@@ -1,12 +1,14 @@
 # Copyright 2015 Antiun Ingeniería, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
+from email.policy import default
 from odoo import fields, models, api, exceptions
 from odoo.exceptions import ValidationError
 import json
 import logging
 
 _logger = logging.getLogger(__name__)
+
 
 class CountryStateCity(models.Model):
     """
@@ -19,15 +21,16 @@ class CountryStateCity(models.Model):
     name = fields.Char('City Name', size=64, )
     state_id = fields.Many2one('res.country.state', 'State')
     country_id = fields.Many2one('res.country', 'Country', default='Colombia')
-    
+
     _order = 'code'
-    
-    
+
+
 class SeveralFields(models.Model):
     _description = 'Modelo para Manipular Many2many'
     _name = 'model.manipulate.many2many'
 
     name = fields.Char('Beneficios')
+
 
 class modelo69form(models.Model):
     _description = 'Modelo para Manipular Many2many'
@@ -35,11 +38,13 @@ class modelo69form(models.Model):
 
     name = fields.Char('69form')
 
+
 class modelo72inf(models.Model):
     _description = 'Modelo para Manipular Many2many'
     _name = 'model.inf.many2many'
 
     name = fields.Char('72inform')
+
 
 class modelo72form(models.Model):
     _description = 'Modelo para Manipular Many2many72'
@@ -47,11 +52,13 @@ class modelo72form(models.Model):
 
     name = fields.Char('72form')
 
+
 class modelo73form(models.Model):
     _description = 'Modelo para Manipular Many2many73'
     _name = 'model.many2many73'
 
     name = fields.Char('73form')
+
 
 class modelo75inf(models.Model):
     _description = 'Modelo para Manipular Many2many75'
@@ -59,11 +66,13 @@ class modelo75inf(models.Model):
 
     name = fields.Char('75form')
 
+
 class modelo76inf(models.Model):
     _description = 'Modelo para Manipular Many2many76'
     _name = 'model.many2many76'
 
     name = fields.Char('76form')
+
 
 class modelo102inf(models.Model):
     _description = 'Modelo para Manipular Many2many102'
@@ -71,11 +80,13 @@ class modelo102inf(models.Model):
 
     name = fields.Char('102form')
 
+
 class modelo176form(models.Model):
     _description = 'Modelo para Manipular Many2many176'
     _name = 'model.many2many176'
 
     name = fields.Char('176form')
+
 
 class modelo176form(models.Model):
     _description = 'Modelo para Manipular Many2many177'
@@ -83,9 +94,9 @@ class modelo176form(models.Model):
 
     name = fields.Char('177form')
 
+
 class Lead(models.Model):
     _inherit = "crm.lead"
-
 
     x_datos1 = fields.Selection(
         [
@@ -105,7 +116,7 @@ class Lead(models.Model):
     )
 
     x_nombre = fields.Char(
-    	related ="name",
+        related="name",
         string="2. Nombre del Propietario",
         help="Ingrese el nombre del propietario",
         readonly=False
@@ -117,7 +128,8 @@ class Lead(models.Model):
             ('cedula', 'Cédula'),
             ('cedula_de_extranjeria', 'Cédula de extranjería'),
             ('pasaporte', 'Pasaporte'),
-            ('permiso_especial_de_permanencia_pep', 'Permiso especial de permanencia (PEP)'),
+            ('permiso_especial_de_permanencia_pep',
+             'Permiso especial de permanencia (PEP)'),
 
         ], "3. Tipo de identificación", default='cedula'
     )
@@ -128,7 +140,8 @@ class Lead(models.Model):
             ('cedula', 'Cédula'),
             ('cedula_de_extranjeria', 'Cédula de extranjería'),
             ('pasaporte', 'Pasaporte'),
-            ('permiso_especial_de_permanencia_pep', 'Permiso especial de permanencia (PEP)'),
+            ('permiso_especial_de_permanencia_pep',
+             'Permiso especial de permanencia (PEP)'),
 
         ], "3. Tipo de identificación", default='cedula'
     )
@@ -147,9 +160,9 @@ class Lead(models.Model):
 
     x_sexo = fields.Selection(
         [
-         ('masculino', 'Masculino'),
+            ('masculino', 'Masculino'),
             ('femenino', 'Femenino'),
-        ], "5. Sexo", 
+        ], "5. Sexo",
     )
 
     x_edad = fields.Integer(
@@ -228,11 +241,11 @@ class Lead(models.Model):
                                           ('83', '83'),
                                           ('84', '84'),
                                           ('85', '85'),
-                                          ('mas85','Mayor de 85')],
-        string="6. Edad",
-        help="Escriba su edad", 
-        size=2
-    )
+                                          ('mas85', 'Mayor de 85')],
+                               string="6. Edad",
+                               help="Escriba su edad",
+                               size=2
+                               )
 
     x_dir_res = fields.Char(
         string="9. Dirección de residencia",
@@ -255,11 +268,13 @@ class Lead(models.Model):
             ('si', 'Si'),
             ('no', 'No'),
         ], "12. ¿Su micronegocio esta ubicado en la misma ciudad o municipio donde reside?",
-        
+
     )
 
-    x_state_id = fields.Many2one('res.country.state', '13. Departamento donde se ubica su negocio')
-    x_city_id = fields.Many2one('res.country.state.city', '14. Municipio donde se ubica su negocio')
+    x_state_id = fields.Many2one(
+        'res.country.state', '13. Departamento donde se ubica su negocio')
+    x_city_id = fields.Many2one(
+        'res.country.state.city', '14. Municipio donde se ubica su negocio')
 
     x_ubic = fields.Selection(
         [
@@ -269,9 +284,9 @@ class Lead(models.Model):
     )
 
     x_dir_neg = fields.Char(
-            string="15. Direccion del negocio",
-            help="15. Direccion del negocio",
-        )
+        string="15. Direccion del negocio",
+        help="15. Direccion del negocio",
+    )
 
     x_estrato = fields.Selection(
         [
@@ -291,16 +306,19 @@ class Lead(models.Model):
             ('pob_desmov', 'Población desmovilizada'),
             ('adult_mayores', 'Adultos mayores en centros de protección'),
             ('pob_rrom', 'Población Rrom'),
-            ('personas_protec_testigos', 'Personas incluidas en el programa de protección a testigos'),
+            ('personas_protec_testigos',
+             'Personas incluidas en el programa de protección a testigos'),
             ('vic_conflic_armado', 'Víctimas del conflicto armado interno'),
             ('habitante_calle', 'Población Habitante de la calle'),
             ('migrante_repartida', 'Población migrante colombiana repatriada'),
-            ('migrante_venezolano', 'Migrantes venezolanos sin capacidad de pago, pobres y vulnerables con PEP'),
+            ('migrante_venezolano',
+             'Migrantes venezolanos sin capacidad de pago, pobres y vulnerables con PEP'),
             ('voluntarios_acreditados', 'Los voluntarios acreditados'),
-            ('persona_discapacitada', 'Personas con discapacidad en centros de protección'),
+            ('persona_discapacitada',
+             'Personas con discapacidad en centros de protección'),
             ('ninguna', 'Ninguna'),
         ], "19. ¿Pertenece a alguna población especial?",
-        
+
     )
 
     x_pobl_esp1 = fields.Selection(
@@ -310,19 +328,22 @@ class Lead(models.Model):
             ('pob_desmov', 'Población desmovilizada'),
             ('adult_mayores', 'Adultos mayores en centros de protección'),
             ('pob_rrom', 'Población Rom'),
-            ('personas_protec_testigos', 'Personas incluidas en el programa de protección a testigos'),
+            ('personas_protec_testigos',
+             'Personas incluidas en el programa de protección a testigos'),
             ('vic_conflic_armado', 'Víctimas del conflicto armado interno'),
             ('habitante_calle', 'Población Habitante de la calle'),
             ('migrante_repartida', 'Población migrante colombiana repatriada'),
-            ('migrante_venezolano', 'Migrantes venezolanos sin capacidad de pago, pobres y vulnerables con PEP'),
+            ('migrante_venezolano',
+             'Migrantes venezolanos sin capacidad de pago, pobres y vulnerables con PEP'),
             ('voluntarios_acreditados', 'Los voluntarios acreditados'),
-            ('persona_discapacitada', 'Personas con discapacidad en centros de protección'),
+            ('persona_discapacitada',
+             'Personas con discapacidad en centros de protección'),
             ('ninguna', 'Ninguna'),
         ], "19. ¿Pertenece a alguna población especial?",
-        
+
     )
 
-    #NUEVA
+    # NUEVA
     x_tipo_vivienda = fields.Selection(
         [
             ('casa', 'Casa'),
@@ -330,9 +351,10 @@ class Lead(models.Model):
             ('cuartos_inquilinato', 'Cuarto(s) en inquilinato'),
             ('cuartos_otro_tipo', 'Cuarto(s) en otro tipo de estructura'),
             ('vivienda_indigena', 'Vivienda indígena'),
-            ('otro_tipo_vivienda', 'Otro tipo de vivienda (carpa, tienda, vagón, embarcación, refugio natural, puente, etc.)'),
+            ('otro_tipo_vivienda',
+             'Otro tipo de vivienda (carpa, tienda, vagón, embarcación, refugio natural, puente, etc.)'),
 
-        ], "20. Tipo de vivienda", 
+        ], "20. Tipo de vivienda",
     )
 
     x_no_personas_viven_propietario = fields.Char(
@@ -348,7 +370,7 @@ class Lead(models.Model):
             ('lgtbi', 'LGTBI'),
             ('no_pertenezco', 'No pertenezco'),
 
-        ], "22. ¿Pertenece a algún tipo de etnia?", 
+        ], "22. ¿Pertenece a algún tipo de etnia?",
     )
 
     x_sisben = fields.Selection(
@@ -367,12 +389,12 @@ class Lead(models.Model):
 
         ], "24. ¿Qué nivel?",
     )
-    #nuevas preguntas 2021
+    # nuevas preguntas 2021
     x_afiliado = fields.Selection(
         [
             ('independiente', 'Independiente'),
             ('empleado', 'Empleado'),
-            ('pensionado','Pensionados'),
+            ('pensionado', 'Pensionados'),
             ('ninguno', 'Ninguno'),
 
         ], "25. ¿Se encuentra afiliado al sistema de salud como independiente o empleado?",
@@ -385,7 +407,7 @@ class Lead(models.Model):
 
         ], "25. ¿Se encuentra afiliado al sistema de salud como independiente o empleado?",
     )
-    
+
     x_escolaridad = fields.Selection(
         [
             ('primaria_incompleta', 'Primaria incompleta'),
@@ -394,24 +416,23 @@ class Lead(models.Model):
             ('secundaria_completa', 'Secundaria completa'),
             ('tecnico', 'Técnico'),
             ('tecnologo', 'Tecnólogo'),
-            ('educacion_no_formal_Cursos_libres_diplomados_seminarios', 'Educación No formal: Cursos libres, diplomados,seminarios'),
+            ('educacion_no_formal_Cursos_libres_diplomados_seminarios',
+             'Educación No formal: Cursos libres, diplomados,seminarios'),
             ('pregrado', 'Pregrado'),
             ('especializacion', 'Especialización'),
             ('maestria', 'Maestría'),
             ('otro', 'Otro ¿Cuál?'),
             ('ninguno', 'Ninguno'),
-        ], "26. Nivel de escolaridad", 
+        ], "26. Nivel de escolaridad",
     )
 
     x_limitacion = fields.Char(
         string="13. ¿Usted tiene algún tipo de diversidad funcional?",
-        help="Describa sus limitaciones físicas", 
+        help="Describa sus limitaciones físicas",
     )
 
-    
-
     x_grupos = fields.Selection(
-    	[
+        [
             ('si', 'Si'),
             ('no', 'No'),
         ], "15. ¿Pertenece a alguna organización:  asociación, corporación, cooperativa, grupo?",
@@ -423,8 +444,6 @@ class Lead(models.Model):
         help="16. ¿A qué tipo de organización, asociación, corporación, cooperativa, grupo pertenece?",
     )
 
-    
-
     x_situacion = fields.Selection(
         [
             ('cuenta_propia', 'Cuenta propia'),
@@ -433,46 +452,77 @@ class Lead(models.Model):
     )
 
     x_actcomer = fields.Selection(
-    	[
-            ('peluqueria_salon_de_belleza_barberia_arreglo_de_unas', 'Peluquería, salón de belleza, barbería, arreglo de uñas'),
+        [
+            ('peluqueria_salon_de_belleza_barberia_arreglo_de_unas',
+             'Peluquería, salón de belleza, barbería, arreglo de uñas'),
             ('cafeteria_o _salon_de_onces', 'Cafetería o  salón de onces'),
-            ('elaboracion_de_productos_de_panaderia_tortas_pasteles_pudin_ponques', 'Elaboración de productos de panadería, tortas, pasteles, pudin, ponques'),
+            ('elaboracion_de_productos_de_panaderia_tortas_pasteles_pudin_ponques',
+             'Elaboración de productos de panadería, tortas, pasteles, pudin, ponques'),
             ('comidas_rapidas', 'Comidas rápidas'),
-            ('bar_taberna_estanco_licorera_discoteca_rumbeadero', 'Bar, taberna, estanco, licorera, discoteca, rumbeadero'),
+            ('bar_taberna_estanco_licorera_discoteca_rumbeadero',
+             'Bar, taberna, estanco, licorera, discoteca, rumbeadero'),
             ('tienda', 'Tienda'),
-            ('billares_juegos_de_mesa_rana_gallera', 'Billares, juegos de mesa, rana, gallera'),
+            ('billares_juegos_de_mesa_rana_gallera',
+             'Billares, juegos de mesa, rana, gallera'),
             ('comercio_de_colchones_muebles', 'Comercio  de colchones, muebles'),
-            ('comercio_de_elementos_deportivos_implementos_balones_tienda_de_bicicletas', 'Comercio de elementos deportivos, implementos, balones, tienda de bicicletas'),
-            ('veterinaria_venta_de_alimento_o_enseres_para_mascotas_o_animales_perros_gatos_peces', 'Veterinaria, venta de alimento o enseres para mascotas o animales, perros, gatos, peces'),
-            ('comercio_de_productos_de_tecnologia_celulares_computadores', 'Comercio de productos de tecnología, celulares, computadores'),
-            ('productos_asociados_al_arte_cuadros_pintura_joyeria_relojeria_actividades_de_fotografia', 'Productos asociados al arte, cuadros, pintura, joyería, relojería, actividades de fotografía'),
-            ('comercio_de_regalos_variedades_adornos_tajetas_articulos_diversos', 'Comercio de regalos, variedades, adornos, tajetas, articulos diversos.'),
+            ('comercio_de_elementos_deportivos_implementos_balones_tienda_de_bicicletas',
+             'Comercio de elementos deportivos, implementos, balones, tienda de bicicletas'),
+            ('veterinaria_venta_de_alimento_o_enseres_para_mascotas_o_animales_perros_gatos_peces',
+             'Veterinaria, venta de alimento o enseres para mascotas o animales, perros, gatos, peces'),
+            ('comercio_de_productos_de_tecnologia_celulares_computadores',
+             'Comercio de productos de tecnología, celulares, computadores'),
+            ('productos_asociados_al_arte_cuadros_pintura_joyeria_relojeria_actividades_de_fotografia',
+             'Productos asociados al arte, cuadros, pintura, joyería, relojería, actividades de fotografía'),
+            ('comercio_de_regalos_variedades_adornos_tajetas_articulos_diversos',
+             'Comercio de regalos, variedades, adornos, tajetas, articulos diversos.'),
             ('heladeria_o_fruteria', 'Heladería o frutería'),
-            ('carniceria_pescaderia_charcuteria_quesos_lacteos_salsamentaria', 'Carnicería, pescadería, charcutería, quesos, lácteos, salsamentaria'),
-            ('cerrajeria_ferreteria_ferrelectricos_vidrieria', 'Cerrajería, ferretería, ferreléctricos, vidriería'),
-            ('servicios_de_salud_optica_odontologia_consultorio_medico_ortodoncia_tienda_naturista', 'Servicios de salud, óptica, odontología, consultorio médico, ortodoncia, tienda naturista'),
+            ('carniceria_pescaderia_charcuteria_quesos_lacteos_salsamentaria',
+             'Carnicería, pescadería, charcutería, quesos, lácteos, salsamentaria'),
+            ('cerrajeria_ferreteria_ferrelectricos_vidrieria',
+             'Cerrajería, ferretería, ferreléctricos, vidriería'),
+            ('servicios_de_salud_optica_odontologia_consultorio_medico_ortodoncia_tienda_naturista',
+             'Servicios de salud, óptica, odontología, consultorio médico, ortodoncia, tienda naturista'),
             ('drogueria', 'Droguería'),
-            ('envios_giros_recargas_chance_apuestas_servicios_financieros_banco_corresponsal', 'Envíos, giros, recargas, chance, apuestas, servicios financieros, banco, corresponsal'),
-            ('cafe_internet_telecomunicaciones_videojuegos_venta_de_peliculas_mantenimiento_computadores_telefonia_informatica', 'Café internet, telecomunicaciones, videojuegos, venta de películas, mantenimiento computadores, telefonía, informática'),
-            ('floristeria_abono_venta_de_gallinas_actividad_pecuaria', 'Floristería, abono, venta de gallinas, actividad pecuaria'),
-            ('restaurante_fondo_paisa_corrientazo_asadero', 'Restaurante, fondo paisa, corrientazo, asadero'),
-            ('papeleria_fotocopias_impresiones_miscelanea', 'Papelería, fotocopias, impresiones, miscelanea'),
-            ('casa_comercial_monte_de_piedad_compraventa_prestamista', 'Casa comercial, monte de piedad, compraventa, prestamista'),
-            ('eventos_refrigerios_casa_de_banquetes', 'Eventos, refrigerios, casa de banquetes'),
-            ('gimnasio_academia_de_baile_establecimiento_para_deportes', 'Gimnasio, academia de baile, establecimiento para deportes'),
-            ('academia_de_idiomas_lectura_rapida', 'Academia de idiomas, lectura rápida'),
+            ('envios_giros_recargas_chance_apuestas_servicios_financieros_banco_corresponsal',
+             'Envíos, giros, recargas, chance, apuestas, servicios financieros, banco, corresponsal'),
+            ('cafe_internet_telecomunicaciones_videojuegos_venta_de_peliculas_mantenimiento_computadores_telefonia_informatica',
+             'Café internet, telecomunicaciones, videojuegos, venta de películas, mantenimiento computadores, telefonía, informática'),
+            ('floristeria_abono_venta_de_gallinas_actividad_pecuaria',
+             'Floristería, abono, venta de gallinas, actividad pecuaria'),
+            ('restaurante_fondo_paisa_corrientazo_asadero',
+             'Restaurante, fondo paisa, corrientazo, asadero'),
+            ('papeleria_fotocopias_impresiones_miscelanea',
+             'Papelería, fotocopias, impresiones, miscelanea'),
+            ('casa_comercial_monte_de_piedad_compraventa_prestamista',
+             'Casa comercial, monte de piedad, compraventa, prestamista'),
+            ('eventos_refrigerios_casa_de_banquetes',
+             'Eventos, refrigerios, casa de banquetes'),
+            ('gimnasio_academia_de_baile_establecimiento_para_deportes',
+             'Gimnasio, academia de baile, establecimiento para deportes'),
+            ('academia_de_idiomas_lectura_rapida',
+             'Academia de idiomas, lectura rápida'),
             ('inmobiliaria', 'Inmobiliaria'),
-            ('asesora_comercial_publicidad_mercadeo_imagen_corporativa_asesoría_juridica_tributaria', 'Asesoría comercial, publicidad, mercadeo imagen corporativa, asesoría jurídica, tributaria'),
-            ('mantenimiento_de_bicicletas_automoviles_despinche_vulcanizadora_taller_automotriz_mecanica_general', 'Mantenimiento de bicicletas, automóviles, despinche, vulcanizadora, taller automotriz, mecánica general'),
+            ('asesora_comercial_publicidad_mercadeo_imagen_corporativa_asesoría_juridica_tributaria',
+             'Asesoría comercial, publicidad, mercadeo imagen corporativa, asesoría jurídica, tributaria'),
+            ('mantenimiento_de_bicicletas_automoviles_despinche_vulcanizadora_taller_automotriz_mecanica_general',
+             'Mantenimiento de bicicletas, automóviles, despinche, vulcanizadora, taller automotriz, mecánica general'),
             ('lavanderia', 'Lavandería'),
-            ('supermercado_minimercado_mercado_venta_de_elementos_de_aseo_venta_de_frutas_y_verduras', 'Supermercado, minimercado, mercado, venta de elementos de aseo, venta de frutas y verduras'),
-            ('venta_de_ropa_zapatos_calzado_modesteria_uniformes_accesorios_prendas_y_elementos_de_vestir_remontadora_de_calzado', 'Venta de ropa, zapatos, calzado, modestería, uniformes, accesorios, prendas y elementos de vestir, remontadora de calzado'),
-            ('parqueadero_de_carros_motos_bicicletas', 'Parqueadero de carros, motos, bicicletas'),
-            ('productos_de_belleza_spa_tatuajes', 'Productos de belleza, spa, tatuajes'),
-            ('fabrica_de_manufacturas_textiles_ropa_calzado_balones_deportivos_cueros_marroquineria', 'Fábrica de manufacturas textiles ropa calzado balones deportivos cueros marroquinería'),
-            ('venta_y_comercio_de_autopartes_carros_vehículos_motos_partes_de_motocicleta_cascos_automotores', 'Venta y comercio de autopartes, carros, vehículos, motos, partes de motocicleta, cascos, automotores'),
-            ('fabrica_y_venta_de_productos_metalicos_hierro_acero_maquinaria_y_otras_aplicaciones_industriales', 'Fábrica y venta de productos metálicos hierro acero maquinaria y otras aplicaciones industriales'),
-            ('jardin_infantil_salacuna_educacion', 'Jardín infantil, salacuna, educación'),
+            ('supermercado_minimercado_mercado_venta_de_elementos_de_aseo_venta_de_frutas_y_verduras',
+             'Supermercado, minimercado, mercado, venta de elementos de aseo, venta de frutas y verduras'),
+            ('venta_de_ropa_zapatos_calzado_modesteria_uniformes_accesorios_prendas_y_elementos_de_vestir_remontadora_de_calzado',
+             'Venta de ropa, zapatos, calzado, modestería, uniformes, accesorios, prendas y elementos de vestir, remontadora de calzado'),
+            ('parqueadero_de_carros_motos_bicicletas',
+             'Parqueadero de carros, motos, bicicletas'),
+            ('productos_de_belleza_spa_tatuajes',
+             'Productos de belleza, spa, tatuajes'),
+            ('fabrica_de_manufacturas_textiles_ropa_calzado_balones_deportivos_cueros_marroquineria',
+             'Fábrica de manufacturas textiles ropa calzado balones deportivos cueros marroquinería'),
+            ('venta_y_comercio_de_autopartes_carros_vehículos_motos_partes_de_motocicleta_cascos_automotores',
+             'Venta y comercio de autopartes, carros, vehículos, motos, partes de motocicleta, cascos, automotores'),
+            ('fabrica_y_venta_de_productos_metalicos_hierro_acero_maquinaria_y_otras_aplicaciones_industriales',
+             'Fábrica y venta de productos metálicos hierro acero maquinaria y otras aplicaciones industriales'),
+            ('jardin_infantil_salacuna_educacion',
+             'Jardín infantil, salacuna, educación'),
             ('transporte_de_pasajeros', 'Transporte de pasajeros'),
         ], "20. ¿Cuál es la actividad comercial de su negocio?",
         help="Escriba la actividad comercial de su negocio",
@@ -488,45 +538,47 @@ class Lead(models.Model):
         help="Escriba el sector económico de su negocio ",
     )
 
-    
-    #campo actulizado a x_com_cuenta1
+    # campo actulizado a x_com_cuenta1
     x_com_cuenta = fields.Selection(
         [
-           ('establecimiento', 'Establecimiento'),
-           ('sin_establecimiento', 'Sin establecimiento'),
-    
+            ('establecimiento', 'Establecimiento'),
+            ('sin_establecimiento', 'Sin establecimiento'),
+
         ], "28. ¿Su micronegocio cuenta con establecimiento comercial?",
     )
 
     x_com_cuenta1 = fields.Selection(
         [
-           ('vivienda', 'En su vivienda o en otra vivienda'),
-           ('local', 'Un local, tienda, taller, fabrica, oficina, consultorio'),
-           ('aire_libre_movil', 'Al aire libre, movil (se moviliza por diferentes lugares)'),
-           ('aire_libre_estacionario', 'Al aire libre, estacionario (mismo lugar todos los dias)'),
-           ('puerta_a_puerta', 'De puerta a puerta (a domicilio)'),
-           ('finca', 'Finca'),
-    
+            ('vivienda', 'En su vivienda o en otra vivienda'),
+            ('local', 'Un local, tienda, taller, fabrica, oficina, consultorio'),
+            ('aire_libre_movil',
+             'Al aire libre, movil (se moviliza por diferentes lugares)'),
+            ('aire_libre_estacionario',
+                'Al aire libre, estacionario (mismo lugar todos los dias)'),
+            ('puerta_a_puerta', 'De puerta a puerta (a domicilio)'),
+            ('finca', 'Finca'),
+
         ], "28. Su negocio o actividad comercial se desarrolla principalmente en:",
     )
 
     x_aire_libre = fields.Selection(
         [
-           ('via_acera', 'En la Via - andén - acerca'),
-           ('esquina_semaforo', 'Esquina de semáforo'),
-           ('vehiculo_calle', 'En un vehículo (Carro, carretera, moto, bicicleta, etc.) en la calle'),
-           ('transporte_publico', 'Transporte público - estación de bus'),
-           ('parques', 'Parques'),
-           ('plazas', 'Plazas'),
-    
+            ('via_acera', 'En la Via - andén - acerca'),
+            ('esquina_semaforo', 'Esquina de semáforo'),
+            ('vehiculo_calle',
+                'En un vehículo (Carro, carretera, moto, bicicleta, etc.) en la calle'),
+            ('transporte_publico', 'Transporte público - estación de bus'),
+            ('parques', 'Parques'),
+            ('plazas', 'Plazas'),
+
         ], "29. Si los ofrece al aire libre, ¿Dónde se ubican usualmente?",
     )
 
     x_permisos = fields.Selection(
         [
-           ('si', 'Si'),
-           ('no', 'No'),
-    
+            ('si', 'Si'),
+            ('no', 'No'),
+
         ], "30. ¿Cuenta con permisos por una entidad publica o pivada para ocupar vender sus productos o servicios?",
     )
 
@@ -535,8 +587,9 @@ class Lead(models.Model):
          ('de_4_a_6', 'De 4 meses a 6 meses'),
          ('de_7_a_11', 'De 7 meses a 11 meses'),
          ('mas_de_1_ano', 'Mas de 1 año'),
-         ('no_pienso_continuar_con_el_negocio', 'No pienso continuar con el negocio'),
-        ], "31. Tiene usted proyectado continuar con su micronegocio durante:",
+         ('no_pienso_continuar_con_el_negocio',
+          'No pienso continuar con el negocio'),
+         ], "31. Tiene usted proyectado continuar con su micronegocio durante:",
     )
 
     x_herramientas = fields.Selection(
@@ -549,7 +602,7 @@ class Lead(models.Model):
             ('navegador', 'Navegadores (Como google chrome, explorer, morzilla, opera, etc)'),
             ('correo_elec', 'Correo electronico'), ('whatsapp', 'Whatsapp'),
             ('redes', 'Redes sociales'),
-            ('nube','Servicios de la nube para almacenar y compartir documentos (Como Google drive, Dropbox, etc)'),
+            ('nube', 'Servicios de la nube para almacenar y compartir documentos (Como Google drive, Dropbox, etc)'),
             ('blogs', 'Manejo de blogs'),
             ('web', 'Herramientas para la creación de paginas web (como wix, Jimdo, squarespace)'),
             ('ninguna', 'Ninguna de las anteriores')
@@ -563,7 +616,8 @@ class Lead(models.Model):
         ], "33. ¿Depende usted y/o su familia de la operación-ganancias exclusivamente de este negocio para subsistir?",
     )
 
-    x_forma52 = fields.Char("34. ¿Cuántas personas viven o dependen del Micronegocio?")
+    x_forma52 = fields.Char(
+        "34. ¿Cuántas personas viven o dependen del Micronegocio?")
 
     x_forma40 = fields.Selection(
         [
@@ -578,22 +632,27 @@ class Lead(models.Model):
         [
             ('cultivos_agricolas_trans', 'Cultivos agrícolas transitorios (cultivos de cereales, lejumbres, arroz, hortalizas, tuberculos, tabaco, plantas textiles, etc)'),
             ('cultivo_agricolas_perm', 'Cultivos agrícolas permanentes (cultivos de frutas, platano, café, caña de azucar, plantas para bebidas o medicinales, etc)'),
-            ('propagacion_plantas', 'Propagación de plantas (actividades de los viveros, excepto viveros forestales)'),
+            ('propagacion_plantas',
+             'Propagación de plantas (actividades de los viveros, excepto viveros forestales)'),
             ('ganaderia', 'Ganaderia'),
             ('explotacion_mixta', 'Explotación mixta (agrícola y pecuaria)'),
-            ('caza_ordinaria', 'Caza ordinaria y mediante trampas y actividades de servicios conexas'),
+            ('caza_ordinaria',
+             'Caza ordinaria y mediante trampas y actividades de servicios conexas'),
             ('silvicultura', 'Silvicultura y otras actividades forestales'),
             ('extraccion_madera', 'Extracción de madera'),
-            ('productos_forestales', 'Recolección de productos forestales diferentes a la madera'),
+            ('productos_forestales',
+             'Recolección de productos forestales diferentes a la madera'),
             ('pesca', 'Pesca (maritima o de agua dulce)'),
             ('acuicultura', 'Acuicultura (maritima o de agua dulce)'),
             ('mineria_carbon', 'Mineria de carbón de piedra y lignito'),
-            ('mineria_minerales', 'Mineria de minerales metalíferos (Hierro, minerales no ferrosos, oro, niquel, etc)'),
+            ('mineria_minerales',
+             'Mineria de minerales metalíferos (Hierro, minerales no ferrosos, oro, niquel, etc)'),
             ('mineria_piedra', 'Mineria de piedra, arena, arcillas, cal, yeso, caolín, bentonitas y similares'),
-            ('mineria_esmeraldas', 'Mineria de esmeraldas, piedras preciosas y semipreciosas'),
+            ('mineria_esmeraldas',
+             'Mineria de esmeraldas, piedras preciosas y semipreciosas'),
             ('otros', 'Otros tipo'),
         ], "Actividad economica agropecuaria",
-    ) 
+    )
 
     x_actividad_economica_com = fields.Selection(
         [
@@ -601,25 +660,34 @@ class Lead(models.Model):
             ('mantenimiento', 'Mantenimiento y reparación de vehículos automotores'),
             ('com_man_rep_motos', 'Comercio, mantenimiento y reparación de motocicletas y de sus partes, piezas y accesorios'),
             ('comercio_alimentos', 'Comercio de alimentos, bebidas y tabaco'),
-            ('comercio_textiles', 'Comercio de productos textiles, productos confeccionados para uso doméstico'),
+            ('comercio_textiles',
+             'Comercio de productos textiles, productos confeccionados para uso doméstico'),
             ('comercio_prendas', 'Comercio de prendas de vestir'),
             ('comercio_calzado', 'Comercio de calzado'),
             ('comercio_apa_eq_dom', 'Comercio de aparatos y equipo de uso doméstico'),
             ('comercio_farma', 'Comercio de productos farmacéuticos, medicinales, cosméticos y de tocador'),
-            ('comercio_computadores', 'Comercio  de computadores, equipo periférico y programas de informática'),
-            ('comercio_electronicos', 'Comercio  de equipo, partes y piezas electrónicos y de telecomunicaciones'),
+            ('comercio_computadores',
+             'Comercio  de computadores, equipo periférico y programas de informática'),
+            ('comercio_electronicos',
+             'Comercio  de equipo, partes y piezas electrónicos y de telecomunicaciones'),
             ('comercio_quimicos', 'Comercio de productos químicos básicos, cauchos y plásticos en formas primarias y productos químicos de uso agropecuario'),
             ('comercio_desechos', 'Comercio de desperdicios, desechos y chatarra'),
-            ('comercio_elem_depor', 'Comercio de elementos deportivos, implementos, balones, tienda de bicicletas'),
-            ('comercio_tecnologia', 'Comercio de productos de tecnologia, celulares, computadores'),
-            ('comercio_regalos', 'Comercio de regalos, variedades, adornos, tajetas, articulos diversos.'),
+            ('comercio_elem_depor',
+             'Comercio de elementos deportivos, implementos, balones, tienda de bicicletas'),
+            ('comercio_tecnologia',
+             'Comercio de productos de tecnologia, celulares, computadores'),
+            ('comercio_regalos',
+             'Comercio de regalos, variedades, adornos, tajetas, articulos diversos.'),
             ('comercio_hogar', 'Comercio de colchones, muebles y decoraciones para el hogar'),
             ('comercio_prod_varios', 'Comercio de productos varios no especializados'),
-            ('comercio_establecimientos_esp', 'Comercio de alimentos, bebidas y tabaco en establecimientos especilizados'),
+            ('comercio_establecimientos_esp',
+             'Comercio de alimentos, bebidas y tabaco en establecimientos especilizados'),
             ('comercio_combustible', 'Comercio  de combustible, lubricantes, aditivos y productos de limpieza para automotores, en establecimientos especializados'),
             ('comercio_ferreteria', 'Comercio  de artículos de ferretería, pinturas y productos de vidrio en establecimientos especializados'),
-            ('comercio_paredes_pisos', 'Comercio  de tapices, alfombras y cubrimientos para paredes y pisos en establecimientos especializados.'),
-            ('comercio_electrodomesticos_esta_esp', 'Comercio  de electrodomésticos y gasodomésticos, muebles y equipos de iluminación en establecimientos especializados'),
+            ('comercio_paredes_pisos',
+             'Comercio  de tapices, alfombras y cubrimientos para paredes y pisos en establecimientos especializados.'),
+            ('comercio_electrodomesticos_esta_esp',
+             'Comercio  de electrodomésticos y gasodomésticos, muebles y equipos de iluminación en establecimientos especializados'),
             ('comercio_papeleria', 'Comercio  de libros, periódicos, materiales y artículos de papelería y escritorio, en establecimientos especializados'),
             ('comercio_segunda_mano', 'Comercio  de artículos de segunda mano'),
             ('otros', 'Otros tipo'),
@@ -631,298 +699,338 @@ class Lead(models.Model):
             ('transporte_terrestre', 'Transporte terrestre'),
             ('transporte_acuatico', 'Transporte acuático (Maritimo/fluvial)'),
             ('almacenamiento', 'Almacenamiento y depósito'),
-            ('actividades_estaciones', 'Actividades de las estaciones, vías y servicios complementarios para el transporte'),
+            ('actividades_estaciones',
+             'Actividades de las estaciones, vías y servicios complementarios para el transporte'),
             ('actividades_alojamiento', 'Actividades de alojamiento de estancias cortas (Hoteles, apartahoteles, centros vacacionales, rural, alojamiento para visitantes)'),
             ('zonas_camping', 'Actividades de zonas de camping y parques para vehículos recreacionales'),
-            ('actividades_comidas', 'Actividades de restaurantes, cafeterías y servicio móvil de comidas'),
-            ('actividades_catering', 'Actividades de catering para eventos y otros servicios de comidas'),
-            ('expendio_bebidas_alcoholicas', 'Expendio de bebidas alcohólicas para el consumo dentro del establecimiento'),
+            ('actividades_comidas',
+             'Actividades de restaurantes, cafeterías y servicio móvil de comidas'),
+            ('actividades_catering',
+             'Actividades de catering para eventos y otros servicios de comidas'),
+            ('expendio_bebidas_alcoholicas',
+             'Expendio de bebidas alcohólicas para el consumo dentro del establecimiento'),
             ('edicion_libros', 'Edición de libros, publicaciones periódicas y otras actividades de edición'),
             ('desarrollo_software', 'Desarrollo de programas de informática (software)'),
             ('deasrrollo_sis_informaticos', 'Desarrollo de sistemas informáticos (planificación, análisis, diseño, programación, pruebas), consultoría informática y actividades relacionadas'),
-            ('actividades_musica', 'Actividades de grabación de sonido y edición de música'),
-            ('actividades_comunicaciones', 'Actividades de programación, transmisión y/o difusión de radio difución o televisión'),
+            ('actividades_musica',
+             'Actividades de grabación de sonido y edición de música'),
+            ('actividades_comunicaciones',
+             'Actividades de programación, transmisión y/o difusión de radio difución o televisión'),
             ('actividades_inmobiliarias', 'Actividades inmobiliarias'),
             ('actividades_juridicas', 'Actividades jurídicas y de contabilidad'),
-            ('actividades_gestion', 'Actividades de administración empresarial; actividades de consultoría de gestión'),
-            ('actividades_arq_ing', 'Actividades de arquitectura e ingeniería; ensayos y análisis técnicos'),
+            ('actividades_gestion',
+             'Actividades de administración empresarial; actividades de consultoría de gestión'),
+            ('actividades_arq_ing',
+             'Actividades de arquitectura e ingeniería; ensayos y análisis técnicos'),
             ('publicidad', 'Publicidad y estudios de mercado'),
             ('actividades_veterinarias', 'Actividades veterinarias'),
-            ('actividad_agencias_viajes', 'Actividades de las agencias de viajes, operadores turísticos, servicios de reserva y actividades relacionadas'),
-            ('alquiles_equipo_rec_dep', 'Alquiler y arrendamiento de equipo recreativo y deportivo'),
+            ('actividad_agencias_viajes',
+             'Actividades de las agencias de viajes, operadores turísticos, servicios de reserva y actividades relacionadas'),
+            ('alquiles_equipo_rec_dep',
+             'Alquiler y arrendamiento de equipo recreativo y deportivo'),
             ('actividades_seguridad', 'Actividades de seguridad e investigación privada'),
-            ('actividades_edi_pai', 'Actividades de servicios a edificios y paisajismo (jardines, zonas verdes)'),
-            ('actividades_administrativas', 'Actividades administrativas y de apoyo de oficina'),
-            ('organizacion_eventos', 'Organización de convenciones y eventos comerciales'),
+            ('actividades_edi_pai',
+             'Actividades de servicios a edificios y paisajismo (jardines, zonas verdes)'),
+            ('actividades_administrativas',
+             'Actividades administrativas y de apoyo de oficina'),
+            ('organizacion_eventos',
+             'Organización de convenciones y eventos comerciales'),
             ('educacion_academica', 'Educación de distintos niveles academicos'),
             ('formacion_trabajo', 'Formación para el trabajo'),
             ('enseñanza_dep_rec', 'Enseñanza deportiva y recreativa'),
             ('enseñanza_cul', 'Enseñanza cultural'),
-            ('actividades_med_odo', 'Actividades de práctica médica y odontológica, sin internación'),
-            ('actividades_asistencia_soc', 'Actividades de asistencia social sin alojamiento para personas mayores y discapacitadas'),
+            ('actividades_med_odo',
+             'Actividades de práctica médica y odontológica, sin internación'),
+            ('actividades_asistencia_soc',
+             'Actividades de asistencia social sin alojamiento para personas mayores y discapacitadas'),
             ('actividades_guarderia', 'Actividades de guarderías para niños y niñas'),
-            ('actividades_artes', 'Actividades creativas, artísticas, audiovisuales y de entretenimiento'),
+            ('actividades_artes',
+             'Actividades creativas, artísticas, audiovisuales y de entretenimiento'),
             ('actividades_juegos_azar', 'Actividades de juegos de azar y apuestas'),
-            ('actividades_dep_rec', 'Actividades deportivas y actividades recreativas y de esparcimiento'),
+            ('actividades_dep_rec',
+             'Actividades deportivas y actividades recreativas y de esparcimiento'),
             ('lavado_limpieza', 'Lavado y limpieza, incluso la limpieza en seco, de productos textiles y de piel'),
             ('peluqueria', 'Peluquería y otros tratamientos de belleza'),
-            ('mantenimiento_reparacion_com', 'Mantenimiento y reparación de computadores y equipo de comunicaciones'),
-            ('mantenimiento_reparacion_dom', 'Mantenimiento y reparación de efectos personales y enseres domésticos. (Ropa, zapatos, electrodomesticos, etc)'),
+            ('mantenimiento_reparacion_com',
+             'Mantenimiento y reparación de computadores y equipo de comunicaciones'),
+            ('mantenimiento_reparacion_dom',
+             'Mantenimiento y reparación de efectos personales y enseres domésticos. (Ropa, zapatos, electrodomesticos, etc)'),
             ('otros', 'Otros tipo'),
         ], "Actividad economica servicios",
-    ) 
+    )
 
     x_actividad_economica_ind = fields.Selection(
         [
-            ('procesamiento_carne', 'Procesamiento y conservación de carne, pescado, crustáceos y moluscos'),
-            ('procesamiento_frutas', 'Procesamiento y conservación de frutas, legumbres, hortalizas y tubérculos'),
-            ('elaboracion_aceites', 'Elaboración de aceites y grasas de origen vegetal y animal'),
+            ('procesamiento_carne',
+             'Procesamiento y conservación de carne, pescado, crustáceos y moluscos'),
+            ('procesamiento_frutas',
+             'Procesamiento y conservación de frutas, legumbres, hortalizas y tubérculos'),
+            ('elaboracion_aceites',
+             'Elaboración de aceites y grasas de origen vegetal y animal'),
             ('elaboracion_lacteos', 'Elaboración de productos lácteos'),
-            ('elaboracion_molineria', 'Elaboración de productos de molinería, almidones y productos derivados del almidón'),
+            ('elaboracion_molineria',
+             'Elaboración de productos de molinería, almidones y productos derivados del almidón'),
             ('elaboracion_cafe', 'Elaboración de productos de café (Trilla de café, descafeinado, tostión, molienda de café, etc)'),
             ('elaboracion_azucar', 'Elaboración de azúcar y panela'),
             ('elaboracion_panaderia', 'Elaboración de productos de panadería'),
-            ('elaboracion_cacao', 'Elaboración de cacao, chocolate y productos de confitería'),
-            ('elaboracion_farinacios', 'Elaboración de macarrones, fideos, alcuzcuz y productos farináceos similares'),
+            ('elaboracion_cacao',
+             'Elaboración de cacao, chocolate y productos de confitería'),
+            ('elaboracion_farinacios',
+             'Elaboración de macarrones, fideos, alcuzcuz y productos farináceos similares'),
             ('elaboracion_preparados', 'Elaboración de comidas y platos preparados'),
-            ('elaboracion_preparados_animales', 'Elaboración de alimentos preparados para animales'),
+            ('elaboracion_preparados_animales',
+             'Elaboración de alimentos preparados para animales'),
             ('destilados', 'Destilación, rectificación y mezcla de bebidas alcohólicas'),
             ('fermentados', 'Elaboración de bebidas fermentadas no destiladas'),
-            ('produccion_malta', 'Producción de malta, elaboración de cervezas y otras bebidas malteadas'),
+            ('produccion_malta',
+             'Producción de malta, elaboración de cervezas y otras bebidas malteadas'),
             ('bebidas_no_alcohol', 'Elaboración de bebidas no alcohólicas, producción de aguas minerales y otras aguas embotelladas'),
             ('textiles', 'Preparación, hilatura, tejeduría y acabado de productos textiles'),
             ('tejidos', 'Fabricación de tejidos de punto y ganchillo'),
-            ('confeccion_no_prendas', 'Confección de artículos con materiales textiles, excepto prendas de vestir'),
+            ('confeccion_no_prendas',
+             'Confección de artículos con materiales textiles, excepto prendas de vestir'),
             ('fabricacion_tap_alf', 'Fabricación de tapetes y alfombras para pisos'),
-            ('fabricacion_cuerdas', 'Fabricación de cuerdas, cordeles, cables, bramantes y redes'),
-            ('confeccion_prendas', 'Confección de prendas de vestir, excepto prendas de piel'),
+            ('fabricacion_cuerdas',
+             'Fabricación de cuerdas, cordeles, cables, bramantes y redes'),
+            ('confeccion_prendas',
+             'Confección de prendas de vestir, excepto prendas de piel'),
             ('articulos_piel', 'Fabricación de artículos de piel'),
             ('curtidos', 'Curtido y recurtido de cueros; recurtido y teñido de pieles'),
-            ('fabricacion_art_viajes', 'Fabricación de artículos de viaje, bolsos de mano y artículos similares'),
+            ('fabricacion_art_viajes',
+             'Fabricación de artículos de viaje, bolsos de mano y artículos similares'),
             ('fabricacion_calzado', 'Fabricación de calzado'),
-            ('transformacion_madera', 'Transformación de la madera y fabricación de productos de madera y de caucho'),
-            ('fabricacion_papel', 'Fabricación de papel, cartón y productos de papel y cartón'),
+            ('transformacion_madera',
+             'Transformación de la madera y fabricación de productos de madera y de caucho'),
+            ('fabricacion_papel',
+             'Fabricación de papel, cartón y productos de papel y cartón'),
             ('fabricacion_quimicos', 'Fabricación de sustancias y productos químicos'),
-            ('fabricacion_pinturas', 'Fabricación de pinturas, barnices y revestimientos similares, tintas para impresión y masillas'),
+            ('fabricacion_pinturas',
+             'Fabricación de pinturas, barnices y revestimientos similares, tintas para impresión y masillas'),
             ('fabricacion_jab_det', 'Fabricación de jabones y detergentes, preparados para limpiar y pulir; perfumes y preparados de tocador'),
-            ('fabricacion_prod_caucho', 'Fabricación de productos de caucho y de plástico (Neumaticos, botellas, etc)'),
+            ('fabricacion_prod_caucho',
+             'Fabricación de productos de caucho y de plástico (Neumaticos, botellas, etc)'),
             ('fabricacion_vidrio', 'Fabricación de vidrio y productos de vidrio'),
-            ('fabricacion_mat_construccion', 'Fabricación de productos de materiales para construcción'),
-            ('fabricacion_prod_metalurgicos', 'Fabricación de productos metalúrgicos'),
-            ('fabricacion_prod_informaticos', 'Fabricación de productos informáticos, electrónicos y ópticos'),
-            ('fabricacion_eq_electronico', 'Fabricación de aparatos y equipo eléctrico'),
+            ('fabricacion_mat_construccion',
+             'Fabricación de productos de materiales para construcción'),
+            ('fabricacion_prod_metalurgicos',
+             'Fabricación de productos metalúrgicos'),
+            ('fabricacion_prod_informaticos',
+             'Fabricación de productos informáticos, electrónicos y ópticos'),
+            ('fabricacion_eq_electronico',
+             'Fabricación de aparatos y equipo eléctrico'),
             ('fabricacion_maq_eq', 'Fabricación de maquinaria y equipo'),
-            ('fabricacion_automotores', 'Fabricación de vehículos automotores, remolques y semirremolques'),
+            ('fabricacion_automotores',
+             'Fabricación de vehículos automotores, remolques y semirremolques'),
             ('otros', 'Otros tipo'),
         ], "Actividad economica industrial",
-    ) 
-    
+    )
+
     x_que_por_ren = fields.Selection(
         [
-           ('1', '1%'),
-           ('2', '2%'),
-           ('3', '3%'),
-           ('4', '4%'),
-           ('5', '5%'),
-           ('6', '6%'),
-           ('7', '7%'),
-           ('8', '8%'),
-           ('9', '9%'),
-           ('10', '10%'),
-           ('11', '11%'),
-           ('12', '12%'),
-           ('13', '13%'),
-           ('14', '14%'),
-           ('15', '15%'),
-           ('16', '16%'),
-           ('17', '17%'),
-           ('18', '18%'),
-           ('19', '19%'),
-           ('20', '20%'),
-           ('21', '21%'),
-           ('22', '22%'),
-           ('23', '23%'),
-           ('24', '24%'),
-           ('25', '25%'),
-           ('26', '26%'),
-           ('27', '27%'),
-           ('28', '28%'),
-           ('29', '29%'),
-           ('30', '30%'),
-           ('31', '31%'),
-           ('32', '32%'),
-           ('33', '33%'),
-           ('34', '34%'),
-           ('35', '35%'),
-           ('36', '36%'),
-           ('37', '37%'),
-           ('38', '38%'),
-           ('39', '38%'),
-           ('40', '40%'),
-           ('41', '41%'),
-           ('42', '42%'),
-           ('43', '43%'),
-           ('44', '44%'),
-           ('45', '45%'),
-           ('46', '46%'),
-           ('47', '47%'),
-           ('48', '48%'),
-           ('49', '49%'),
-           ('50', '50%'),
-           ('51', '51%'),
-           ('52', '52%'),
-           ('53', '53%'),
-           ('54', '54%'),
-           ('55', '55%'),
-           ('56', '56%'),
-           ('57', '57%'),
-           ('58', '58%'),
-           ('59', '59%'),
-           ('60', '60%'),
-           ('61', '61%'),
-           ('62', '62%'),
-           ('63', '63%'),
-           ('64', '64%'),
-           ('65', '65%'),
-           ('66', '66%'),
-           ('67', '67%'),
-           ('68', '68%'),
-           ('69', '69%'),
-           ('70', '70%'),
-           ('71', '71%'),
-           ('72', '72%'),
-           ('73', '73%'),
-           ('74', '74%'),
-           ('75', '75%'),
-           ('76', '76%'),
-           ('77', '77%'),
-           ('78', '78%'),
-           ('79', '79%'),
-           ('80', '80%'),
-           ('81', '81%'),
-           ('82', '82%'),
-           ('83', '83%'),
-           ('84', '84%'),
-           ('85', '85%'),
-           ('86', '86%'),
-           ('87', '87%'),
-           ('88', '88%'),
-           ('89', '89%'),
-           ('90', '90%'),
-           ('91', '91%'),
-           ('92', '92%'),
-           ('93', '93%'),
-           ('94', '94%'),
-           ('95', '95%'),
-           ('96', '96%'),
-           ('97', '97%'),
-           ('98', '98%'),
-           ('99', '99%'),
-           ('100', '100%')
+            ('1', '1%'),
+            ('2', '2%'),
+            ('3', '3%'),
+            ('4', '4%'),
+            ('5', '5%'),
+            ('6', '6%'),
+            ('7', '7%'),
+            ('8', '8%'),
+            ('9', '9%'),
+            ('10', '10%'),
+            ('11', '11%'),
+            ('12', '12%'),
+            ('13', '13%'),
+            ('14', '14%'),
+            ('15', '15%'),
+            ('16', '16%'),
+            ('17', '17%'),
+            ('18', '18%'),
+            ('19', '19%'),
+            ('20', '20%'),
+            ('21', '21%'),
+            ('22', '22%'),
+            ('23', '23%'),
+            ('24', '24%'),
+            ('25', '25%'),
+            ('26', '26%'),
+            ('27', '27%'),
+            ('28', '28%'),
+            ('29', '29%'),
+            ('30', '30%'),
+            ('31', '31%'),
+            ('32', '32%'),
+            ('33', '33%'),
+            ('34', '34%'),
+            ('35', '35%'),
+            ('36', '36%'),
+            ('37', '37%'),
+            ('38', '38%'),
+            ('39', '38%'),
+            ('40', '40%'),
+            ('41', '41%'),
+            ('42', '42%'),
+            ('43', '43%'),
+            ('44', '44%'),
+            ('45', '45%'),
+            ('46', '46%'),
+            ('47', '47%'),
+            ('48', '48%'),
+            ('49', '49%'),
+            ('50', '50%'),
+            ('51', '51%'),
+            ('52', '52%'),
+            ('53', '53%'),
+            ('54', '54%'),
+            ('55', '55%'),
+            ('56', '56%'),
+            ('57', '57%'),
+            ('58', '58%'),
+            ('59', '59%'),
+            ('60', '60%'),
+            ('61', '61%'),
+            ('62', '62%'),
+            ('63', '63%'),
+            ('64', '64%'),
+            ('65', '65%'),
+            ('66', '66%'),
+            ('67', '67%'),
+            ('68', '68%'),
+            ('69', '69%'),
+            ('70', '70%'),
+            ('71', '71%'),
+            ('72', '72%'),
+            ('73', '73%'),
+            ('74', '74%'),
+            ('75', '75%'),
+            ('76', '76%'),
+            ('77', '77%'),
+            ('78', '78%'),
+            ('79', '79%'),
+            ('80', '80%'),
+            ('81', '81%'),
+            ('82', '82%'),
+            ('83', '83%'),
+            ('84', '84%'),
+            ('85', '85%'),
+            ('86', '86%'),
+            ('87', '87%'),
+            ('88', '88%'),
+            ('89', '89%'),
+            ('90', '90%'),
+            ('91', '91%'),
+            ('92', '92%'),
+            ('93', '93%'),
+            ('94', '94%'),
+            ('95', '95%'),
+            ('96', '96%'),
+            ('97', '97%'),
+            ('98', '98%'),
+            ('99', '99%'),
+            ('100', '100%')
         ], "31. ¿Que porcentaje de rentabilidad le dejo su negocio durante de la pandemia COVID-19?",
     )
     x_que_por_ren_ant = fields.Selection(
         [
-           ('1', '1%'),
-           ('2', '2%'),
-           ('3', '3%'),
-           ('4', '4%'),
-           ('5', '5%'),
-           ('6', '6%'),
-           ('7', '7%'),
-           ('8', '8%'),
-           ('9', '9%'),
-           ('10', '10%'),
-           ('11', '11%'),
-           ('12', '12%'),
-           ('13', '13%'),
-           ('14', '14%'),
-           ('15', '15%'),
-           ('16', '16%'),
-           ('17', '17%'),
-           ('18', '18%'),
-           ('19', '19%'),
-           ('20', '20%'),
-           ('21', '21%'),
-           ('22', '22%'),
-           ('23', '23%'),
-           ('24', '24%'),
-           ('25', '25%'),
-           ('26', '26%'),
-           ('27', '27%'),
-           ('28', '28%'),
-           ('29', '29%'),
-           ('30', '30%'),
-           ('31', '31%'),
-           ('32', '32%'),
-           ('33', '33%'),
-           ('34', '34%'),
-           ('35', '35%'),
-           ('36', '36%'),
-           ('37', '37%'),
-           ('38', '38%'),
-           ('39', '38%'),
-           ('40', '40%'),
-           ('41', '41%'),
-           ('42', '42%'),
-           ('43', '43%'),
-           ('44', '44%'),
-           ('45', '45%'),
-           ('46', '46%'),
-           ('47', '47%'),
-           ('48', '48%'),
-           ('49', '49%'),
-           ('50', '50%'),
-           ('51', '51%'),
-           ('52', '52%'),
-           ('53', '53%'),
-           ('54', '54%'),
-           ('55', '55%'),
-           ('56', '56%'),
-           ('57', '57%'),
-           ('58', '58%'),
-           ('59', '59%'),
-           ('60', '60%'),
-           ('61', '61%'),
-           ('62', '62%'),
-           ('63', '63%'),
-           ('64', '64%'),
-           ('65', '65%'),
-           ('66', '66%'),
-           ('67', '67%'),
-           ('68', '68%'),
-           ('69', '69%'),
-           ('70', '70%'),
-           ('71', '71%'),
-           ('72', '72%'),
-           ('73', '73%'),
-           ('74', '74%'),
-           ('75', '75%'),
-           ('76', '76%'),
-           ('77', '77%'),
-           ('78', '78%'),
-           ('79', '79%'),
-           ('80', '80%'),
-           ('81', '81%'),
-           ('82', '82%'),
-           ('83', '83%'),
-           ('84', '84%'),
-           ('85', '85%'),
-           ('86', '86%'),
-           ('87', '87%'),
-           ('88', '88%'),
-           ('89', '89%'),
-           ('90', '90%'),
-           ('91', '91%'),
-           ('92', '92%'),
-           ('93', '93%'),
-           ('94', '94%'),
-           ('95', '95%'),
-           ('96', '96%'),
-           ('97', '97%'),
-           ('98', '98%'),
-           ('99', '99%'),
-           ('100', '100%')
+            ('1', '1%'),
+            ('2', '2%'),
+            ('3', '3%'),
+            ('4', '4%'),
+            ('5', '5%'),
+            ('6', '6%'),
+            ('7', '7%'),
+            ('8', '8%'),
+            ('9', '9%'),
+            ('10', '10%'),
+            ('11', '11%'),
+            ('12', '12%'),
+            ('13', '13%'),
+            ('14', '14%'),
+            ('15', '15%'),
+            ('16', '16%'),
+            ('17', '17%'),
+            ('18', '18%'),
+            ('19', '19%'),
+            ('20', '20%'),
+            ('21', '21%'),
+            ('22', '22%'),
+            ('23', '23%'),
+            ('24', '24%'),
+            ('25', '25%'),
+            ('26', '26%'),
+            ('27', '27%'),
+            ('28', '28%'),
+            ('29', '29%'),
+            ('30', '30%'),
+            ('31', '31%'),
+            ('32', '32%'),
+            ('33', '33%'),
+            ('34', '34%'),
+            ('35', '35%'),
+            ('36', '36%'),
+            ('37', '37%'),
+            ('38', '38%'),
+            ('39', '38%'),
+            ('40', '40%'),
+            ('41', '41%'),
+            ('42', '42%'),
+            ('43', '43%'),
+            ('44', '44%'),
+            ('45', '45%'),
+            ('46', '46%'),
+            ('47', '47%'),
+            ('48', '48%'),
+            ('49', '49%'),
+            ('50', '50%'),
+            ('51', '51%'),
+            ('52', '52%'),
+            ('53', '53%'),
+            ('54', '54%'),
+            ('55', '55%'),
+            ('56', '56%'),
+            ('57', '57%'),
+            ('58', '58%'),
+            ('59', '59%'),
+            ('60', '60%'),
+            ('61', '61%'),
+            ('62', '62%'),
+            ('63', '63%'),
+            ('64', '64%'),
+            ('65', '65%'),
+            ('66', '66%'),
+            ('67', '67%'),
+            ('68', '68%'),
+            ('69', '69%'),
+            ('70', '70%'),
+            ('71', '71%'),
+            ('72', '72%'),
+            ('73', '73%'),
+            ('74', '74%'),
+            ('75', '75%'),
+            ('76', '76%'),
+            ('77', '77%'),
+            ('78', '78%'),
+            ('79', '79%'),
+            ('80', '80%'),
+            ('81', '81%'),
+            ('82', '82%'),
+            ('83', '83%'),
+            ('84', '84%'),
+            ('85', '85%'),
+            ('86', '86%'),
+            ('87', '87%'),
+            ('88', '88%'),
+            ('89', '89%'),
+            ('90', '90%'),
+            ('91', '91%'),
+            ('92', '92%'),
+            ('93', '93%'),
+            ('94', '94%'),
+            ('95', '95%'),
+            ('96', '96%'),
+            ('97', '97%'),
+            ('98', '98%'),
+            ('99', '99%'),
+            ('100', '100%')
         ], "32. ¿Que porcentaje de rentabilidad le dejo su negocio antes de la pandemia COVID-19?",
     )
 
@@ -971,14 +1079,14 @@ class Lead(models.Model):
     )
     in_empleo = fields.Selection(
         [
-            ('si','Si'),
-            ('no','No')
+            ('si', 'Si'),
+            ('no', 'No')
         ], "1. ¿Está interesado en la búsqueda de un empleo?"
     )
     x_in_empleo = fields.Selection(
         [
-            ('si','Si'),
-            ('no','No')
+            ('si', 'Si'),
+            ('no', 'No')
         ], "1. ¿Está interesado en la búsqueda de un empleo?"
     )
     x_microneg = fields.Selection(
@@ -988,8 +1096,6 @@ class Lead(models.Model):
         ], "25. ¿Su micronegocio está?",
     )
 
-   
-
     x_tsisben = fields.Selection(
         [
             ('50', 'Urbano'),
@@ -997,8 +1103,6 @@ class Lead(models.Model):
 
         ], "27. ¿Su Sisben es?",
     )
-
-    
 
     x_estrato_neg = fields.Selection(
         [
@@ -1012,7 +1116,7 @@ class Lead(models.Model):
     )
 
     x_tactiv = fields.Integer(
-    	string="30. ¿Cuánto tiempo lleva su negocio en funcionamiento? (Meses)",
+        string="30. ¿Cuánto tiempo lleva su negocio en funcionamiento? (Meses)",
     )
 
     x_dias_sem_inf = fields.Integer(
@@ -1117,7 +1221,6 @@ class Lead(models.Model):
         ], "35. ¿Cuál fue la principal fuente de recursos para la creación o constitución del negocio?",
     )
 
-
     x_recursos_form = fields.Selection(
         [
             ('50', 'Ahorros personales'),
@@ -1163,11 +1266,15 @@ class Lead(models.Model):
     x_sitio_ubi_cual_form = fields.Char('41. ¿Cuál?')
     x_sitio_ubi_cual_inf = fields.Char('40. ¿Cuál?')
 
-    x_desc_act_form = fields.Char('42. Describa la actividad comercial de su negocio' )
-    x_desc_act_inf = fields.Char('41. Describa la actividad comercial de su negocio' )
+    x_desc_act_form = fields.Char(
+        '42. Describa la actividad comercial de su negocio')
+    x_desc_act_inf = fields.Char(
+        '41. Describa la actividad comercial de su negocio')
 
-    x_desc_act_sec_form = fields.Char('43. ¿Cuál es la actividad secundaria de su negocio? (si la tiene)')
-    x_desc_act_sec_inf = fields.Char('42. ¿Cuál es la actividad secundaria de su negocio? (si la tiene)')
+    x_desc_act_sec_form = fields.Char(
+        '43. ¿Cuál es la actividad secundaria de su negocio? (si la tiene)')
+    x_desc_act_sec_inf = fields.Char(
+        '42. ¿Cuál es la actividad secundaria de su negocio? (si la tiene)')
 
     x_merca = fields.Selection(
         [
@@ -1377,8 +1484,8 @@ class Lead(models.Model):
 
         ], "¿Aplica medidas para mitigar el contagio del Covid 19?",
     )
-    
-    #se cambia por solicitud MD_26
+
+    # se cambia por solicitud MD_26
     """x_proto2_bio = fields.Selection(
         [
             ('alcohol', 'Uso de alchol'),
@@ -1390,14 +1497,14 @@ class Lead(models.Model):
 
         ], "¿Cuáles aplica?",
     )"""
-    
+
     x_proto2_bio = fields.Many2many(
         comodel_name="modelo.cuales.aplican",
         string="2. ¿Cuáles aplica?",
         readonly=False,
         store=True,
     )
-    
+
     x_proto3_bio = fields.Char(
         string="3. ¿Porque?",
     )
@@ -1541,11 +1648,12 @@ class Lead(models.Model):
         ], "¿Ha recibido o recibe algun apoyo o beneficio económico por parte del Gobierno en la emergencia para usted?",
     )
 
-    x_proto18 = fields.Many2many('model.manipulate.many2many', string="¿Que tipo de beneficios?")
+    x_proto18 = fields.Many2many(
+        'model.manipulate.many2many', string="¿Que tipo de beneficios?")
 
     # INNOVACIÓN, ORGANIZACIÓN y OPERACIÓN -----VISIBLE-----
 
-    x_innova_org_1 = fields.Selection( 
+    x_innova_org_1 = fields.Selection(
         [
             ('si', 'Sí'),
             ('no', 'No')
@@ -1584,7 +1692,7 @@ class Lead(models.Model):
         ], string='6. ¿Cuenta con un espacio adecuado para la producción y almacenamiento del producto, o prestación de sus servicios?')
 
     # MODELO DE NEGOCIOS -----VISIBLE-----
-    x_dcont2 = fields.Boolean( #NO VISIBLE
+    x_dcont2 = fields.Boolean(  # NO VISIBLE
         string="¿Desea continuar con el Formulario?",
     )
 
@@ -1615,7 +1723,7 @@ class Lead(models.Model):
         ], "10. ¿Tiene un crédito relacionado a su micronegocio?",
     )
 
-    x_neg9 = fields.Selection( #NO VISIBLE
+    x_neg9 = fields.Selection(  # NO VISIBLE
         [
             ('si', 'Si'),
             ('no', 'No'),
@@ -1646,14 +1754,14 @@ class Lead(models.Model):
         ], "13. ¿Conoce el detalle de su crédito? (Tiempos, tasas, cuotas)?",
     )
 
-    x_neg12 = fields.Selection( #NO VISIBLE
+    x_neg12 = fields.Selection(  # NO VISIBLE
         [
             ('si', 'Si'),
             ('no', 'No'),
         ], "¿Sus proveedores le dan credito?",
     )
 
-    x_neg13 = fields.Selection( #NO VISIBLE
+    x_neg13 = fields.Selection(  # NO VISIBLE
         [
             ('si', 'Si'),
             ('no', 'No'),
@@ -1666,7 +1774,7 @@ class Lead(models.Model):
         ], "14. ¿Le paga de contado las compras a sus proveedores?",
     )
 
-    x_neg15 = fields.Selection( #NO VISIBLE
+    x_neg15 = fields.Selection(  # NO VISIBLE
         [
             ('si', 'Si'),
             ('no', 'No'),
@@ -1680,7 +1788,7 @@ class Lead(models.Model):
         ], "15. ¿Tiene proyectado cambiar de idea de negocio?",
     )
     x_neg17 = fields.Char("16. ¿Porque?",
-    )
+                          )
 
     # FINANCIERO -----VISIBLE-----
     x_financiero18 = fields.Selection(
@@ -1751,7 +1859,8 @@ class Lead(models.Model):
             #('en_proceso', 'En proceso'),
         ], "25. ¿Está interesado en adquirir credito para su nogeocio?",
     )
-    x_financiero27 = fields.Char("26. ¿Para que quiere adquirir un credito para su negocio?")
+    x_financiero27 = fields.Char(
+        "26. ¿Para que quiere adquirir un credito para su negocio?")
     x_financiero27_selection = fields.Selection(
         [
             ('urgencias', 'Las urgencias financieras que se tienen en el momento'),
@@ -1760,24 +1869,25 @@ class Lead(models.Model):
             ('pagos_proveedores', 'Realizar pagos a proveedores'),
             ('pagos', 'pagos de otras obligaciones'),
             ('inversion_infraestructura', 'innversión en infraestructura'),
-            ('imp_estrategias', 'Implementación de estrategias de tecnología de la información (TI)'),
+            ('imp_estrategias',
+             'Implementación de estrategias de tecnología de la información (TI)'),
             ('ad_insumos', 'Adquisición de insumos'),
             ('pagos_nomina', 'Pagos de nómina'),
         ], "26. ¿Para que quiere adquirir un credito para su negocio?",
     )
 
-    x_financiero28 = fields.Selection( #NO VISIBLE
+    x_financiero28 = fields.Selection(  # NO VISIBLE
         [
             ('reg_simple', 'Regimen simple'),
             ('reg_comun', 'Regimen comun'),
         ], "¿Es regímen simple o regímen común en IVA?",
     )
 
-    x_financiero29 = fields.Selection( #NO VISIBLE
+    x_financiero29 = fields.Selection(  # NO VISIBLE
         [
             ('si', 'Si'),
             ('no', 'No'),
-           # ('en_proceso', 'En proceso'),
+            # ('en_proceso', 'En proceso'),
         ], "¿Presenta declaración de renta para el micronegocio?",
     )
 
@@ -1800,7 +1910,7 @@ class Lead(models.Model):
         [
             ('si', 'Si'),
             ('no', 'No'),
-           # ('en_proceso', 'En proceso'),
+            # ('en_proceso', 'En proceso'),
         ], "29. ¿Entrega sus productos o servicios con algúna marca, tarjeta, logo?",
     )
 
@@ -1811,9 +1921,8 @@ class Lead(models.Model):
         store=True,
     )
 
-
     x_mer_com33 = fields.Char("31. ¿Cuáles otros medios usa para vender mas?",
-    )
+                              )
 
     x_mer_com34 = fields.Many2many(
         comodel_name="modelo.promocion.productos",
@@ -1822,17 +1931,18 @@ class Lead(models.Model):
         store=True,
     )
 
+    x_mer_com35 = fields.Char(
+        "33. ¿Cuáles otros medios usa para contarle a sus clientes?")
 
-    x_mer_com35 = fields.Char( "33. ¿Cuáles otros medios usa para contarle a sus clientes?")
-
-    x_mer_com36 = fields.Many2many( #No visible
+    x_mer_com36 = fields.Many2many(  # No visible
         comodel_name="modelo.conseguir.nuevos.clientes",
         string="¿Cómo consigue nuevos clientes? (Redes sociales, Muestras, eventos, promociones, publicidad impresa, otros)",
         readonly=False,
         store=True,
     )
 
-    x_mer_com37 = fields.Char("¿Cuáles otros medios usa para conseguir nuevos clientes?") #NO VISIBLE
+    x_mer_com37 = fields.Char(
+        "¿Cuáles otros medios usa para conseguir nuevos clientes?")  # NO VISIBLE
 
     x_mer_com38 = fields.Selection(
         [
@@ -1847,7 +1957,7 @@ class Lead(models.Model):
         ], "35. ¿Vende a través de redes sociales o páginas web?",
     )
 
-    #FORMALIZACIÓN -----VISIBLE-----
+    # FORMALIZACIÓN -----VISIBLE-----
 
     x_forma44 = fields.Selection(
         [
@@ -1943,23 +2053,32 @@ class Lead(models.Model):
 
     x_forma41 = fields.Selection(
         [
-            ('peluqueria_salon_de_belleza_barberia_arreglo_de_unas', 'Peluquería, salón de belleza, barbería, arreglo de uñas'),
+            ('peluqueria_salon_de_belleza_barberia_arreglo_de_unas',
+             'Peluquería, salón de belleza, barbería, arreglo de uñas'),
             ('cafeteria_o _salon_de_onces', 'Cafetería o  salón de onces'),
-            ('elaboracion_de_productos_de_panaderia_tortas_pasteles_pudin_ponques', 'Elaboración de productos de panadería, tortas, pasteles, pudin, ponques'),
+            ('elaboracion_de_productos_de_panaderia_tortas_pasteles_pudin_ponques',
+             'Elaboración de productos de panadería, tortas, pasteles, pudin, ponques'),
             ('comidas_rapidas', 'Comidas rápidas'),
-            ('bar_taberna_estanco_licorera_discoteca_rumbeadero', 'Bar, taberna, estanco, licorera, discoteca, rumbeadero'),
+            ('bar_taberna_estanco_licorera_discoteca_rumbeadero',
+             'Bar, taberna, estanco, licorera, discoteca, rumbeadero'),
             ('tienda', 'Tienda'),
-            ('billares_juegos_de_mesa_rana_gallera', 'Billares, juegos de mesa, rana, gallera'),
+            ('billares_juegos_de_mesa_rana_gallera',
+             'Billares, juegos de mesa, rana, gallera'),
             ('comercio_de_colchones_muebles', 'Comercio  de colchones, muebles'),
-            ('comercio_de_elementos_deportivos_implementos_balones_tienda_de_bicicletas', 'Comercio de elementos deportivos, implementos, balones, tienda de bicicletas'),
-            ('veterinaria_venta_de_alimento_o_enseres_para_mascotas_o_animales_perros_gatos_peces', 'Veterinaria, venta de alimento o enseres para mascotas o animales, perros, gatos, peces'),
-            ('comercio_de_productos_de_tecnologia_celulares_computadores', 'Comercio de productos de tecnología, celulares, computadores'),
-            ('productos_asociados_al_arte_cuadros_pintura_joyeria_relojeria_actividades_de_fotografia', 'Productos asociados al arte, cuadros, pintura, joyería, relojería, actividades de fotografía'),
-            ('comercio_de_regalos_variedades_adornos_tajetas_articulos_diversos', 'Comercio de regalos, variedades, adornos, tajetas, articulos diversos.'),
+            ('comercio_de_elementos_deportivos_implementos_balones_tienda_de_bicicletas',
+             'Comercio de elementos deportivos, implementos, balones, tienda de bicicletas'),
+            ('veterinaria_venta_de_alimento_o_enseres_para_mascotas_o_animales_perros_gatos_peces',
+             'Veterinaria, venta de alimento o enseres para mascotas o animales, perros, gatos, peces'),
+            ('comercio_de_productos_de_tecnologia_celulares_computadores',
+             'Comercio de productos de tecnología, celulares, computadores'),
+            ('productos_asociados_al_arte_cuadros_pintura_joyeria_relojeria_actividades_de_fotografia',
+             'Productos asociados al arte, cuadros, pintura, joyería, relojería, actividades de fotografía'),
+            ('comercio_de_regalos_variedades_adornos_tajetas_articulos_diversos',
+             'Comercio de regalos, variedades, adornos, tajetas, articulos diversos.'),
             ('heladeria_o_fruteria', 'Heladería o frutería'),
             ('otro', 'Otro tipo'),
         ], "41. ¿Cual es la actividad economica de su negocio?",
-    ) 
+    )
 
     x_forma42 = fields.Char("42. Otro tipo de actividad")
     x_forma43 = fields.Selection(
@@ -2176,21 +2295,21 @@ class Lead(models.Model):
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "19. ¿Conoce usted que es un  modelo de negocio?",
+         ], "19. ¿Conoce usted que es un  modelo de negocio?",
     )
 
     x_innova20 = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "20. ¿Se ha capacitado en la formación de modelos de negocio?",
+         ], "20. ¿Se ha capacitado en la formación de modelos de negocio?",
     )
 
     x_innova21 = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "21. ¿Conoce los canales de distribución para su producto?",
+         ], "21. ¿Conoce los canales de distribución para su producto?",
     )
 
     x_innova22 = fields.Selection(
@@ -2218,27 +2337,27 @@ class Lead(models.Model):
         [('si', 'Si'),
          ('no', 'No'),
          ('en_proceso', 'En proceso'),
-        ], "38. ¿Cuenta con personal capacitado para la producción o manipulación del producto?",
+         ], "38. ¿Cuenta con personal capacitado para la producción o manipulación del producto?",
     )
 
     x_innova25 = fields.Selection(
         [('si', 'Si'),
          ('no', 'No'),
-        ], "39. ¿Cuenta con un espacio adecuado para la producción y almacenamiento del producto, teniendo en cuenta medidas de higiene y de seguridad?",
+         ], "39. ¿Cuenta con un espacio adecuado para la producción y almacenamiento del producto, teniendo en cuenta medidas de higiene y de seguridad?",
     )
 
     x_innova26 = fields.Selection(
         [
-          ('si', 'Si'),
-          ('no', 'No'),
-          ('en_proceso', 'En proceso'),
+            ('si', 'Si'),
+            ('no', 'No'),
+            ('en_proceso', 'En proceso'),
         ], "40. ¿Tiene implementado un proceso de buenas practicas de manipulacion y produccion ?",
     )
 
     x_innova27 = fields.Selection(
         [('si', 'Si'),
          ('no', 'No'),
-        ], "41. ¿Para la obtención de la materia prima o mercancía depende de un solo proveedor?",
+         ], "41. ¿Para la obtención de la materia prima o mercancía depende de un solo proveedor?",
     )
 
     x_innova28 = fields.Selection(
@@ -2246,13 +2365,13 @@ class Lead(models.Model):
          ('51', 'A crédito'),
          ('52', 'A plazos'),
 
-        ], "28. El pago de la materia prima la realiza ",
+         ], "28. El pago de la materia prima la realiza ",
     )
 
     x_innova29 = fields.Selection(
         [('si', 'Si'),
-          ('no', 'No'),
-        ], "44. ¿Ha representado retrasos en la entrega de su producto por falta de materia prima o mercancia?",
+         ('no', 'No'),
+         ], "44. ¿Ha representado retrasos en la entrega de su producto por falta de materia prima o mercancia?",
     )
     x_innova30 = fields.Selection(
         [('50', 'Totalmente de acuerdo'),
@@ -2261,14 +2380,14 @@ class Lead(models.Model):
          ('53', 'En desacuerdo'),
          ('54', 'Totalmente en desacuerdo'),
 
-        ], "30. ¿Considera que la estandarización de procesos para la producción ó manipulación del producto permiten agilizar los tiempos de entrega?",
+         ], "30. ¿Considera que la estandarización de procesos para la producción ó manipulación del producto permiten agilizar los tiempos de entrega?",
     )
 
     x_innova31 = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "31. ¿Cuenta con un proceso estandarizado para la producción o manipulación del producto?",
+         ], "31. ¿Cuenta con un proceso estandarizado para la producción o manipulación del producto?",
     )
 
     x_innova32 = fields.Selection(
@@ -2278,14 +2397,14 @@ class Lead(models.Model):
          ('53', 'En desacuerdo'),
          ('54', 'Totalmente en desacuerdo'),
 
-        ], "32. ¿Considera qué en el inventario se llevan los registros de las entradas y salidas del producto?",
+         ], "32. ¿Considera qué en el inventario se llevan los registros de las entradas y salidas del producto?",
     )
 
     x_innova33 = fields.Selection(
         [('si', 'Si'),
          ('no', 'No'),
          ('en_proceso', 'En proceso'),
-        ], "45. ¿Cuenta con un inventario donde registre las entradas y salidas del producto?",
+         ], "45. ¿Cuenta con un inventario donde registre las entradas y salidas del producto?",
     )
 
     x_innova34 = fields.Integer(
@@ -2299,7 +2418,7 @@ class Lead(models.Model):
     x_innova36 = fields.Selection(
         [('si', 'Si'),
          ('no', 'No')
-        ], "46. ¿Sabe lo qué le cuesta a su negocio la producción y comercialización del producto o servicio?",
+         ], "46. ¿Sabe lo qué le cuesta a su negocio la producción y comercialización del producto o servicio?",
     )
 
     x_innova37 = fields.Selection(
@@ -2307,14 +2426,14 @@ class Lead(models.Model):
          ('51', 'Por el punto de equilibrio'),
          ('52', 'Costos fijos + variables + costos de utilidad'),
 
-        ], "37. ¿Como define el  precio de venta de su producto o servicio? ",
+         ], "37. ¿Como define el  precio de venta de su producto o servicio? ",
     )
 
     x_innova38 = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "38. ¿Conoce qué es el punto de equilibrio?",
+         ], "38. ¿Conoce qué es el punto de equilibrio?",
     )
 
     x_innova39 = fields.Selection(
@@ -2327,19 +2446,19 @@ class Lead(models.Model):
         [('si', 'Si'),
          ('no', 'No'),
          ('en_proceso', 'En proceso'),
-        ], "49. ¿En el último año ha realizado actividades de innovación para su negocio?",
+         ], "49. ¿En el último año ha realizado actividades de innovación para su negocio?",
     )
     x_ninova50 = fields.Selection(
         [('si', 'Si'),
          ('no', 'No')
-        ], "50. ¿se generan espacios para  fomentar la Creatividad y la generación de ideas  innovadoras?",
+         ], "50. ¿se generan espacios para  fomentar la Creatividad y la generación de ideas  innovadoras?",
         oldname="ninova50"
     )
     x_ninova52 = fields.Selection(
         [('si', 'Si'),
          ('no', 'No'),
          ('en_proceso', 'En proceso'),
-        ], "52. ¿El negocio ha recibido transferencias de tecnologias o de conocimientos para mejorar sus procesos, productos o servicios?",
+         ], "52. ¿El negocio ha recibido transferencias de tecnologias o de conocimientos para mejorar sus procesos, productos o servicios?",
         oldname="ninova52"
     )
     x_ninova53 = fields.Text(
@@ -2350,13 +2469,13 @@ class Lead(models.Model):
         [('si', 'Si'),
          ('no', 'No'),
          ('en_proceso', 'En proceso'),
-        ], "54. ¿El negocio ha desarrollado nuevos servicios o productos en los ultimos 2 años?",
+         ], "54. ¿El negocio ha desarrollado nuevos servicios o productos en los ultimos 2 años?",
         oldname="ninova54"
     )
     x_innova41_inf = fields.Selection(
         [('si', 'Si'),
          ('no', 'No'),
-        ], "41. ¿Realiza actividades con los trabajadores para crear innovaciones en su negocio?",
+         ], "41. ¿Realiza actividades con los trabajadores para crear innovaciones en su negocio?",
     )
 
     x_innova41_form = fields.Selection(
@@ -2366,58 +2485,58 @@ class Lead(models.Model):
          ('53', 'En desacuerdo'),
          ('54', 'Totalmente en desacuerdo'),
 
-        ], "41. ¿Cree qué capacitar a sus trabajadores puede aumentar los resultados de su negocio?",
+         ], "41. ¿Cree qué capacitar a sus trabajadores puede aumentar los resultados de su negocio?",
     )
 
     x_innova42_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "42. ¿Ha recibido formación en creatividad e innovación? ",
+         ], "42. ¿Ha recibido formación en creatividad e innovación? ",
     )
 
     x_innova42_form = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "42. ¿Realiza actividades con los trabajadores para crear innovaciones en su negocio?",
+         ], "42. ¿Realiza actividades con los trabajadores para crear innovaciones en su negocio?",
     )
 
     x_innova43_inf = fields.Selection(
         [('si', 'Si'),
          ('no', 'No'),
-        ], "51. ¿Ofrece con frecuencia productos o servicios nuevos a partir de sugerencias de sus clientes?",
+         ], "51. ¿Ofrece con frecuencia productos o servicios nuevos a partir de sugerencias de sus clientes?",
     )
 
     x_innova43_form = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "43. ¿Ha recibido formación en creatividad e innovación? ",
+         ], "43. ¿Ha recibido formación en creatividad e innovación? ",
     )
 
     x_innova44_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "44. ¿Desarrolla o paga para innovar la forma en la que vende sus producto o servicios? (diseño, envase, promoción, forma de cotizar, etc.)",
+         ], "44. ¿Desarrolla o paga para innovar la forma en la que vende sus producto o servicios? (diseño, envase, promoción, forma de cotizar, etc.)",
     )
 
     x_innova44_form = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "44. ¿Ofrece con frecuencia productos o servicios nuevos a partir de sugerencias de sus clientes?",
+         ], "44. ¿Ofrece con frecuencia productos o servicios nuevos a partir de sugerencias de sus clientes?",
     )
 
     x_innova45_form = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "45. ¿Desarrolla o paga para innovar la forma en la que vende sus producto o servicios? (diseño, envase, promoción, forma de cotizar, etc.)",
+         ], "45. ¿Desarrolla o paga para innovar la forma en la que vende sus producto o servicios? (diseño, envase, promoción, forma de cotizar, etc.)",
     )
-    #gavii
-#FORMALIZACION SECCION 3: ADMINISTRACION
+    # gavii
+# FORMALIZACION SECCION 3: ADMINISTRACION
     x_dcont3 = fields.Boolean(
         string="Continuar con el Formulario",
     )
@@ -2425,14 +2544,14 @@ class Lead(models.Model):
         [('si', 'Si'),
          ('no', 'No'),
          ('en_proceso', 'En proceso'),
-        ], "55. ¿Su negocio está legalmente constituido?",
+         ], "55. ¿Su negocio está legalmente constituido?",
         oldname="for55"
     )
     x_forma45_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "45. ¿Considera que al realizar un análisis interno y externo de su negocio, permitirá la identificación de debilidades, oportunidades,fortalezas y amenazas?",
+         ], "45. ¿Considera que al realizar un análisis interno y externo de su negocio, permitirá la identificación de debilidades, oportunidades,fortalezas y amenazas?",
     )
 
     x_forma46_form = fields.Selection(
@@ -2442,140 +2561,140 @@ class Lead(models.Model):
          ('4', 'En desacuerdo'),
          ('5', 'Totalmente en desacuerdo'),
 
-        ], "46. ¿Considera que al realizar un análisis interno y externo de su negocio, permitirá la identificación de debilidades, oportunidades,fortalezas y amenazas?",
+         ], "46. ¿Considera que al realizar un análisis interno y externo de su negocio, permitirá la identificación de debilidades, oportunidades,fortalezas y amenazas?",
     )
 
     x_forma46_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "46. ¿Sabe cómo realizar un análisis interno de su negocio?",
+         ], "46. ¿Sabe cómo realizar un análisis interno de su negocio?",
     )
 
     x_forma47_form = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "47. ¿Sabe cómo realizar un análisis interno de su negocio?",
+         ], "47. ¿Sabe cómo realizar un análisis interno de su negocio?",
     )
 
     x_forma47_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "47. ¿Sabe cómo realizar un análisis externo de su negocio?",
+         ], "47. ¿Sabe cómo realizar un análisis externo de su negocio?",
     )
 
     x_forma48_form = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "48. ¿Sabe como realizar un análisis externo de su negocio?",
+         ], "48. ¿Sabe como realizar un análisis externo de su negocio?",
     )
 
     x_forma48_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "48. ¿Ha pensado en formalizar su negocio?",
+         ], "48. ¿Ha pensado en formalizar su negocio?",
     )
 
     x_forma49_form = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "49. ¿Tiene claro la proyección de su negocio a corto, mediano y largo plazo?",
+         ], "49. ¿Tiene claro la proyección de su negocio a corto, mediano y largo plazo?",
     )
 
     x_forma49_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "49. ¿Para usted es importante la formalización de su negocio?",
+         ], "49. ¿Para usted es importante la formalización de su negocio?",
     )
 
     x_forma50_form = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "50. ¿Toma medidas para desarrollar una cultura de la organización?",
+         ], "50. ¿Toma medidas para desarrollar una cultura de la organización?",
     )
 
     x_forma50_inf = fields.Selection(
         [('si', 'Si'),
          ('no', 'No'),
-         ('en_proceso','En proceso')
-        ], "56. ¿Tiene su negocio un registro mercantil?",
+         ('en_proceso', 'En proceso')
+         ], "56. ¿Tiene su negocio un registro mercantil?",
     )
 
     x_forma51_form = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "51. ¿Conoce las normas y estándares de calidad para productos y servicios?",
+         ], "51. ¿Conoce las normas y estándares de calidad para productos y servicios?",
     )
 
     x_forma51_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "51. ¿se encuentra actualizado?",
+         ], "51. ¿se encuentra actualizado?",
     )
 
     x_forma52_form = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "52. ¿Cuenta con alguna norma o estandar que certifique la calidad del producto o servicio que usted ofrece?",
+         ], "52. ¿Cuenta con alguna norma o estandar que certifique la calidad del producto o servicio que usted ofrece?",
     )
 
     x_forma52_inf = fields.Selection(
         [('si', 'Si'),
          ('no', 'No'),
-         ('en_proceso','En proceso')
-        ], "57. ¿Tiene este negocio RUT (Registro Único Tributario)?",
+         ('en_proceso', 'En proceso')
+         ], "57. ¿Tiene este negocio RUT (Registro Único Tributario)?",
     )
 
     x_forma53_form = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "53. ¿Expedir factura permite que los clientes tengan mayor confianza y seguridad al momento de comprar sus productos o servicios?",
+         ], "53. ¿Expedir factura permite que los clientes tengan mayor confianza y seguridad al momento de comprar sus productos o servicios?",
     )
 
     x_forma53_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "53. ¿Se encuentra actualizado?",
+         ], "53. ¿Se encuentra actualizado?",
     )
 
     x_forma54_form = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "54. ¿Expide factura?",
+         ], "54. ¿Expide factura?",
     )
 
     x_forma54_inf = fields.Selection(
         [('si', 'Si'),
          ('no', 'No'),
-         ('en_proceso','En proceso')
-        ], "58. ¿Tiene este negocio NIT (Número de Identificación Tributaria?",
+         ('en_proceso', 'En proceso')
+         ], "58. ¿Tiene este negocio NIT (Número de Identificación Tributaria?",
     )
 
     x_forma55_form = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "55. ¿Expide facturación electrónica?",
+         ], "55. ¿Expide facturación electrónica?",
     )
 
     x_forma55_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "55. ¿Se encuentra actualizado?",
+         ], "55. ¿Se encuentra actualizado?",
     )
 
     x_forma56_form = fields.Selection(
@@ -2585,55 +2704,53 @@ class Lead(models.Model):
          ('4', 'En desacuerdo'),
          ('5', 'Totalmente en desacuerdo'),
 
-        ], "56. ¿Considera que se debe tener claridad de los impuestos presentados por su actividad económica y las frecuencias en que debe pagar?",
+         ], "56. ¿Considera que se debe tener claridad de los impuestos presentados por su actividad económica y las frecuencias en que debe pagar?",
     )
 
     x_forma56_inf = fields.Selection(
         [('si', 'Si'),
          ('no', 'No'),
-         ('en_proceso','En proceso')
-        ], "59. Para el funcionamiento del negocio: ¿Requiere algún permiso municipal/distrital adicional para funcionar?",
+         ('en_proceso', 'En proceso')
+         ], "59. Para el funcionamiento del negocio: ¿Requiere algún permiso municipal/distrital adicional para funcionar?",
     )
     n_los_empl = fields.Selection(
         [('si', 'Si'),
          ('no', 'No'),
-         ('en_proceso','En proceso')
-        ], "60. ¿Los empleados reciben beneficios laborales de conformidad a la Ley? ",
+         ('en_proceso', 'En proceso')
+         ], "60. ¿Los empleados reciben beneficios laborales de conformidad a la Ley? ",
     )
-
-
 
     x_forma57_form = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "57. ¿Ha tenido que reducir la cantidad de sus trabajadores por consecuencias de la pandemia?",
+         ], "57. ¿Ha tenido que reducir la cantidad de sus trabajadores por consecuencias de la pandemia?",
     )
 
     x_forma57_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "57. ¿Cuenta actualmente con el permiso municipal/distrital adicional para funcionar?",
+         ], "57. ¿Cuenta actualmente con el permiso municipal/distrital adicional para funcionar?",
     )
 
     x_forma58_form = fields.Selection(
-        [  ('1', '1'),
-           ('2', '2'),
-           ('3', '3'),
-           ('4', '4'),
-           ('5', '5'),
-           ('6', '6'),
-           ('7', '7'),
-           ('8', '8'),
-           ('9', '9'),
-        ], "2. Antes de la pandemia COVID-19 ¿Cuántas personas de su familia trabajaban con usted en el negocio?",
+        [('1', '1'),
+         ('2', '2'),
+         ('3', '3'),
+         ('4', '4'),
+         ('5', '5'),
+         ('6', '6'),
+         ('7', '7'),
+         ('8', '8'),
+         ('9', '9'),
+         ], "2. Antes de la pandemia COVID-19 ¿Cuántas personas de su familia trabajaban con usted en el negocio?",
     )
     x_forma58_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "58. ¿Expedir factura permite que los clientes tengan mayor confianza y seguridad al momento de comprar sus productos o servicios?",
+         ], "58. ¿Expedir factura permite que los clientes tengan mayor confianza y seguridad al momento de comprar sus productos o servicios?",
     )
 
     x_forma59_form = fields.Integer(
@@ -2644,47 +2761,47 @@ class Lead(models.Model):
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "59. ¿Expide factura?",
+         ], "59. ¿Expide factura?",
     )
 
     x_forma60_form = fields.Selection(
-        [  ('1', '1'),
-           ('2', '2'),
-           ('3', '3'),
-           ('4', '4'),
-           ('5', '5'),
-           ('6', '6'),
-           ('7', '7'),
-           ('8', '8'),
-           ('9', '9'),
-        ], "4. ¿Cuántas personas de su familia trabajan actualmente con usted en el negocio?",
+        [('1', '1'),
+         ('2', '2'),
+         ('3', '3'),
+         ('4', '4'),
+         ('5', '5'),
+         ('6', '6'),
+         ('7', '7'),
+         ('8', '8'),
+         ('9', '9'),
+         ], "4. ¿Cuántas personas de su familia trabajan actualmente con usted en el negocio?",
     )
 
     x_forma60_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "60. ¿Considera que se debe tener claridad de los impuestos presentados por su actividad económica y las frecuencias en que debe pagar?",
+         ], "60. ¿Considera que se debe tener claridad de los impuestos presentados por su actividad económica y las frecuencias en que debe pagar?",
     )
 
     x_forma61_form = fields.Selection(
-        [  ('1', '1'),
-           ('2', '2'),
-           ('3', '3'),
-           ('4', '4'),
-           ('5', '5'),
-           ('6', '6'),
-           ('7', '7'),
-           ('8', '8'),
-           ('9', '9'),
-        ],"3. Antes de la pandemia COVID-19 ¿Cuántas personas QUE NO SON de su familia trabajan actualmente con usted en el negocio?",
+        [('1', '1'),
+         ('2', '2'),
+         ('3', '3'),
+         ('4', '4'),
+         ('5', '5'),
+         ('6', '6'),
+         ('7', '7'),
+         ('8', '8'),
+         ('9', '9'),
+         ], "3. Antes de la pandemia COVID-19 ¿Cuántas personas QUE NO SON de su familia trabajan actualmente con usted en el negocio?",
     )
 
     x_forma61_inf = fields.Selection(
         [('60', 'Si'),
          ('61', 'No'),
 
-        ], "61. ¿Ha tenido que reducir la cantidad de sus trabajadores por consecuencias de la pandemia?",
+         ], "61. ¿Ha tenido que reducir la cantidad de sus trabajadores por consecuencias de la pandemia?",
     )
 
     x_forma62_form = fields.Selection(
@@ -2692,7 +2809,7 @@ class Lead(models.Model):
          ('61', 'Contrato a término indefinido'),
          ('62', 'Contrato por obra o labor'),
 
-        ], "62. ¿Qué tipo de contrato aplica más para los trabajadores de su negocio?",
+         ], "62. ¿Qué tipo de contrato aplica más para los trabajadores de su negocio?",
     )
 
     x_forma62_inf = fields.Integer(
@@ -2706,7 +2823,7 @@ class Lead(models.Model):
          ('53', 'Pago quincenal'),
          ('54', 'Pago mensual'),
 
-        ], "63. ¿Si tiene trabajadores como es el sistema de remuneración?  ",
+         ], "63. ¿Si tiene trabajadores como es el sistema de remuneración?  ",
     )
 
     x_forma63_inf = fields.Integer(
@@ -2720,7 +2837,7 @@ class Lead(models.Model):
          ('4', 'En desacuerdo'),
          ('5', 'Totalmente en desacuerdo'),
 
-        ], "64. ¿Considera importante para su negocio conocer y aplicar las obligaciones correspondientes para los trabajadores que laboran en su negocio?",
+         ], "64. ¿Considera importante para su negocio conocer y aplicar las obligaciones correspondientes para los trabajadores que laboran en su negocio?",
     )
 
     x_forma64_inf = fields.Integer(
@@ -2728,18 +2845,18 @@ class Lead(models.Model):
     )
 
     x_forma65_inf = fields.Selection(
-        [  ('1', '1'),
-           ('2', '2'),
-           ('3', '3'),
-           ('4', '4'),
-           ('5', '5'),
-           ('6', '6'),
-           ('7', '7'),
-           ('8', '8'),
-           ('9', '9'),
-        ], "5. ¿Cuántas personas QUE NO SON de su familia trabajan actualmente con usted en el negocio?",
+        [('1', '1'),
+         ('2', '2'),
+         ('3', '3'),
+         ('4', '4'),
+         ('5', '5'),
+         ('6', '6'),
+         ('7', '7'),
+         ('8', '8'),
+         ('9', '9'),
+         ], "5. ¿Cuántas personas QUE NO SON de su familia trabajan actualmente con usted en el negocio?",
     )
-    
+
     x_forma66_inf = fields.Selection(
         [('50', 'Pago por hora'),
          ('51', 'Pago diario'),
@@ -2749,7 +2866,7 @@ class Lead(models.Model):
          ('55', 'Labor o pieza'),
          ('55', 'Sin remuneracion'),
 
-        ], "66. ¿Si tiene trabajadores como es el sistema de remuneración?  ",
+         ], "66. ¿Si tiene trabajadores como es el sistema de remuneración?  ",
     )
 
     x_forma67_inf = fields.Selection(
@@ -2759,7 +2876,7 @@ class Lead(models.Model):
          ('4', 'En desacuerdo'),
          ('5', 'Totalmente en desacuerdo'),
 
-        ], "67. ¿Considera importante para su negocio conocer y aplicar las obligaciones correspondientes para los trabajadores que laboran en su negocio?",
+         ], "67. ¿Considera importante para su negocio conocer y aplicar las obligaciones correspondientes para los trabajadores que laboran en su negocio?",
     )
 
     x_dcont4 = fields.Boolean(
@@ -2770,66 +2887,68 @@ class Lead(models.Model):
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "65. ¿Utiliza alguna estrategia para comercializar sus productos?",
+         ], "65. ¿Utiliza alguna estrategia para comercializar sus productos?",
     )
 
     x_merc68_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "68. ¿Utiliza alguna estrategia para comercializar sus productos?",
+         ], "68. ¿Utiliza alguna estrategia para comercializar sus productos?",
     )
 
     x_merc66_form = fields.Char(
         string="66. ¿Cuál es la estrategia que utiliza para comercializar sus productos o servicios?",
-        help="Escriba su estrategia", 
+        help="Escriba su estrategia",
     )
 
     x_merc69_inf = fields.Char(
         string="69. ¿Cuál es la estrategia que utiliza para comercializar sus productos o servicios?",
-        help="Escriba su estrategia", 
+        help="Escriba su estrategia",
     )
 
     x_merc67_form = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "67. ¿Utiliza alguna estrategia para la visibilización de sus productos?",
+         ], "67. ¿Utiliza alguna estrategia para la visibilización de sus productos?",
     )
 
     x_merc70_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "70. ¿Utiliza alguna estrategia para la visibilización de sus productos?",
+         ], "70. ¿Utiliza alguna estrategia para la visibilización de sus productos?",
     )
 
     x_merc68_form = fields.Char(
         string="68. ¿Cuál es la estrategia que utiliza para la visibilización de sus productos o servicios?",
-        help="Escriba su respuesta", 
+        help="Escriba su respuesta",
     )
 
     x_merc71_inf = fields.Char(
         string="71. ¿Cuál es la estrategia que utiliza para la visibilización de sus productos o servicios?",
-        help="Escriba su respuesta", 
+        help="Escriba su respuesta",
     )
 
-    x_merc69_form = fields.Many2many('model.form.many2many', string = "69. ¿Que medios electrónicos utiliza?")
+    x_merc69_form = fields.Many2many(
+        'model.form.many2many', string="69. ¿Que medios electrónicos utiliza?")
 
-    x_merc72_inf = fields.Many2many('model.inf.many2many', string = "72. ¿Que medios electrónicos utiliza?")
-    
+    x_merc72_inf = fields.Many2many(
+        'model.inf.many2many', string="72. ¿Que medios electrónicos utiliza?")
+
     x_merc70_form = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "70. Para realizar las actividades propias de su negocio, ¿utiliza Internet?",
+         ], "70. Para realizar las actividades propias de su negocio, ¿utiliza Internet?",
     )
 
     x_merc73_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "73. Para realizar las actividades propias de su negocio, ¿utiliza Internet?",
+         ], "73. Para realizar las actividades propias de su negocio, ¿utiliza Internet?",
     )
 
     x_merc71_form = fields.Selection(
@@ -2839,7 +2958,7 @@ class Lead(models.Model):
          ('4', 'En desacuerdo'),
          ('5', 'Totalmente en desacuerdo'),
 
-        ], "71. ¿Considera que las redes sociales permite mejorar la competitividad de su negocio? ",
+         ], "71. ¿Considera que las redes sociales permite mejorar la competitividad de su negocio? ",
     )
 
     x_merc74_inf = fields.Selection(
@@ -2849,57 +2968,62 @@ class Lead(models.Model):
          ('4', 'En desacuerdo'),
          ('5', 'Totalmente en desacuerdo'),
 
-        ], "74. ¿Considera que las redes sociales permite mejorar la competitividad de su negocio? ",
+         ], "74. ¿Considera que las redes sociales permite mejorar la competitividad de su negocio? ",
     )
 
-    x_merc72_form = fields.Many2many('model.many2many72', string="72. ¿Qué redes sociales utiliza para su negocio?")
+    x_merc72_form = fields.Many2many(
+        'model.many2many72', string="72. ¿Qué redes sociales utiliza para su negocio?")
 
-    x_merc75_inf = fields.Many2many('model.many2many75', string="75. ¿Qué redes sociales utiliza para su negocio? ")
+    x_merc75_inf = fields.Many2many(
+        'model.many2many75', string="75. ¿Qué redes sociales utiliza para su negocio? ")
 
-    x_merc76_inf = fields.Many2many('model.many2many76', string="76. ¿Qué actividades propias de su negocio realiza a través de internet?")
+    x_merc76_inf = fields.Many2many(
+        'model.many2many76', string="76. ¿Qué actividades propias de su negocio realiza a través de internet?")
 
     x_merc74_form = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "74. ¿Realiza procesos de seguimiento y fidelización de clientes (Servicio Post-venta)?",
+         ], "74. ¿Realiza procesos de seguimiento y fidelización de clientes (Servicio Post-venta)?",
     )
 
     x_merc77_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "77. ¿Realiza procesos de seguimiento y fidelización de clientes (Servicio Post-venta)?",
+         ], "77. ¿Realiza procesos de seguimiento y fidelización de clientes (Servicio Post-venta)?",
     )
 
     x_merc75_form = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "75. ¿Sus productos o servicios cuentan con una marca que los diferencie?",
+         ], "75. ¿Sus productos o servicios cuentan con una marca que los diferencie?",
     )
 
     x_merc78_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "78. ¿Sus productos o servicios cuentan con una marca que los diferencie?",
+         ], "78. ¿Sus productos o servicios cuentan con una marca que los diferencie?",
     )
 
-    x_merc76_form = fields.Many2many('model.many2many176', string="76. ¿Cuál es la forma de pago que más utilizan los clientes en su negocio?")
+    x_merc76_form = fields.Many2many(
+        'model.many2many176', string="76. ¿Cuál es la forma de pago que más utilizan los clientes en su negocio?")
 
     x_merc79_inf = fields.Selection(
-        #string="Sexo",
+        # string="Sexo",
         [('50', 'De contado'),
          ('51', 'A crédito o a plazos'),
          ('52', 'Transferencia'),
          ('53', 'Tarjeta de débito o crédito'),
          ('54', 'Cheque'),
 
-        ], "79. ¿Cuál es la forma de pago que más utilizan los clientes en su negocio? ",
+         ], "79. ¿Cuál es la forma de pago que más utilizan los clientes en su negocio? ",
     )
 
-    x_merc77_form = fields.Many2many('model.many2many177', string="77. ¿Cuál es la forma de pago que más utiliza para comprar insumo, materia prima o pagar obligaciones? ")
+    x_merc77_form = fields.Many2many(
+        'model.many2many177', string="77. ¿Cuál es la forma de pago que más utiliza para comprar insumo, materia prima o pagar obligaciones? ")
 
     x_merc80_inf = fields.Selection(
         [('50', 'De contado'),
@@ -2908,22 +3032,22 @@ class Lead(models.Model):
          ('53', 'Tarjeta de débito o crédito'),
          ('54', 'Cheque'),
 
-        ], "80. ¿Cuál es la forma de pago que más utiliza para comprar insumo, materia prima o pagar obligaciones? ",
+         ], "80. ¿Cuál es la forma de pago que más utiliza para comprar insumo, materia prima o pagar obligaciones? ",
     )
-    #actualizacion y cambio de vista
+    # actualizacion y cambio de vista
     x_merc78_form = fields.Selection(
         [('de_0_a_500', 'De $0 a $500.000'),
          ('de_500_a_1000', 'De $500.000 a $1´000.000'),
          ('de_1000_a_3000', 'De $1´000.000 a $3´000.000'),
          ('de_3000_a_6000', 'De $3´000.000 a $6´000.000'),
          ('de_6000_a_10000', 'De $6´000.000 a $10´000.000'),
-         ('mas_de_10000','Mas de $10´000.000')
-        ], "26. Durante la pandemia COVID-19, en una semana buena ¿donde se ubica sus ventas dentro de los siguientes rangos?",
+         ('mas_de_10000', 'Mas de $10´000.000')
+         ], "26. Durante la pandemia COVID-19, en una semana buena ¿donde se ubica sus ventas dentro de los siguientes rangos?",
     )
 
     x_merc81_inf = fields.Integer(
         string="81. ¿Cuál es su promedio de ventas ACTUAL en una semana BUENA?",
-        help="", 
+        help="",
     )
 
     x_merc79_form = fields.Selection(
@@ -2932,13 +3056,13 @@ class Lead(models.Model):
          ('de_1000_a_3000', 'De $1´000.000 a $3´000.000'),
          ('de_3000_a_6000', 'De $3´000.000 a $6´000.000'),
          ('de_6000_a_10000', 'De $6´000.000 a $10´000.000'),
-         ('mas_de_10000','Mas de $10´000.000')
-        ], "28. Durante la pandemia COVID-19, en una semana normal ¿donde se ubica sus ventas dentro de los siguientes rangos?",
+         ('mas_de_10000', 'Mas de $10´000.000')
+         ], "28. Durante la pandemia COVID-19, en una semana normal ¿donde se ubica sus ventas dentro de los siguientes rangos?",
     )
 
     x_merc82_inf = fields.Integer(
         string="82. ¿Cuál es su promedio de ventas ACTUAL en una semana NORMAL?",
-        help="", 
+        help="",
     )
 
     x_merc80_form = fields.Selection(
@@ -2947,13 +3071,13 @@ class Lead(models.Model):
          ('de_1000_a_3000', 'De $1´000.000 a $3´000.000'),
          ('de_3000_a_6000', 'De $3´000.000 a $6´000.000'),
          ('de_6000_a_10000', 'De $6´000.000 a $10´000.000'),
-         ('mas_de_10000','Mas de $10´000.000')
-        ], "27. Antes de la pandemia COVID-19, en una semana buena ¿donde se ubica sus ventas dentro de los siguientes rangos?",
+         ('mas_de_10000', 'Mas de $10´000.000')
+         ], "27. Antes de la pandemia COVID-19, en una semana buena ¿donde se ubica sus ventas dentro de los siguientes rangos?",
     )
 
     x_merc83_inf = fields.Integer(
         string="83. Antes de la pandemia COVID-19 ¿Cuál era su promedio de ventas en una semana BUENA?",
-        help="", 
+        help="",
     )
 
     x_merc81_form = fields.Selection(
@@ -2962,13 +3086,13 @@ class Lead(models.Model):
          ('de_1000_a_3000', 'De $1´000.000 a $3´000.000'),
          ('de_3000_a_6000', 'De $3´000.000 a $6´000.000'),
          ('de_6000_a_10000', 'De $6´000.000 a $10´000.000'),
-         ('mas_de_10000','Mas de $10´000.000')
-        ], "29. Antes de la pandemia COVID-19, en una semana normal ¿donde se ubica sus ventas dentro de los siguientes rangos?",
+         ('mas_de_10000', 'Mas de $10´000.000')
+         ], "29. Antes de la pandemia COVID-19, en una semana normal ¿donde se ubica sus ventas dentro de los siguientes rangos?",
     )
 
     x_merc84_inf = fields.Integer(
         string="84. Antes de la pandemia COVID-19 ¿Cuál era su promedio de ventas en una semana NORMAL?",
-        help="", 
+        help="",
     )
 
     x_merc82_form = fields.Selection(
@@ -2978,7 +3102,7 @@ class Lead(models.Model):
          ('4', 'En desacuerdo'),
          ('5', 'Totalmente en desacuerdo'),
 
-        ], "82. ¿El grado de satisfacción de sus clientes con el producto o servicio que usted ofrece le ha permitido mejorar sus ventas?",
+         ], "82. ¿El grado de satisfacción de sus clientes con el producto o servicio que usted ofrece le ha permitido mejorar sus ventas?",
     )
 
     x_merc85_inf = fields.Selection(
@@ -2988,35 +3112,35 @@ class Lead(models.Model):
          ('4', 'En desacuerdo'),
          ('5', 'Totalmente en desacuerdo'),
 
-        ], "85. ¿El grado de satisfacción de sus clientes con el producto o servicio que usted ofrece le ha permitido mejorar sus ventas? ",
+         ], "85. ¿El grado de satisfacción de sus clientes con el producto o servicio que usted ofrece le ha permitido mejorar sus ventas? ",
     )
 
     x_merc83_form = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "83. ¿Ha realizado actividades para detectar y vincular nuevos clientes a su negocio?",
+         ], "83. ¿Ha realizado actividades para detectar y vincular nuevos clientes a su negocio?",
     )
 
     x_merc86_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "86. ¿Ha realizado actividades para detectar y vincular nuevos clientes a su negocio?",
+         ], "86. ¿Ha realizado actividades para detectar y vincular nuevos clientes a su negocio?",
     )
 
     x_merc84_form = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "84. ¿Ha realizado actividades para promocionar las ventas de los productos o servicios que ofrece en su negocio?",
+         ], "84. ¿Ha realizado actividades para promocionar las ventas de los productos o servicios que ofrece en su negocio?",
     )
 
     x_merc87_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "87. ¿Ha realizado actividades para promocionar las ventas de los productos o servicios que ofrece en su negocio?",
+         ], "87. ¿Ha realizado actividades para promocionar las ventas de los productos o servicios que ofrece en su negocio?",
     )
 
     x_merc85_form = fields.Selection(
@@ -3026,7 +3150,7 @@ class Lead(models.Model):
          ('4', 'En desacuerdo'),
          ('5', 'Totalmente en desacuerdo'),
 
-        ], "85. ¿Considera importante realizar descuentos a los clientes para cerrar las ventas?",
+         ], "85. ¿Considera importante realizar descuentos a los clientes para cerrar las ventas?",
     )
 
     x_merc88_inf = fields.Selection(
@@ -3036,38 +3160,38 @@ class Lead(models.Model):
          ('4', 'En desacuerdo'),
          ('5', 'Totalmente en desacuerdo'),
 
-        ], "88. ¿Considera importante realizar descuentos a los clientes para cerrar las ventas?",
+         ], "88. ¿Considera importante realizar descuentos a los clientes para cerrar las ventas?",
     )
 
     x_merc86_form = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "76. ¿Su negocio depende de ventas de temporada?",
+         ], "76. ¿Su negocio depende de ventas de temporada?",
     )
 
     x_merc89_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "89. ¿Su negocio depende de ventas de temporada?",
+         ], "89. ¿Su negocio depende de ventas de temporada?",
     )
 
     x_merc87_form = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "87. ¿Vende mas o menos lo mismo durante la mayoría del año?",
+         ], "87. ¿Vende mas o menos lo mismo durante la mayoría del año?",
     )
 
     x_merc90_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "90. ¿Vende mas o menos lo mismo durante la mayoría del año?",
+         ], "90. ¿Vende mas o menos lo mismo durante la mayoría del año?",
     )
 
-    #FINANZAS
+    # FINANZAS
 
     x_dcont5 = fields.Boolean(
         string="Continuar con el Formulario",
@@ -3077,14 +3201,14 @@ class Lead(models.Model):
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "88. Lleva los registros contables del negocio",
+         ], "88. Lleva los registros contables del negocio",
     )
 
     x_finan91_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "91. Lleva los registros contables del negocio",
+         ], "91. Lleva los registros contables del negocio",
     )
 
     x_finan92_inf = fields.Selection(
@@ -3094,7 +3218,7 @@ class Lead(models.Model):
          ('53', 'En desacuerdo'),
          ('54', 'Totalmente en desacuerdo'),
 
-        ], "92. ¿Considera que debe mejorar la manera en la que lleva el registro contable del negocio?",
+         ], "92. ¿Considera que debe mejorar la manera en la que lleva el registro contable del negocio?",
     )
 
     x_finan89_form = fields.Selection(
@@ -3102,7 +3226,7 @@ class Lead(models.Model):
          ('51', 'Registros personales'),
          ('52', 'Contabilidad electrónica'),
 
-        ], "89. ¿De qué manera lleva los registros contables del negocio?",
+         ], "89. ¿De qué manera lleva los registros contables del negocio?",
     )
 
     x_finan90_form = fields.Selection(
@@ -3113,32 +3237,32 @@ class Lead(models.Model):
          ('54', 'Ninguna')
 
 
-        ], "90. ¿Cuenta usted con asesoría para llevar las cuentas?",
+         ], "90. ¿Cuenta usted con asesoría para llevar las cuentas?",
     )
 
     x_finan91_form = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "91. ¿Tiene claridad el margen de utilidad que genera su negocio?",
+         ], "91. ¿Tiene claridad el margen de utilidad que genera su negocio?",
     )
     x_finan92_form = fields.Selection(
         [('si', 'Si'),
          ('no', 'No'),
-        ], "83. ¿Tiene la cultura de ahorrar o invertir las ganancias de su negocio? ",
+         ], "83. ¿Tiene la cultura de ahorrar o invertir las ganancias de su negocio? ",
     )
 
     x_finan93_form = fields.Selection(
         [('si', 'Si'),
          ('no', 'No'),
-        ], "84. ¿Considera qué a través de la contabilidad puede diferenciar los gastos de su negocio de los gastos de su hogar?",
+         ], "84. ¿Considera qué a través de la contabilidad puede diferenciar los gastos de su negocio de los gastos de su hogar?",
     )
 
     x_finan94_form = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "94. ¿Usted ha tenido acceso durante los últimos 12 meses algún tipo de crédito para invertirlo en su negocio?",
+         ], "94. ¿Usted ha tenido acceso durante los últimos 12 meses algún tipo de crédito para invertirlo en su negocio?",
     )
 
     x_finan95_form = fields.Selection(
@@ -3148,7 +3272,7 @@ class Lead(models.Model):
          ('53', 'Compra o arriendo de maquinaria '),
          ('54', 'Otro'),
 
-        ], "95. ¿A qué destino el crédito solicitado?",
+         ], "95. ¿A qué destino el crédito solicitado?",
     )
 
     x_finan96_form = fields.Selection(
@@ -3160,7 +3284,7 @@ class Lead(models.Model):
          ('55', 'No entiende las condiciones asociadas a un crédito (tasa de interés, plazos, cuotas, etc.)'),
          ('56', 'Está reportado en Centrales de Riesgo'),
 
-        ], "96. ¿Cuál es la razón principal de que no haya solicitado un crédito?",
+         ], "96. ¿Cuál es la razón principal de que no haya solicitado un crédito?",
     )
 
     x_finan97_form = fields.Selection(
@@ -3172,14 +3296,14 @@ class Lead(models.Model):
          ('55', 'No entiende las condiciones asociadas a un crédito (tasa de interés, plazos, cuotas, etc.)'),
          ('56', 'Está reportado en Centrales de Riesgo'),
 
-        ], "97. ¿Cuál es la razón secundaria de que no haya solicitado un crédito?",
+         ], "97. ¿Cuál es la razón secundaria de que no haya solicitado un crédito?",
     )
 
     x_finan98_form = fields.Selection(
         [('si', 'Si'),
          ('no', 'No'),
 
-        ], "86. ¿Acude al fenómeno gota gota para financiar su negocio?",
+         ], "86. ¿Acude al fenómeno gota gota para financiar su negocio?",
     )
 
     x_finan99_form = fields.Selection(
@@ -3188,7 +3312,7 @@ class Lead(models.Model):
          ('ni_de_acuerdo_ni_en_desacuerdo', 'Ni de acuerdo, ni en desacuerdo'),
          ('en_desacuerdo', 'En desacuerdo'),
          ('totalmente_en_desacuerdo', 'Totalmente en desacuerdo'),
-        ], "87. ¿Considera qué los ingresos del negocio son suficientes para cubrir los gastos y costos en que incurrre el negocio?",
+         ], "87. ¿Considera qué los ingresos del negocio son suficientes para cubrir los gastos y costos en que incurrre el negocio?",
     )
 
     x_finan100_form = fields.Selection(
@@ -3200,14 +3324,14 @@ class Lead(models.Model):
          ('55', 'Seguros'),
          ('56', 'Ninguna de las anteriores'),
 
-        ], "100. Seleccione los productos financieros que utiliza su negocio",
+         ], "100. Seleccione los productos financieros que utiliza su negocio",
     )
 
     x_finan101_form = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "101. ¿Necesita acceder a servicios y productos financieros para cubrir los gastos de materia prima, salarios, entre otros?",
+         ], "101. ¿Necesita acceder a servicios y productos financieros para cubrir los gastos de materia prima, salarios, entre otros?",
     )
 
     x_finan102_form = fields.Selection(
@@ -3217,7 +3341,7 @@ class Lead(models.Model):
          ('53', 'En desacuerdo'),
          ('54', 'Totalmente en desacuerdo'),
 
-        ], "102. ¿Considera qué los gastos fijos y los gastos financieros consumen las ganancias de su negocio?",
+         ], "102. ¿Considera qué los gastos fijos y los gastos financieros consumen las ganancias de su negocio?",
     )
 
     x_finan103_form = fields.Selection(
@@ -3227,14 +3351,14 @@ class Lead(models.Model):
          ('53', 'En desacuerdo'),
          ('54', 'Totalmente en desacuerdo'),
 
-        ], "103. ¿Considera importante tener los ahorros del negocio en cuentas bancarias?",
+         ], "103. ¿Considera importante tener los ahorros del negocio en cuentas bancarias?",
     )
 
     x_finan104_form = fields.Selection(
         [('si', 'Si'),
          ('no', 'No'),
 
-        ], "91. ¿Tiene cuentas bancarias del negocio?",
+         ], "91. ¿Tiene cuentas bancarias del negocio?",
     )
 
     x_finan105_form = fields.Selection(
@@ -3245,14 +3369,14 @@ class Lead(models.Model):
          ('54', 'No cumple con los requerimientos'),
          ('55', 'Está reportado en Centrales de Riesgo'),
 
-        ], "105. ¿Cuál es la razón para que no tenga una cuenta de ahorros o una cuenta corriente para su negocio?",
+         ], "105. ¿Cuál es la razón para que no tenga una cuenta de ahorros o una cuenta corriente para su negocio?",
     )
 
     x_finan106_form = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "106. ¿Sabe qué son las billeteras electrónicas?",
+         ], "106. ¿Sabe qué son las billeteras electrónicas?",
     )
 
     x_finan107_form = fields.Selection(
@@ -3262,28 +3386,28 @@ class Lead(models.Model):
          ('53', 'En desacuerdo'),
          ('54', 'Totalmente en desacuerdo'),
 
-        ], "107. ¿Considera importante el uso de las billeteras electrónicas para el negocio?",
+         ], "107. ¿Considera importante el uso de las billeteras electrónicas para el negocio?",
     )
 
     x_finan108_form = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "108. ¿En su negocio utiliza billeteras electrónicas?",
+         ], "108. ¿En su negocio utiliza billeteras electrónicas?",
     )
 
     x_finan93_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "93. ¿Tiene claridad el margen de utilidad que genera su negocio?",
+         ], "93. ¿Tiene claridad el margen de utilidad que genera su negocio?",
     )
 
     x_finan94_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "94. ¿Tiene la cultura de ahorrar o invertir las ganancias de su negocio? ",
+         ], "94. ¿Tiene la cultura de ahorrar o invertir las ganancias de su negocio? ",
     )
 
     x_finan95_inf = fields.Selection(
@@ -3293,14 +3417,14 @@ class Lead(models.Model):
          ('53', 'En desacuerdo'),
          ('54', 'Totalmente en desacuerdo'),
 
-        ], "95. ¿Considera que a través de la contabilidad puede diferenciar los gastos de su negocio de los gastos de su hogar?",
+         ], "95. ¿Considera que a través de la contabilidad puede diferenciar los gastos de su negocio de los gastos de su hogar?",
     )
 
     x_finan96_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "96. ¿Usted ha tenido acceso durante los últimos 12 meses algún tipo de crédito para invertirlo en su negocio?",
+         ], "96. ¿Usted ha tenido acceso durante los últimos 12 meses algún tipo de crédito para invertirlo en su negocio?",
     )
 
     x_finan97_inf = fields.Selection(
@@ -3310,7 +3434,7 @@ class Lead(models.Model):
          ('53', 'Compra o arriendo de maquinaria '),
          ('54', 'Otro'),
 
-        ], "97. ¿A qué destino el crédito solicitado?",
+         ], "97. ¿A qué destino el crédito solicitado?",
     )
 
     x_cual_97 = fields.Char(
@@ -3327,7 +3451,7 @@ class Lead(models.Model):
          ('55', 'No entiende las condiciones asociadas a un crédito (tasa de interés, plazos, cuotas, etc.)'),
          ('56', 'Está reportado en Centrales de Riesgo'),
 
-        ], "98. ¿Cuál es la razón principal de que no haya solicitado un crédito?",
+         ], "98. ¿Cuál es la razón principal de que no haya solicitado un crédito?",
     )
 
     x_finan99_inf = fields.Selection(
@@ -3339,14 +3463,14 @@ class Lead(models.Model):
          ('55', 'No entiende las condiciones asociadas a un crédito (tasa de interés, plazos, cuotas, etc.)'),
          ('56', 'Está reportado en Centrales de Riesgo'),
 
-        ], "99. ¿Cuál es la razón secundaria de que no haya solicitado un crédito?",
+         ], "99. ¿Cuál es la razón secundaria de que no haya solicitado un crédito?",
     )
 
     x_finan100_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "100. ¿Acude al fenómeno gota gota para financiar su negocio?",
+         ], "100. ¿Acude al fenómeno gota gota para financiar su negocio?",
     )
 
     x_finan101_inf = fields.Selection(
@@ -3356,16 +3480,17 @@ class Lead(models.Model):
          ('53', 'En desacuerdo'),
          ('54', 'Totalmente en desacuerdo'),
 
-        ], "101. ¿Considera que los ingresos del negocio son suficientes para cubrir los gastos y costos en que incurrre el negocio?",
+         ], "101. ¿Considera que los ingresos del negocio son suficientes para cubrir los gastos y costos en que incurrre el negocio?",
     )
 
-    x_finan102_inf = fields.Many2many('model.many2many102', string="102. Seleccione los productos financieros que utiliza su negocio")
+    x_finan102_inf = fields.Many2many(
+        'model.many2many102', string="102. Seleccione los productos financieros que utiliza su negocio")
 
     x_finan103_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "103. ¿Necesita acceder a servicios y productos financieros para cubrir los gastos de materia prima, salarios, entre otros?",
+         ], "103. ¿Necesita acceder a servicios y productos financieros para cubrir los gastos de materia prima, salarios, entre otros?",
     )
 
     x_finan104_inf = fields.Selection(
@@ -3375,7 +3500,7 @@ class Lead(models.Model):
          ('53', 'En desacuerdo'),
          ('54', 'Totalmente en desacuerdo'),
 
-        ], "104. ¿Considera qué los gastos fijos y los gastos financieros consumen las ganancias de su negocio?",
+         ], "104. ¿Considera qué los gastos fijos y los gastos financieros consumen las ganancias de su negocio?",
     )
 
     x_finan105_inf = fields.Selection(
@@ -3385,14 +3510,14 @@ class Lead(models.Model):
          ('53', 'En desacuerdo'),
          ('54', 'Totalmente en desacuerdo'),
 
-        ], "105. ¿Considera importante tener los ahorros del negocio en cuentas bacarias?",
+         ], "105. ¿Considera importante tener los ahorros del negocio en cuentas bacarias?",
     )
 
     x_finan106_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "106. ¿Tiene cuentas bancarias del negocio?",
+         ], "106. ¿Tiene cuentas bancarias del negocio?",
     )
 
     x_finan107_inf = fields.Selection(
@@ -3403,14 +3528,14 @@ class Lead(models.Model):
          ('54', 'No cumple con los requerimientos'),
          ('55', 'Está reportado en Centrales de Riesgo'),
 
-        ], "107. ¿Cuál es la razón para qué no tenga una cuenta de ahorros o una cuenta corriente para su negocio?",
+         ], "107. ¿Cuál es la razón para qué no tenga una cuenta de ahorros o una cuenta corriente para su negocio?",
     )
 
     x_finan108_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "108. ¿Sabe qué son las billeteras electrónicas?",
+         ], "108. ¿Sabe qué son las billeteras electrónicas?",
     )
 
     x_finan109_inf = fields.Selection(
@@ -3420,14 +3545,14 @@ class Lead(models.Model):
          ('53', 'En desacuerdo'),
          ('54', 'Totalmente en desacuerdo'),
 
-        ], "109. ¿Considera importante el uso de las billeteras electrónicas para el negocio?",
+         ], "109. ¿Considera importante el uso de las billeteras electrónicas para el negocio?",
     )
 
     x_finan110_inf = fields.Selection(
         [('50', 'Si'),
          ('51', 'No'),
 
-        ], "110. ¿En su negocio utiliza billeteras electrónicas?",
+         ], "110. ¿En su negocio utiliza billeteras electrónicas?",
     )
     x_dcont6 = fields.Boolean(string="Continuar con el Formulario")
     x_org61 = fields.Selection(
@@ -3701,28 +3826,34 @@ class Lead(models.Model):
         ], "96. ¿En la emergencia sanitaria pudo trabajar?",
     )
 
-    country_id = fields.Many2one('res.country', "Country")
-    xcity = fields.Many2one('res.country.state.city', "8. Municipio de Residencia")
+    country_id = fields.Many2one('res.country', string="Country")
+    xcity = fields.Many2one('res.country.state.city',
+                            "8. Municipio de Residencia")
     city = fields.Char(related="xcity.name")
     state_id = fields.Many2one('res.country.state', 'State')
-   
-    
- 
-    
-    @api.onchange('country_id')
-    def _onchange_country_id(self):
-        if self.country_id:
-            return {'domain': {'state_id': [('country_id', '=', self.country_id.id)]}}
-        else:
-            return {'domain': {'state_id': []}}
-   
-    @api.depends('state_id')
+
+    @api.onchange('x_datos1')
+    def _onchage_x_datos1_country(self):
+        if self.x_datos1 == "si":
+            self.country_id = self.env['res.country'].browse([49])
+            return {'domain': {'state_id': [('country_id', '=', self.country_id.id)]}, 
+                    'domain': {'x_state_id': [('country_id', '=', self.country_id.id)]}
+                    }
+
+    @api.onchange('state_id')
     def _onchange_state_id(self):
         if self.state_id:
-            return {'domain': {'xcity_id': [('state_id', '=', self.state_id.id)]}}
+            return {'domain': {'xcity': [('state_id', '=', self.state_id.id)]}}
         else:
-            return {'domain': {'xcity_id': []}}
-    
+            return {'domain': {'xcity': []}}
+
+    @api.onchange('x_state_id')
+    def _onchange_x_state_id(self):
+        if self.x_state_id:
+            return {'domain': {'x_city_id': [('state_id', '=', self.x_state_id.id)]}}
+        else:
+            return {'domain': {'x_city_id': []}}
+
     @api.model
     def create(self, values):
         if values.get('x_datos1'):
@@ -3731,16 +3862,19 @@ class Lead(models.Model):
                     if values.get('x_no_personas_viven_propietario').isdigit():
                         return super(Lead, self).create(values)
                     else:
-                        raise ValidationError("La pregunta 21 debe contener solo números")
+                        raise ValidationError(
+                            "La pregunta 21 debe contener solo números")
                 else:
-                    raise ValidationError("La edad no puede ser cero o estar vacía")
+                    raise ValidationError(
+                        "La edad no puede ser cero o estar vacía")
             else:
-                raise ValidationError("El número de identificación no puede ser cero o estar vacía")
+                raise ValidationError(
+                    "El número de identificación no puede ser cero o estar vacía")
         else:
             return super(Lead, self).create(values)
-    
+
     def write(self, values):
-        if values.get('x_no_personas_viven_propietario'): 
+        if values.get('x_no_personas_viven_propietario'):
             if not values.get('x_no_personas_viven_propietario').isdigit():
                 raise ValidationError("La pregunta 21 solo acepta números")
         if values.get('x_forma52'):
@@ -3750,10 +3884,13 @@ class Lead(models.Model):
             if values.get('x_edad') != 0 or values.get('x_edad') != False:
                 return super(Lead, self).write(values)
             else:
-                raise ValidationError("La edad no puede ser cero o estar vacía")
+                raise ValidationError(
+                    "La edad no puede ser cero o estar vacía")
         else:
-            raise ValidationError("El número de identificación no puede ser cero o estar vacía")
-          
+            raise ValidationError(
+                "El número de identificación no puede ser cero o estar vacía")
+
+
 """
      @api.onchange('country_id', 'state_id')
     def onchange_location(self):
