@@ -2,6 +2,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from email.policy import default
+
+from dbus import ValidationException
 from odoo import fields, models, api, exceptions
 from odoo.exceptions import ValidationError
 import json
@@ -98,6 +100,15 @@ class modelo176form(models.Model):
 class Lead(models.Model):
     _inherit = "crm.lead"
 
+    @api.onchange('mobile')
+    def onchange_mobile(self):
+        if self.mobile:
+            if len(self.mobile) >= 7 and len(self.mobile) <= 10:
+                return
+            else:
+                raise ValidationError(
+                                'La pregunta "16. Teléfono Celular" debe contener entre 7 y 10 caracteres numericos') 
+
     x_datos1 = fields.Selection(
         [
             ('si', 'Si'),
@@ -151,6 +162,19 @@ class Lead(models.Model):
         help="Ingrese el tipo de identificación ",
         store=True,
     )
+
+    @api.onchange('x_identification')
+    def _conditions_x_identification(self):
+        for s in str(self.x_identification):
+            print(s)
+        if self.x_identification:
+            if len(str(self.x_identification)) >= 4 and len(str(self.x_identification)) <= 13:
+                return
+            else:
+                raise ValidationError("La pregunta 4. Numero de identificación del modulo 1, solo permita ingresar números con un numero de caracteres mayor o igual a 4 y menor o igual a 13")
+        
+            
+        
 
     _sql_constraints = [
         ('x_identification',
