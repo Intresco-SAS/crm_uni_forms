@@ -3856,6 +3856,16 @@ class Lead(models.Model):
     city = fields.Char(related="xcity.name")
     state_id = fields.Many2one('res.country.state', 'State')
 
+    plan_line_ids = fields.One2many(
+        'crm.attention.plan.line',
+        'crm_attention_id_1'
+    )
+      
+    bitacora_ids = fields.One2many(
+        'crm.attention.plan.bitacora',
+        'crm_bitacora_id'
+    )
+
     @api.onchange('x_datos1')
     def _onchage_x_datos1_country(self):
         if self.x_datos1 == "si":
@@ -3950,3 +3960,90 @@ class Lead(models.Model):
 
 
 """
+
+"""class CrmAttentionPlanLines(models.Model):
+    _name = 'crm.attention.plan.line_1'
+
+    crm_attention_id = fields.Many2one(
+        'crm.lead'
+    )
+    prioridad = fields.Char(
+        string='Prioridad'
+    )
+    actividades = fields.Char(
+        string='Actividades'
+    )
+    soluciones = fields.Char(
+        string='Soluciones'
+    )
+    reponsable = fields.Char(
+        string='Responsable'
+    )
+    estado_actividad = fields.Selection(
+        [
+            ('programada', 'Programada'),
+            ('pendiente_programar', 'Pendiente a programar'),
+            ('cancelada', 'Cancelada'),
+            ('completada', 'Completada'),
+            ('sin_actividad_relacionada', 'Sin actividad relacionada')
+        ],
+        default = "pendiente_programar"
+    )
+    adjunto = fields.Binary()"""
+
+class CrmAttentionPlanLinesBitacora(models.Model):
+    _name = 'crm.attention.plan.bitacora'
+
+
+    crm_bitacora_id = fields.Many2one(
+        'crm.lead'
+    )
+    fecha = fields.Date()
+    facilitador_ids = fields.Many2many('res.users')
+    actividad = fields.Selection(
+        [
+            ('visita', 'Visita')
+        ]
+    )
+    tipo_actividad = fields.Selection(
+        [
+            ('visita', 'Visita')
+        ]
+    )
+    registro_avance = fields.Char()
+    observaciones = fields.Char()
+    adjunto = fields.Binary()
+
+class CrmAttentionPlanLines(models.Model):
+    _name = 'crm.attention.plan.line'
+
+    crm_attention_id = fields.Many2one(
+        'crm.attention.plan'
+    )
+    crm_attention_id_1 = fields.Many2one(
+        'crm.lead'
+    )
+    prioridad = fields.Char(
+        string='Prioridad'
+    )
+    actividades = fields.Char(
+        string='Actividades'
+    )
+    soluciones = fields.Char(
+        string='Soluciones'
+    )
+    reponsable = fields.Char(
+        string='Responsable'
+    )
+    
+    estado_actividad = fields.Selection(
+        [
+            ('programada', 'Programada'),
+            ('pendiente_programar', 'Pendiente a programar'),
+            ('cancelada', 'Cancelada'),
+            ('completada', 'Completada'),
+            ('sin_actividad_relacionada', 'Sin actividad relacionada')
+        ],
+        default = "pendiente_programar"
+    )
+    adjunto = fields.Binary()
