@@ -381,10 +381,10 @@
           </div>
           <field name="plan_line_ids" mode="tree">
               <tree editable="bottom" create="1" delete="0">
-                  <field name="prioridad"/>
-                  <field name="actividades"/>
-                  <field name="soluciones"/>
-                  <field name="reponsable"/>
+                  <field name="prioridad" readonly="1"/>
+                  <field name="actividades" readonly="1"/>
+                  <field name="soluciones" readonly="1"/>
+                  <field name="reponsable" readonly="1"/>
                   <field name="estado_actividad"/>
                   <field name="adjunto"/>
               </tree>
@@ -398,9 +398,9 @@
           <field name="bitacora_ids" mode="tree">
               <tree editable="bottom" create="1" delete="0">
                   <field name="fecha"/>
-                  <field name="facilitador_ids"/>
-                  <field name="actividad"/>
-                  <field name="tipo_actividad"/>
+                  <field name="facilitador_ids1"/>
+                  <field name="actividad1"/>
+                  <field name="tipo_actividad1"/>
                   <field name="registro_avance"/>
                   <field name="observaciones"/>
                   <field name="adjunto"/>

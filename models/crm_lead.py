@@ -3994,12 +3994,16 @@ class Lead(models.Model):
 class CrmAttentionPlanLinesBitacora(models.Model):
     _name = 'crm.attention.plan.bitacora'
 
+    def selction_user(self):
+        user = self.env['res.users'].sudo().search([('id', '=', self.env.uid)])
+        return user
 
     crm_bitacora_id = fields.Many2one(
         'crm.lead'
     )
     fecha = fields.Date()
-    facilitador_ids = fields.Many2many('res.users')
+    facilitador_ids = fields.Many2many('res.users', default=selction_user)
+    facilitador_ids1 = fields.Many2one('res.users', default=selction_user)
     actividad = fields.Selection(
         [
             ('visita', 'Visita')
@@ -4010,6 +4014,8 @@ class CrmAttentionPlanLinesBitacora(models.Model):
             ('visita', 'Visita')
         ]
     )
+    actividad1 = fields.Char(string="Actividad")
+    tipo_actividad1 = fields.Char(string="Tipo de Actividad")
     registro_avance = fields.Char()
     observaciones = fields.Char()
     adjunto = fields.Binary()
