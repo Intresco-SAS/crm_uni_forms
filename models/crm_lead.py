@@ -2,12 +2,14 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from email.policy import default
+from operator import le
 
 from dbus import ValidationException
 from odoo import fields, models, api, exceptions
 from odoo.exceptions import ValidationError
 import json
 import logging
+import datetime
 
 _logger = logging.getLogger(__name__)
 
@@ -3856,15 +3858,9 @@ class Lead(models.Model):
     city = fields.Char(related="xcity.name")
     state_id = fields.Many2one('res.country.state', 'State')
 
-    plan_line_ids = fields.One2many(
-        'crm.attention.plan.line',
-        'crm_attention_id_1'
-    )
+    
       
-    bitacora_ids = fields.One2many(
-        'crm.attention.plan.bitacora',
-        'crm_bitacora_id'
-    )
+    
 
     @api.onchange('x_datos1')
     def _onchage_x_datos1_country(self):
@@ -3908,6 +3904,7 @@ class Lead(models.Model):
             return super(Lead, self).create(values)
 
     def write(self, values):
+        
         if values.get('x_no_personas_viven_propietario'):
             if not values.get('x_no_personas_viven_propietario').isdigit():
                 raise ValidationError("La pregunta 21 solo acepta números")
@@ -3923,133 +3920,61 @@ class Lead(models.Model):
         else:
             raise ValidationError(
                 "El número de identificación no puede ser cero o estar vacía")
-
-
-"""
-     @api.onchange('country_id', 'state_id')
-    def onchange_location(self):
-      
-        This functions is a great helper when you enter the customer's
-        location. It solves the problem of various cities with the same name in
-        a country
-        @param country_id: Country Id (ISO)
-        @param state_id: State Id (ISO)
-        @return: object
-      
-
-        if self.state_id:
-            mymodel = 'res.country.state.city'
-            filter_column = 'state_id'
-            check_value = self.state_id.id
-            domain = 'xcity'
-        else:
-            return {}
-
-        obj = self.env[mymodel]
-        ids = obj.search([(filter_column, '=', check_value)])
-        id_domain = []
-        for id in ids:
-            id_domain.append(id.id)
-        
-        return {
-            'domain': {domain: [('id', 'in', id_domain)]},
-            'value': {domain: ''}
-        }
-      
-     
-
-
-"""
-
-"""class CrmAttentionPlanLines(models.Model):
-    _name = 'crm.attention.plan.line_1'
-
-    crm_attention_id = fields.Many2one(
-        'crm.lead'
-    )
-    prioridad = fields.Char(
-        string='Prioridad'
-    )
-    actividades = fields.Char(
-        string='Actividades'
-    )
-    soluciones = fields.Char(
-        string='Soluciones'
-    )
-    reponsable = fields.Char(
-        string='Responsable'
-    )
-    estado_actividad = fields.Selection(
-        [
-            ('programada', 'Programada'),
-            ('pendiente_programar', 'Pendiente a programar'),
-            ('cancelada', 'Cancelada'),
-            ('completada', 'Completada'),
-            ('sin_actividad_relacionada', 'Sin actividad relacionada')
-        ],
-        default = "pendiente_programar"
-    )
-    adjunto = fields.Binary()"""
-
-class CrmAttentionPlanLinesBitacora(models.Model):
-    _name = 'crm.attention.plan.bitacora'
-
-    def selction_user(self):
-        user = self.env['res.users'].sudo().search([('id', '=', self.env.uid)])
-        return user
-
-    crm_bitacora_id = fields.Many2one(
-        'crm.lead'
-    )
-    fecha = fields.Date()
-    facilitador_ids = fields.Many2many('res.users', default=selction_user)
-    facilitador_ids1 = fields.Many2one('res.users', default=selction_user)
-    actividad = fields.Selection(
-        [
-            ('visita', 'Visita')
-        ]
-    )
-    tipo_actividad = fields.Selection(
-        [
-            ('visita', 'Visita')
-        ]
-    )
-    actividad1 = fields.Char(string="Actividad")
-    tipo_actividad1 = fields.Char(string="Tipo de Actividad")
-    registro_avance = fields.Char()
-    observaciones = fields.Char()
-    adjunto = fields.Binary()
-
-class CrmAttentionPlanLines(models.Model):
-    _name = 'crm.attention.plan.line'
-
-    crm_attention_id = fields.Many2one(
-        'crm.attention.plan'
-    )
-    crm_attention_id_1 = fields.Many2one(
-        'crm.lead'
-    )
-    prioridad = fields.Char(
-        string='Prioridad'
-    )
-    actividades = fields.Char(
-        string='Actividades'
-    )
-    soluciones = fields.Char(
-        string='Soluciones'
-    )
-    reponsable = fields.Char(
-        string='Responsable'
-    )
     
-    estado_actividad = fields.Selection(
-        [
-            ('programada', 'Programada'),
-            ('pendiente_programar', 'Pendiente a programar'),
-            ('cancelada', 'Cancelada'),
-            ('completada', 'Completada'),
-            ('sin_actividad_relacionada', 'Sin actividad relacionada')
-        ],
-        default = "pendiente_programar"
-    )
-    adjunto = fields.Binary()
+    def valide_cumplimiento(self):
+        print("121212121212121")
+        now = datetime.datetime.now()
+        leads = self.env['crm.lead'].search(
+            [
+                ("stage_id", "=", "Cuarto encuentro: Ejecución Plan de atención"),
+                ('active', '=', True)
+            ]
+        )
+        for lead in leads:
+            print(lead.active)
+            for plan_line in lead.plan_line_ids:
+                if plan_line.prioridad == "48 H":
+                    if plan_line.fecha_kanban:
+                        print((now - plan_line.fecha_kanban).total_seconds() / 86400, now - plan_line.fecha_kanban)
+                        print(type((now - plan_line.fecha_kanban).total_seconds() / 86400))
+                        if (now - plan_line.fecha_kanban).total_seconds() / 86400 < 0:
+                            plan_line.kanban_state_attention_plan = 'done'
+                        elif (now - plan_line.fecha_kanban).total_seconds() / 86400 <= 1 and (now - plan_line.fecha_kanban).total_seconds() / 86400 > 0:
+                            plan_line.kanban_state_attention_plan = 'normal'
+                        elif (now - plan_line.fecha_kanban).total_seconds() / 86400 >= 2:
+                            plan_line.kanban_state_attention_plan = 'blocked'
+                if plan_line.prioridad == "1 Semana":
+                    if plan_line.fecha_kanban:
+                        print((now - plan_line.fecha_kanban).total_seconds() / 86400, now - plan_line.fecha_kanban)
+                        print(type((now - plan_line.fecha_kanban).total_seconds() / 86400), "i semana")
+                        if (now - plan_line.fecha_kanban).total_seconds() / 86400 < 0:
+                            plan_line.kanban_state_attention_plan = 'done'
+                        elif (now - plan_line.fecha_kanban).total_seconds() / 86400 <= 1 and (now - plan_line.fecha_kanban).total_seconds() / 86400 > 0:
+                            plan_line.kanban_state_attention_plan = 'normal'
+                        elif (now - plan_line.fecha_kanban).total_seconds() / 86400 >= 7:
+                            plan_line.kanban_state_attention_plan = 'blocked'
+                if plan_line.prioridad == "2 Semana":
+                    if plan_line.fecha_kanban:
+                        print((now - plan_line.fecha_kanban).total_seconds() / 86400, now - plan_line.fecha_kanban)
+                        print(type((now - plan_line.fecha_kanban).total_seconds() / 86400), "i semana")
+                        if (now - plan_line.fecha_kanban).total_seconds() / 86400 < 0:
+                            plan_line.kanban_state_attention_plan = 'done'
+                        elif (now - plan_line.fecha_kanban).total_seconds() / 86400 <= 1 and (now - plan_line.fecha_kanban).total_seconds() / 86400 > 0:
+                            plan_line.kanban_state_attention_plan = 'normal'
+                        elif (now - plan_line.fecha_kanban).total_seconds() / 86400 >= 14:
+                            plan_line.kanban_state_attention_plan = 'blocked'
+                if plan_line.prioridad == "1 Mes":
+                    if plan_line.fecha_kanban:
+                        print("mes"*100)
+                        if (now - plan_line.fecha_kanban).total_seconds() / 86400 < 0:
+                            plan_line.kanban_state_attention_plan = 'done'
+                        elif (now - plan_line.fecha_kanban).total_seconds() / 86400 <= 1 and (now - plan_line.fecha_kanban).total_seconds() / 86400 > 0:
+                            plan_line.kanban_state_attention_plan = 'normal'
+                        elif (now - plan_line.fecha_kanban).total_seconds() / 86400 >= 30:
+                            plan_line.kanban_state_attention_plan = 'blocked'
+        
+        
+
+
+
+    

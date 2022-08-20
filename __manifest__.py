@@ -28,5 +28,6 @@
         'data/modelo_porque_compran_clientes.xml',
         'data/modelo_promocion_productos_data.xml',
         'data/modelo_temas_para_asesorarse_data.xml',
+        'data/ir_cron.xml'
     ],
 }

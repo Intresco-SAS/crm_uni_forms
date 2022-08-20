@@ -372,42 +372,7 @@
           </group>
 
         </page>
-        <page string="MODULO DE SEGUIMIENTO" name="modulo4">
         
-            <div class="oe_title text-center">
-              <h3>
-                  <span>Atención Especial</span>
-              </h3>
-          </div>
-          <field name="plan_line_ids" mode="tree">
-              <tree editable="bottom" create="1" delete="0">
-                  <field name="prioridad" readonly="1"/>
-                  <field name="actividades" readonly="1"/>
-                  <field name="soluciones" readonly="1"/>
-                  <field name="reponsable" readonly="1"/>
-                  <field name="estado_actividad"/>
-                  <field name="adjunto"/>
-              </tree>
-          </field>
-
-          <div class="oe_title text-center">
-              <h3>
-                  <span>Bitacora</span>
-              </h3>
-          </div>
-          <field name="bitacora_ids" mode="tree">
-              <tree editable="bottom" create="1" delete="0">
-                  <field name="fecha"/>
-                  <field name="facilitador_ids1"/>
-                  <field name="actividad1"/>
-                  <field name="tipo_actividad1"/>
-                  <field name="registro_avance"/>
-                  <field name="observaciones"/>
-                  <field name="adjunto"/>
-              </tree>
-          </field>
-
-        </page>
       </xpath>
     </field>
   </record>
