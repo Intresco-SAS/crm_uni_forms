@@ -163,14 +163,20 @@ class Lead(models.Model):
         string="4. Número de identificación",
         help="Ingrese el tipo de identificación ",
         store=True,
+        size=13
     )
 
-    @api.onchange('x_identification')
+    x_identification_char = fields.Char(
+        string="4. Número de identificación",
+        help="Ingrese el tipo de identificación ",
+    )
+
+    @api.onchange('x_identification_char')
     def _conditions_x_identification(self):
-        for s in str(self.x_identification):
-            print(s)
-        if self.x_identification:
-            if len(str(self.x_identification)) >= 4 and len(str(self.x_identification)) <= 13:
+        for s in str(self.x_identification_char):
+            _logger.info("x_identification"*60)
+        if self.x_identification_char:
+            if len(str(self.x_identification_char)) >= 4 and len(str(self.x_identification_char)) <= 13:
                 return
             else:
                 raise ValidationError("La pregunta 4. Numero de identificación del modulo 1, solo permita ingresar números con un numero de caracteres mayor o igual a 4 y menor o igual a 13")
@@ -181,6 +187,12 @@ class Lead(models.Model):
     _sql_constraints = [
         ('x_identification',
          'UNIQUE (x_identification)',
+         "El número de documento debe ser único!"),
+    ]
+
+    _sql_constraints = [
+        ('x_identification_char',
+         'UNIQUE (x_identification_char)',
          "El número de documento debe ser único!"),
     ]
 
@@ -3887,7 +3899,7 @@ class Lead(models.Model):
     @api.model
     def create(self, values):
         if values.get('x_datos1'):
-            if values.get('x_identification') != 0 or values.get('x_identification') != False:
+            if values.get('x_identification_char') != 0 or values.get('x_identification_char') != False:
                 if values.get('x_edad') != 0 or values.get('x_edad') != False:
                     if values.get('x_no_personas_viven_propietario').isdigit():
                         return super(Lead, self).create(values)
@@ -3911,7 +3923,7 @@ class Lead(models.Model):
         if values.get('x_forma52'):
             if not values.get('x_forma52').isdigit():
                 raise ValidationError("La pregunta 34 solo acepta números")
-        if values.get('x_identification') != 0 or values.get('x_identification') != False:
+        if values.get('x_identification_char') != 0 or values.get('x_identification_char') != False:
             if values.get('x_edad') != 0 or values.get('x_edad') != False:
                 return super(Lead, self).write(values)
             else:
