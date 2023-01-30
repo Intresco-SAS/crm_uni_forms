@@ -3876,6 +3876,7 @@ class Lead(models.Model):
     state_id = fields.Many2one('res.country.state', 'State')
 
     estimado_clientes = fields.Integer(string="Cuál es el estimado de clientes atendidos semanalmente")
+    estimado_clientes_recurentes = fields.Integer(string="Cuál es su estimado de clientes recurentes de su negocio")
 
     
       
