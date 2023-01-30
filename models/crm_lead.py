@@ -429,6 +429,7 @@ class Lead(models.Model):
             ('b', 'B'),
             ('c', 'C'),
             ('d', 'D'),
+            ("no_esta_seguro", "no sabe/no esta seguro")
 
         ], "24. ¿Qué nivel?",
     )
