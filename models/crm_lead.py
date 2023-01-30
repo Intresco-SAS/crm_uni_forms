@@ -443,6 +443,16 @@ class Lead(models.Model):
         ], "25. ¿Se encuentra afiliado al sistema de salud como independiente o empleado?",
     )
 
+    x_afiliado_1 = fields.Selection(
+        [
+            ('independiente', 'Independiente'),
+            ('empleado', 'Empleado'),
+            ('no', 'No estoy afiliado'),
+            #('ninguno', 'Ninguno'),
+
+        ], "25. ¿Se encuentra afiliado al sistema de salud como:",
+    )
+
     x_afiliado1 = fields.Selection(
         [
             ('si', 'Si'),
