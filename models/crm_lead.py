@@ -173,7 +173,7 @@ class Lead(models.Model):
 
     @api.onchange('x_identification_char')
     def _conditions_x_identification(self):
-        try:
+        if self.x_identification_char:
             for s in self.x_identification_char:
                 try:
                     int(s)
@@ -184,8 +184,7 @@ class Lead(models.Model):
                     return
                 else:
                     raise ValidationError("La pregunta 4. Numero de identificación del modulo 1, solo permita ingresar números con un numero de caracteres mayor o igual a 4 y menor o igual a 13")
-        except:
-            return            
+                  
         
             
         
