@@ -3875,6 +3875,8 @@ class Lead(models.Model):
     city = fields.Char(related="xcity.name")
     state_id = fields.Many2one('res.country.state', 'State')
 
+    estimado_clientes = fields.Integer(string="Cuál es el estimado de clientes atendidos semanalmente")
+
     
       
     
