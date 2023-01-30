@@ -466,7 +466,7 @@ class Lead(models.Model):
             ('maestria', 'Maestría'),
             ('otro', 'Otro ¿Cuál?'),
             ('ninguno', 'Ninguno'),
-        ], "26. Nivel de escolaridad",
+        ], "26. Nivel maximo de escolaridad",
     )
 
     x_limitacion = fields.Char(
