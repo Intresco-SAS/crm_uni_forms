@@ -2027,8 +2027,8 @@ class Lead(models.Model):
         [
             ('menos_1_mes', 'menos de un 1 mes'),
             ('1_3_meses', 'De 1 mes a 3 meses'),
-            ('4_6_meses', 'De 4 meses a 6 meses'),
-            ('7_11_meses', 'De 7 meses a 11 meses'),
+            ('4_6_meses', 'De 4 meses a 5 meses'),
+            ('7_11_meses', 'De 6 meses a 12 meses'),
             ('mas_1_an', 'Mas de 1 año'),
         ], "39. ¿Cuanto tiempo lleva con el Micronegocio?",
     )
