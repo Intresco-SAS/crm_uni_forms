@@ -3905,9 +3905,36 @@ class Lead(models.Model):
 
     psicosocial_93 = fields.Char(string="48. ¿Sabe usted que son los riesgos Psicosociales que afectan a los  emprendedores?")  
     x_dcontpsi = fields.Boolean(string="Continuar con el Formulario")
-      
-    
+    current_user_gestor_social_1 = fields.Boolean(
+        compute='current_user_is_gestor_social1'
+    )
 
+    current_user1 = fields.Many2one(
+        'res.users',
+        compute='get_current_user'
+    )
+
+    @api.depends('current_user1')
+    def get_current_user(self):
+       
+        for lead in self:
+            lead.current_user1 = self.env.user.id
+
+    @api.depends('current_user1')
+    def current_user_is_gestor_social(self):
+        for lead in self:
+            if lead.is_gestor_social1():
+                lead.current_user_gestor_social = True
+            else:
+                lead.current_user_gestor_social = False
+
+    def is_gestor_social1(self):
+        role_id = self.env['res.users.role'].sudo().search([('role_type', '=', 'gestor_social')])
+        for role in role_id:
+            if any(user.id == self.env.user.id for user in role.line_ids.mapped('user_id')):
+                return True
+        return False
+      
     @api.onchange('x_datos1')
     def _onchage_x_datos1_country(self):
         if self.x_datos1 == "si":
