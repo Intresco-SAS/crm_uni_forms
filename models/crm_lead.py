@@ -3921,7 +3921,7 @@ class Lead(models.Model):
             lead.current_user1 = self.env.user.id
 
     @api.depends('current_user1')
-    def current_user_is_gestor_social(self):
+    def current_user_is_gestor_social1(self):
         for lead in self:
             if lead.is_gestor_social1():
                 lead.current_user_gestor_social = True
