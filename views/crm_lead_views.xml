@@ -375,6 +375,26 @@
             </group>
           </group>
 
+          <group string="PSICOSOCIAL" style="line-height: 25px;">
+            <group style="line-height: 25px;">
+              
+
+
+            </group>
+
+            <group>
+            </group>
+
+            <group>
+              <field name="psicosocial_93" />
+             
+            </group>
+
+            <group>
+              
+            </group>
+          </group>
+
         </page>
         
       </xpath>

@@ -3903,7 +3903,7 @@ class Lead(models.Model):
         ], "37. ¿Cuál es su estimado de clientes recurentes de su negocio?",
     )
 
-    
+    psicosocial_93 = fields.Char(string="48. ¿Sabe usted que son los riesgos Psicosociales que afectan a los  emprendedores?")  
       
     
 
