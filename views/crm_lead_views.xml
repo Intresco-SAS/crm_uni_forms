@@ -377,9 +377,7 @@
 
           <group string="PSICOSOCIAL" style="line-height: 25px;">
             <group style="line-height: 25px;">
-              
-
-
+              <field name="x_dcontpsi" attrs="{'invisible': [('current_user_gestor_social','=',False)]}" />
             </group>
 
             <group>

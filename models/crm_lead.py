@@ -3904,6 +3904,7 @@ class Lead(models.Model):
     )
 
     psicosocial_93 = fields.Char(string="48. ¿Sabe usted que son los riesgos Psicosociales que afectan a los  emprendedores?")  
+    x_dcontpsi = fields.Boolean(string="Continuar con el Formulario")
       
     
 
