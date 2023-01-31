@@ -343,9 +343,9 @@
                 attrs="{'required': [('x_dcont7','=',True)], 'invisible': [('x_dcont7','=',False)]}" />
               <field name="x_mer_com39"
                 attrs="{'required': [('x_dcont7','=',True)], 'invisible': [('x_dcont7','=',False)]}" />
-                <field name="estimado_clientes"
+                <field name="estimado_clientes1"
                 attrs="{'required': [('x_dcont7','=',True)], 'invisible': [('x_dcont7','=',False)]}" />
-              <field name="estimado_clientes_recurentes"
+              <field name="estimado_clientes_recurentes1"
                 attrs="{'required': [('x_dcont7','=',True)], 'invisible': [('x_dcont7','=',False)]}" />
             </group>
           </group>
