@@ -3904,6 +3904,28 @@ class Lead(models.Model):
     )
 
     psicosocial_93 = fields.Char(string="48. ¿Sabe usted que son los riesgos Psicosociales que afectan a los  emprendedores?")  
+    psicosocial_93_1 = fields.Selection(
+        [
+            ('si', 'Si'),
+            ('no', 'No'),
+           
+        ], "48. ¿Sabe usted que son los riesgos Psicosociales que afectan a los  emprendedores?",
+    )
+    psicosocial_94 = fields.Char(string="49. ¿Identifica y maneja en su empresa de manera armonica,los enfoques sociales: vida laboral, familiar y social.?")  
+    psicosocial_95 = fields.Char(string="50. ¿Gestiona o realiza seguimientos y acompañamientos psicosociales a sus colaboradores para cerciorarse de necesidades personales o necesidades de elementos de trabajo que faciliten el desempeño de sus labores?")
+    psicosocial_96 = fields.Char(string="51. ¿Da manejo a los conflictos interpersonales que se presentan al interior de su empresa?")
+    psicosocial_97 = fields.Char(string="52. ¿motiva y dirige a sus colaboradores para que se identifiquen con las políticas, valores y cultura organizacional de su empresa ?")
+    psicosocial_98 = fields.Char(string="53. ¿Maneja la comunicación asertiva con sus familiares,clientes y colaboradores?")
+    psicosocial_99 = fields.Char(string="54. ¿Controla y maneja sus horarios de trabajo y los de sus colaboradores para evitar sobrecarga laboral?")
+    psicosocial_10 = fields.Char(string="55. ¿Tiene claridad sobre los roles y funciones que usted y sus colaboradores deben desempeñar para evitar dudas y falta de organización en su empresa o negocio?")
+    psicosocial_11 = fields.Char(string="56. ¿Tiene capacidad para delegar funciones y tareas a sus colaboradores para evitar sobrecarga laboral y posibles casos de estrés tanto en usted como en sus colaboradores?")
+    psicosocial_12 = fields.Char(string="57. ¿Identifica factores intralaborales y extralaborales que causan bajo rendimiento laboral en sus colaboradores y en usted?")
+    psicosocial_13 = fields.Char(string="58. ¿Maneja el liderazgo como una característica que facilita el buen trato, la comunicación asertiva y la resolución de conflictos con los colaboradores de su empresa?")
+    psicosocial_14 = fields.Char(string="59. ¿Realiza evaluaciones de desempeño a sus colaboradores para retroalimentarlos sobre la forma en la que están realizando las labores, resaltando sus fortalezas y tomando acciones de mejora para fortalecer su desempeño?")
+    psicosocial_15 = fields.Char(string="59. ¿Vigila y controla que los colaboradores cuenten con los elementos de trabajo necesarios para el desempeño de sus labores ?")
+    psicosocial_16 = fields.Char(string="60. ¿Procura que tanto usted como sus colaboradores cuenten con inducción y capacitación que le permitan fortalecer habilidades y conocimientos requeridos para el cargo?")
+
+
     x_dcontpsi = fields.Boolean(string="Continuar con el Formulario")
     current_user_gestor_social_1 = fields.Boolean(
         compute='current_user_is_gestor_social1'

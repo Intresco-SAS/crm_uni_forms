@@ -386,12 +386,23 @@
             </group>
 
             <group>
-              <field name="psicosocial_93" attrs="{'required' : [('x_dcontpsi', '=', True)], 'invisible' : [('x_dcontpsi', '=', False)], 'readonly' : [('current_user_gestor_social_1', '=', False)]}"/>
-             
-            </group>
-
-            <group>
+              <field name="psicosocial_93_1" attrs="{'required' : [('x_dcontpsi', '=', True)], 'invisible' : [('x_dcontpsi', '=', False)], 'readonly' : [('current_user_gestor_social_1', '=', False)]}"/>
+              <field name="psicosocial_94" attrs="{'required' : [('x_dcontpsi', '=', True)], 'invisible' : [('x_dcontpsi', '=', False)], 'readonly' : [('current_user_gestor_social_1', '=', False)]}"/>
+              <field name="psicosocial_95" attrs="{'required' : [('x_dcontpsi', '=', True)], 'invisible' : [('x_dcontpsi', '=', False)], 'readonly' : [('current_user_gestor_social_1', '=', False)]}"/>
+              <field name="psicosocial_96" attrs="{'required' : [('x_dcontpsi', '=', True)], 'invisible' : [('x_dcontpsi', '=', False)], 'readonly' : [('current_user_gestor_social_1', '=', False)]}"/>
+              <field name="psicosocial_97" attrs="{'required' : [('x_dcontpsi', '=', True)], 'invisible' : [('x_dcontpsi', '=', False)], 'readonly' : [('current_user_gestor_social_1', '=', False)]}"/>
+              <field name="psicosocial_98" attrs="{'required' : [('x_dcontpsi', '=', True)], 'invisible' : [('x_dcontpsi', '=', False)], 'readonly' : [('current_user_gestor_social_1', '=', False)]}"/>
+              <field name="psicosocial_99" attrs="{'required' : [('x_dcontpsi', '=', True)], 'invisible' : [('x_dcontpsi', '=', False)], 'readonly' : [('current_user_gestor_social_1', '=', False)]}"/>
               
+            </group>
+            <group>
+              <field name="psicosocial_10" attrs="{'required' : [('x_dcontpsi', '=', True)], 'invisible' : [('x_dcontpsi', '=', False)], 'readonly' : [('current_user_gestor_social_1', '=', False)]}"/>
+              <field name="psicosocial_11" attrs="{'required' : [('x_dcontpsi', '=', True)], 'invisible' : [('x_dcontpsi', '=', False)], 'readonly' : [('current_user_gestor_social_1', '=', False)]}"/>
+              <field name="psicosocial_12" attrs="{'required' : [('x_dcontpsi', '=', True)], 'invisible' : [('x_dcontpsi', '=', False)], 'readonly' : [('current_user_gestor_social_1', '=', False)]}"/>
+              <field name="psicosocial_13" attrs="{'required' : [('x_dcontpsi', '=', True)], 'invisible' : [('x_dcontpsi', '=', False)], 'readonly' : [('current_user_gestor_social_1', '=', False)]}"/>
+              <field name="psicosocial_14" attrs="{'required' : [('x_dcontpsi', '=', True)], 'invisible' : [('x_dcontpsi', '=', False)], 'readonly' : [('current_user_gestor_social_1', '=', False)]}"/>
+              <field name="psicosocial_15" attrs="{'required' : [('x_dcontpsi', '=', True)], 'invisible' : [('x_dcontpsi', '=', False)], 'readonly' : [('current_user_gestor_social_1', '=', False)]}"/>
+              <field name="psicosocial_16" attrs="{'required' : [('x_dcontpsi', '=', True)], 'invisible' : [('x_dcontpsi', '=', False)], 'readonly' : [('current_user_gestor_social_1', '=', False)]}"/>
             </group>
           </group>
 
