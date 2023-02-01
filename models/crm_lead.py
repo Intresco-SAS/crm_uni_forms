@@ -3911,11 +3911,11 @@ class Lead(models.Model):
 
     current_user1 = fields.Many2one(
         'res.users',
-        compute='get_current_user'
+        compute='get_current_user1'
     )
 
     @api.depends('current_user1')
-    def get_current_user(self):
+    def get_current_user1(self):
        
         for lead in self:
             lead.current_user1 = self.env.user.id
