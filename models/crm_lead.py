@@ -3924,9 +3924,9 @@ class Lead(models.Model):
     def current_user_is_gestor_social1(self):
         for lead in self:
             if lead.is_gestor_social1():
-                lead.current_user_gestor_social = True
+                lead.current_user_gestor_social_1 = True
             else:
-                lead.current_user_gestor_social = False
+                lead.current_user_gestor_social_1 = False
 
     def is_gestor_social1(self):
         role_id = self.env['res.users.role'].sudo().search([('role_type', '=', 'gestor_social')])
