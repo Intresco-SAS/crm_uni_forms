@@ -386,7 +386,7 @@
             </group>
 
             <group>
-              <field name="psicosocial_93" attrs="{'required' : [('x_dcontpsi', '=', True)], 'invisible' : [('x_dcontpsi', '=', False), 'readonly' : ('current_user_gestor_social_1', '=', False)]}"/>
+              <field name="psicosocial_93" attrs="{'required' : [('x_dcontpsi', '=', True)], 'invisible' : ('x_dcontpsi', '=', False), 'readonly' : ('current_user_gestor_social_1', '=', False)}"/>
              
             </group>
 
