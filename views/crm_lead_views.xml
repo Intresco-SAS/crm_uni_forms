@@ -375,7 +375,7 @@
             </group>
           </group>
 
-          <group string="PSICOSOCIAL" style="line-height: 25px;">
+          <group string="PSICOSOCIAL" style="line-height: 25px;" attrs="{'invisible': [('root_current_user', '=', False),('current_user_gestor_social', '=', False)]}">
             <group style="line-height: 25px;">
               <field name="current_user_gestor_social_1" invisible="1"/>
               <field name="current_user1" invisible="1"/>
