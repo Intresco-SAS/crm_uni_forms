@@ -367,8 +367,8 @@
             </group>
 
             <group>
-              <field name="x_forma48" attrs="{'required' : ['|', ('x_dcont5', '=', True), ('x_forma47_1', '!=', 'no_empleados')], 'invisible' : ['|', ('x_dcont5', '=', False), ('x_forma47_1', '=', 'no_empleados')]}"/>
-              <field name="x_forma49" attrs="{'required' : ['|', ('x_dcont5', '=', True), ('x_forma47_1', '!=', 'no_empleados')], 'invisible' : ['|', ('x_dcont5', '=', False), ('x_forma47_1', '=', 'no_empleados')]}"/>
+              <field name="x_forma48" attrs="{'required' : ['|', ('x_dcont5', '=', True), ('x_forma47_1', '=', 'no_empleados')], 'invisible' : ['|', ('x_dcont5', '=', False), ('x_forma47_1', '!=', 'no_empleados')]}"/>
+              <field name="x_forma49" attrs="{'required' : ['|', ('x_dcont5', '=', True), ('x_forma47_1', '=', 'no_empleados')], 'invisible' : ['|', ('x_dcont5', '=', False), ('x_forma47_1', '!=', 'no_empleados')]}"/>
               <field name="x_forma49_1" attrs="{'required' : [('x_dcont5', '=', True)], 'invisible' : [('x_dcont5', '=', False)]}"/>
               <field name="x_fin97n" attrs="{'required' : [('x_dcont5', '=', True)], 'invisible' : [('x_dcont5', '=', False)]}"/>
               <field name="x_forma51" attrs="{'required' : [('x_dcont5', '=', True)], 'invisible' : [('x_dcont5', '=', False)]}" widget="many2many_tags"/>
