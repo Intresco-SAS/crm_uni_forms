@@ -448,6 +448,7 @@ class Lead(models.Model):
         [
             ('independiente', 'Independiente'),
             ('empleado', 'Empleado'),
+            ("subsidiado", "Subsidiado"),
             ('no', 'No estoy afiliado'),
             #('ninguno', 'Ninguno'),
 
