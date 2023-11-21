@@ -97,7 +97,9 @@ class modelo176form(models.Model):
     _name = 'model.many2many177'
 
     name = fields.Char('177form')
+    
 
+    
 
 class Lead(models.Model):
     _inherit = "crm.lead"
@@ -185,7 +187,35 @@ class Lead(models.Model):
                 else:
                     raise ValidationError("La pregunta 4. Numero de identificación del modulo 1, solo permita ingresar números con un numero de caracteres mayor o igual a 4 y menor o igual a 13")
                   
-        
+      
+    current_user_facilitator = fields.Boolean(
+        compute='current_user_is_facilitator'
+    )  
+    
+    current_user = fields.Many2one(
+        'res.users',
+        compute='get_current_user')
+      
+    # check if the current user is facilitator
+    @api.depends('current_user')
+    def current_user_is_facilitator(self):
+        for lead in self:
+            if lead.is_facilitator():
+                lead.current_user_facilitator = True
+            else:
+                lead.current_user_facilitator = False
+                
+    # set the current user
+    @api.depends('current_user')
+    def get_current_user(self):
+       # _logger.info("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+        #_logger.info(self.diagnostico)
+        for lead in self:
+            lead.current_user = self.env.user.id
+      
+      
+      
+      
             
         
 

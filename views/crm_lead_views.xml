@@ -21,7 +21,7 @@
       </xpath>
 
       <xpath expr="//group/group[2]" position="replace">
-        <group attrs="{'invisible': [('type', '=', 'lead')]}">
+        <group attrs="{'invisible': [('type', '=', 'lead')], 'readonly': [('current_user_facilitator', '=', True)]}">
           <field name="partner_id" widget="res_partner_many2one" string="Propietario" context="{'res_partner_search_mode': type == 'opportunity' and 'customer' or False,
                         'default_name': x_nombre or x_nombre_negocio,
                         'default_street': street,
@@ -37,9 +37,7 @@
                         'default_phone': phone,
                         'default_mobile': mobile,
                         'default_email': email_from,
-                        
                         'default_team_id': team_id,
-                        
                         'default_x_sexo': x_sexo,
                         'default_x_etnia': x_etnia,
                         'default_x_estrato': x_estrato,
@@ -50,20 +48,21 @@
                         'default_x_nombre': x_nombre,
                         'default_x_nombre_negocio': x_nombre_negocio,
                         'show_vat': True,
-                    }" />
+                    }"  />
           <!-- 
                 'default_x_ubic': x_ubic, -->
           <field name="is_blacklisted" invisible="1" />
           <field name="partner_is_blacklisted" invisible="1" />
           <field name="email_state" invisible="1" />
           <field name="phone_state" invisible="1" />
+          <field name="current_user_facilitator" invisible="1" />
           <label for="email_from" class="oe_inline" />
           <div class="o_row o_row_readonly">
             <i class="fa fa-ban" style="color: red;" role="img" title="This email is blacklisted for mass mailing"
               aria-label="Blacklisted"
               attrs="{'invisible': ['|', ('is_blacklisted', '=', False), ('partner_address_email', '!=', False)]}"
               groups="base.group_user" />
-            <field name="email_from" attrs="{'invisible': [('partner_address_email', '!=', False)]}" string="Email"
+            <field name="email_from" attrs="{'invisible': [('partner_address_email', '!=', False)], 'readonly': [('current_user_facilitator', '=', True)]}"   string="Email"
               widget="email" />
             <i class="fa fa-ban" style="color: red;" role="img" title="This email is blacklisted for mass mailing"
               aria-label="Blacklisted"
@@ -73,9 +72,9 @@
               widget="email" string="Email" />
           </div>
           <field string="Phone" name="partner_address_phone" widget="phone" options="{'enable_sms': True}" readonly="1"
-            attrs="{'invisible': [('partner_address_phone', '==', False)]}" />
+            attrs="{'invisible': [('partner_address_phone', '=', False)]}" />
           <field name="mobile" string="Teléfono Celular" widget="phone" options="{'enable_sms': True}"
-            attrs="{'invisible':  [('partner_address_phone', '!=', False)]}" />
+            attrs="{'invisible':  [('partner_address_phone', '!=', False)], 'readonly': [('current_user_facilitator', '=', True)]}" />
         </group>
       </xpath>
 
@@ -392,8 +391,7 @@
               <field name="psicosocial_96" attrs="{'required' : [('x_dcontpsi', '=', True)], 'invisible' : [('x_dcontpsi', '=', False)], 'readonly' : [('current_user_gestor_social_1', '=', False)]}"/>
               <field name="psicosocial_97" attrs="{'required' : [('x_dcontpsi', '=', True)], 'invisible' : [('x_dcontpsi', '=', False)], 'readonly' : [('current_user_gestor_social_1', '=', False)]}"/>
               <field name="psicosocial_98" attrs="{'required' : [('x_dcontpsi', '=', True)], 'invisible' : [('x_dcontpsi', '=', False)], 'readonly' : [('current_user_gestor_social_1', '=', False)]}"/>
-              <field name="psicosocial_99" attrs="{'required' : [('x_dcontpsi', '=', True)], 'invisible' : [('x_dcontpsi', '=', False)], 'readonly' : [('current_user_gestor_social_1', '=', False)]}"/>
-              
+              <field name="psicosocial_99" attrs="{'required' : [('x_dcontpsi', '=', True)], 'invisible' : [('x_dcontpsi', '=', False)], 'readonly' : [('current_user_gestor_social_1', '=', False)]}"/>     
             </group>
             <group>
               <field name="psicosocial_10" attrs="{'required' : [('x_dcontpsi', '=', True)], 'invisible' : [('x_dcontpsi', '=', False)], 'readonly' : [('current_user_gestor_social_1', '=', False)]}"/>
@@ -405,9 +403,7 @@
               <field name="psicosocial_16" attrs="{'required' : [('x_dcontpsi', '=', True)], 'invisible' : [('x_dcontpsi', '=', False)], 'readonly' : [('current_user_gestor_social_1', '=', False)]}"/>
             </group>
           </group>
-
         </page>
-        
       </xpath>
     </field>
   </record>
